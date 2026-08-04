@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>슬룸 월간 상품 VOC 리포트 · 2026년 06월</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --bg:#EEF1F6; --surface:#FFFFFF; --border:#E6EAF1; --border-soft:#F0F3F8;
+    --divider:#D7DEE9; --hover:#F7F9FC; --highlight:#EAF0FA;
+    --navy:#002353; --navy-dark:#0B1F3A; --ink:#0B1F3A; --ink-2:#3A4A63;
+    --ink-3:#56657D; --ink-4:#5A6B82; --ink-muted:#7A879B; --ink-soft:#8A97AB;
+    --ink-faint:#94A2B6; --ink-thin:#9AA7BA;
+    --blue:#2E6BE6; --blue-soft:#7FA8FF; --blue-light:#C6D4EA;
+    --positive:#0E7A4F; --positive-bg:#E4F4EC;
+    --negative:#C63238; --negative-bg:#FBE9EA;
+    --amber:#E8A33D; --amber-bg:#FBF1DD; --amber-ink:#8A5F14;
+    --seg-confirm:#2E6BE6; --seg-open:#E8A33D;
+    --card-shadow:0 1px 2px rgba(16,33,64,.04);
+    --card-shadow-lg:0 6px 28px rgba(16,33,64,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{font-family:'Pretendard Variable',Pretendard,-apple-system,'Apple SD Gothic Neo',system-ui,sans-serif;
+    background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh;
+    word-break:keep-all;overflow-wrap:anywhere}
+
+  .shell{display:flex;min-height:100vh}
+
+  /* ---------- Sidebar ---------- */
+  aside.sidebar{flex:none;width:230px;background:#0C2454;border-right:1px solid var(--border);
+    padding:18px 14px;display:flex;flex-direction:column;gap:2px;position:sticky;top:0;height:100vh;overflow-y:auto}
+  .brand{padding:2px 12px 14px}
+  .brand .logo{font-size:23px;font-weight:800;color:#fff;letter-spacing:-.045em;line-height:1}
+  .brand .logo .dot{color:var(--blue-soft)}
+  .brand .sub{font-size:11px;font-weight:600;color:rgba(255,255,255,.65);margin-top:3px;letter-spacing:.02em}
+  .nav-label{font-size:10.5px;font-weight:700;letter-spacing:.09em;color:rgba(255,255,255,.45);padding:0 12px;margin:12px 0 6px;text-transform:uppercase}
+  .nav-label:first-of-type{margin-top:6px}
+  .nav-item{display:block;padding:7px 12px;border-radius:8px;font-size:13px;font-weight:500;
+    color:rgba(255,255,255,.8);text-decoration:none;transition:background .15s,color .15s}
+  .nav-item:hover{background:rgba(255,255,255,.08);color:#fff}
+  .nav-item.active{background:rgba(255,255,255,.16);color:#fff;font-weight:700}
+  .sidebar-footer{margin-top:auto;padding-top:14px;border-top:1px solid rgba(255,255,255,.14)}
+  .status-strip{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:rgba(255,255,255,.07);border-radius:9px}
+  .status-dot{font-size:11px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:6px}
+  .status-dot::before{content:"";width:7px;height:7px;border-radius:50%;background:#22A06B}
+  .status-strip .date{font-size:11px;color:rgba(255,255,255,.55);font-weight:600}
+
+  /* ---------- Main ---------- */
+  .main{flex:1;min-width:0;display:flex;flex-direction:column}
+  .topbar{flex:none;height:60px;border-bottom:1px solid var(--border);display:flex;align-items:center;
+    justify-content:space-between;padding:0 24px;gap:16px;background:#fff;position:sticky;top:0;z-index:10}
+  .filter-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;font-size:12px;font-weight:600;padding:6px 12px;white-space:nowrap;border-radius:999px}
+  .pill.navy{background:var(--navy);color:#fff}
+  .pill.outline{border:1px solid var(--divider);color:var(--ink-muted);background:#fff}
+  .topbar-actions{display:flex;gap:10px}
+  .btn-sm{font-size:12px;font-weight:600;padding:7px 13px;border-radius:8px;border:1px solid var(--divider);color:var(--ink-muted);background:#fff;cursor:pointer}
+  .btn-sm.primary{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:700}
+
+  .content{flex:1;background:var(--bg);padding:28px 30px 60px;display:flex;flex-direction:column;gap:34px;max-width:1180px}
+  .page-header .eyebrow{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.04em}
+  .page-header h1{font-size:23px;font-weight:800;color:var(--navy-dark);letter-spacing:-.02em;margin-top:3px}
+  .page-header .meta{font-size:12.5px;color:#7A879B;margin-top:3px}
+
+  .sec-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+  .sec-num{font-size:11px;font-weight:800;color:#fff;background:var(--navy);width:22px;height:22px;
+    border-radius:6px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .sec-title{font-size:15px;font-weight:700;color:var(--navy-dark);letter-spacing:-.01em}
+  .sec-sub{font-size:12px;color:var(--ink-faint);font-weight:500}
+
+  .card{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--card-shadow);padding:18px 20px}
+
+  /* ---------- KPI (3) ---------- */
+  .kpi-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+  @media (min-width:900px){ .kpi-row{grid-template-columns:repeat(5,minmax(0,1fr))} }
+  .kpi{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--card-shadow);padding:15px 15px}
+  .kpi .label{font-size:12px;color:var(--ink-muted);font-weight:600}
+  .kpi .denom{font-size:10.5px;color:var(--ink-thin);font-weight:500;margin-top:2px}
+  .kpi .val{font-size:28px;font-weight:800;color:var(--navy-dark);letter-spacing:-.025em;margin-top:8px;line-height:1;font-variant-numeric:tabular-nums}
+  .kpi .val small{font-size:14px;font-weight:700;color:var(--ink-soft);margin-left:2px}
+  .kpi .delta{font-size:11.5px;font-weight:700;margin-top:6px}
+  .delta.up{color:var(--negative)} .delta.down{color:var(--positive)} .delta.flat{color:var(--ink-faint)}
+
+  .insight{display:flex;gap:10px;background:var(--highlight);border-radius:12px;padding:13px 15px}
+  .insight .icon{flex:none;font-size:14px;line-height:1.5}
+  .insight .txt{font-size:13px;line-height:1.65;color:var(--ink)}
+  .insight .txt strong{color:var(--navy);font-weight:700}
+
+  /* ---------- Table ---------- */
+  table.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+  table.tbl th{text-align:left;font-size:11px;font-weight:700;color:var(--ink-faint);
+    letter-spacing:.03em;padding:0 10px 9px;border-bottom:1px solid var(--divider);white-space:nowrap}
+  table.tbl th.num{text-align:right}
+  table.tbl td{padding:11px 10px;border-bottom:1px solid var(--border-soft);color:var(--ink-muted);vertical-align:middle}
+  table.tbl tr:last-child td{border-bottom:none}
+  table.tbl td.sku{font-weight:700;color:var(--navy-dark)}
+  table.tbl td.num{text-align:right;font-variant-numeric:tabular-nums}
+  table.tbl .sub{color:var(--ink-faint);font-size:11px;margin-left:4px}
+  .row-note{background:var(--highlight)}
+  .row-note td{font-size:12px;color:var(--ink-muted);padding:9px 12px;line-height:1.6;border-bottom:none}
+  .tag-new{font-size:10px;font-weight:700;color:var(--blue);background:var(--highlight);padding:2px 6px;border-radius:5px;margin-left:6px;vertical-align:1px}
+
+  .legend{display:flex;flex-wrap:wrap;gap:18px;font-size:12px;color:var(--ink-soft);margin-bottom:12px}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .legend i{width:10px;height:10px;border-radius:2px;display:inline-block;flex:none}
+  .legend b{font-weight:700;color:var(--ink-muted)}
+  .chart-wrap{position:relative;width:100%}
+  .footnote{font-size:11.5px;color:var(--ink-faint);line-height:1.6;margin-top:12px}
+  .footnote strong{color:var(--ink-soft);font-weight:700}
+
+  /* ---------- s2: share strip ---------- */
+  .share-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:12px;flex-wrap:wrap}
+  .share-t{font-size:13.5px;font-weight:800;color:var(--navy-dark)}
+  .share-s{font-size:11.5px;color:var(--ink-faint);margin-top:3px}
+  .share-s strong{color:var(--ink-soft);font-weight:700}
+  .share-cover{font-size:11.5px;font-weight:700;color:var(--navy);background:var(--highlight);padding:5px 11px;border-radius:999px}
+  .share-bar{display:flex;height:34px;border-radius:8px;overflow:hidden;gap:2px}
+  .share-bar .seg{display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;
+    color:#fff;min-width:2px;font-variant-numeric:tabular-nums}
+  .share-leg{display:flex;flex-direction:column;gap:8px;margin-top:13px}
+  .share-rank{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+  .rank-row{display:grid;grid-template-columns:150px 1fr 110px;align-items:center;gap:12px}
+  .rank-name{display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .rank-name i{width:9px;height:9px;border-radius:2px;flex:none}
+  .rank-bar{height:16px;background:var(--border-soft);border-radius:5px;overflow:hidden}
+  .rank-fill{display:block;height:16px;border-radius:5px;transition:width .4s ease}
+  .rank-val{display:flex;align-items:baseline;justify-content:flex-end;gap:7px;font-variant-numeric:tabular-nums}
+  .rank-val em{font-style:normal;font-size:11.5px;color:var(--ink-faint)}
+  .rank-val strong{font-size:13px;font-weight:800;color:var(--navy-dark)}
+  .share-leg span{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-soft);padding:2px 0}
+  .share-leg i{width:9px;height:9px;border-radius:2px;flex:none}
+  .share-leg b{font-weight:600;color:var(--ink-muted)}
+  .share-leg em{font-style:normal;color:var(--ink-faint);font-size:11px}
+  .share-leg strong.lp{font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;margin-left:1px}
+  .share-leg b{font-weight:700;color:var(--ink);margin-right:auto}
+  .share-leg em{font-style:normal;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+
+  /* ---------- s2: per-SKU donut grid → label → LOT ---------- */
+  .dgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  .dcard{background:#fff;border:1px solid var(--border);border-radius:12px;padding:13px 11px 11px;
+    transition:border-color .15s, box-shadow .15s}
+  .dcard.sel{border-color:var(--blue);box-shadow:0 0 0 3px rgba(46,107,230,.10)}
+  .dcard .dtitle{font-size:12.5px;font-weight:800;color:var(--navy-dark);line-height:1.35;min-height:34px}
+  .dcard .dtot{font-size:11px;color:var(--ink-muted);font-weight:600;margin-top:1px}
+  .dcard .dwrap{position:relative;height:132px;margin:8px 0 6px}
+  .dcenter{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;pointer-events:none}
+  .dcenter .n{font-size:17px;font-weight:800;color:var(--navy-dark);line-height:1;font-variant-numeric:tabular-nums}
+  .dcenter .u{font-size:10px;color:var(--ink-thin);font-weight:600;margin-top:3px}
+  .dleg{display:flex;flex-direction:column;gap:1px}
+  .dleg button{display:flex;align-items:center;gap:6px;width:100%;padding:4px 5px;border:0;background:none;
+    border-radius:5px;cursor:pointer;text-align:left;font:inherit;transition:background .12s}
+  .dleg button:hover{background:var(--hover)}
+  .dleg button.on{background:var(--highlight)}
+  .dleg i{width:8px;height:8px;border-radius:2px;flex:none}
+  .dleg .nm{font-size:11px;color:var(--ink-soft);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .dleg button.on .nm{color:var(--navy);font-weight:700}
+  .dleg .ct{font-size:11px;color:var(--ink-faint);font-weight:700;font-variant-numeric:tabular-nums}
+
+  .lot-panel{background:#F7F9FC;border:1px solid var(--border-soft);border-radius:12px;padding:16px 18px;margin-top:14px}
+  .lot-empty{grid-column:1/-1;font-size:12px;color:var(--ink-faint);background:#fff;
+    border:1px dashed var(--divider);border-radius:10px;padding:16px;text-align:center}
+  .lot-panel .ph{font-size:12.5px;color:var(--ink-faint);text-align:center;line-height:1.7;padding:14px 0}
+  .lot-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+  .lot-head h4{font-size:14px;font-weight:800;color:var(--navy-dark)}
+  .lot-head .tot{font-size:12px;color:var(--ink-muted);font-weight:600}
+  .lot-chip{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--highlight);color:var(--navy);margin-left:7px}
+  .lot-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  @media (max-width:1200px){ .dgrid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media (max-width:820px){ .dgrid{grid-template-columns:repeat(2,minmax(0,1fr))} .lot-list{grid-template-columns:1fr} }
+  .lot-item{display:flex;align-items:center;gap:11px;padding:11px 13px;background:#fff;
+    border:1px solid var(--border);border-radius:10px}
+  .lot-rank{flex:none;width:20px;height:20px;border-radius:5px;background:var(--navy);color:#fff;
+    font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .lot-meta{flex:1;min-width:0}
+  .lot-meta .id{font-size:12.5px;font-weight:700;color:var(--navy-dark);font-variant-numeric:tabular-nums}
+  .lot-meta .ty{font-size:11px;color:var(--ink-faint);margin-top:2px}
+  .lot-n{font-size:13px;font-weight:800;color:var(--ink-muted);font-variant-numeric:tabular-nums}
+  .lot-bar{height:4px;border-radius:2px;background:var(--border);overflow:hidden;margin-top:5px}
+  .lot-bar span{display:block;height:100%;background:var(--blue);border-radius:2px}
+
+  /* ---------- s4: primer flow UI ---------- */
+  .primer{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--card-shadow);padding:20px 22px}
+  .primer .lede{font-size:13.5px;line-height:1.65;color:var(--ink-muted);text-wrap:pretty}
+  .primer .lede + .lede{margin-top:8px}
+  .primer .lede strong{color:var(--navy);font-weight:700}
+  .flow{display:grid;grid-template-columns:1fr 30px 1fr 30px 1.15fr;align-items:stretch;gap:0;margin:18px 0 4px}
+  .fstep{background:#F7F9FC;border:1px solid var(--border-soft);border-radius:10px;padding:13px 15px}
+  .fstep .k{font-size:10px;font-weight:800;letter-spacing:.07em;color:var(--ink-thin);text-transform:uppercase}
+  .fstep .v{font-size:13px;font-weight:700;color:var(--navy-dark);margin-top:5px}
+  .fstep .d{font-size:11.5px;color:var(--ink-faint);margin-top:4px;line-height:1.55}
+  .farrow{display:flex;align-items:center;justify-content:center;color:var(--ink-thin);font-size:15px}
+  .fsplit{display:flex;flex-direction:column;gap:8px}
+  .fout{border-radius:10px;padding:11px 14px;border:1px solid transparent}
+  .fout.a{background:#EAF0FA;border-color:#D3E0F5}
+  .fout.b{background:var(--amber-bg);border-color:#F0DFB8}
+  .fout .t{font-size:12.5px;font-weight:800}
+  .fout.a .t{color:var(--navy)} .fout.b .t{color:var(--amber-ink)}
+  .fout .s{font-size:11.5px;margin-top:3px;line-height:1.5}
+  .fout.a .s{color:#3A5A8C} .fout.b .s{color:#8A6F3C}
+  .caveat{display:flex;gap:9px;background:var(--amber-bg);border-radius:10px;padding:12px 14px;margin-top:16px}
+  .caveat .ic{flex:none;font-size:13px;line-height:1.55}
+  .caveat .tx{font-size:12px;line-height:1.65;color:var(--amber-ink)}
+  .caveat .tx strong{font-weight:800}
+
+  /* ---------- s3: repeat VOC ---------- */
+  .voc-card{border:1px solid var(--border);border-radius:14px;background:#fff;box-shadow:var(--card-shadow);overflow:hidden}
+  .mis-list{display:grid;grid-template-columns:1fr 1fr;gap:5px 22px}
+  .mis-detail{display:flex;flex-direction:column;gap:11px}
+  .mis-item{padding:9px 0;border-bottom:1px solid var(--border-soft)}
+  .mis-item:last-child{border-bottom:none}
+  .mis-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:4px}
+  .mis-q{font-size:12px;color:var(--ink-soft);line-height:1.5}
+  .pct-more{margin-top:7px}
+  .pct-more summary{font-size:11.5px;color:var(--blue);cursor:pointer;font-weight:700}
+  .pct-list{margin-top:7px;display:flex;flex-direction:column;gap:4px}
+  .pct-row{display:grid;grid-template-columns:130px 1fr 78px;align-items:center;gap:8px;font-size:11.5px;color:var(--ink-muted)}
+  .pct-b{display:block;width:100%;height:7px;background:var(--border-soft);border-radius:4px;overflow:hidden}
+  .pct-fill{display:block;height:7px;min-width:2px;background:var(--blue);border-radius:4px}
+  .pct-n{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+  .src-inline{color:var(--ink-faint);font-size:11px;margin-left:4px}
+  .mis-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:4px 0;border-bottom:1px solid var(--border-soft)}
+  .mis-t{font-size:12.5px;color:var(--ink-muted)}
+  .mis-n{font-size:12.5px;font-weight:800;color:var(--navy);font-variant-numeric:tabular-nums;flex:none}
+  @media (max-width:720px){ .mis-list{grid-template-columns:1fr} }
+  .tl{display:flex;flex-direction:column;gap:9px;position:relative;padding-left:4px}
+  .tl-item{display:flex;gap:11px;align-items:flex-start}
+  .tl-date{flex:none;font-size:11px;font-weight:800;color:var(--navy);background:var(--highlight);
+    padding:2px 8px;border-radius:6px;font-variant-numeric:tabular-nums;margin-top:1px}
+  .tl-txt{font-size:12.5px;color:var(--ink-muted);line-height:1.5}
+  .voc-card + .voc-card{margin-top:14px}
+  .voc-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--border-soft);flex-wrap:wrap}
+  .voc-head h3{font-size:14px;font-weight:700;color:var(--navy-dark)}
+  .badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px}
+  .badge.doing{background:var(--amber-bg);color:var(--amber-ink)}
+  .badge.done{background:var(--positive-bg);color:var(--positive)}
+  .badge.review{background:#EEF1F6;color:var(--ink-soft)}
+  .voc-body{padding:4px 18px 16px}
+  table.kv{width:100%;border-collapse:collapse;font-size:12.5px}
+  table.kv th{width:118px;text-align:left;font-weight:600;color:var(--ink-faint);font-size:11.5px;padding:11px 0;vertical-align:top;border-bottom:1px solid var(--border-soft)}
+  table.kv td{padding:11px 0;color:var(--ink-muted);line-height:1.65;border-bottom:1px solid var(--border-soft)}
+  table.kv tr:last-child th, table.kv tr:last-child td{border-bottom:none}
+  details.raw summary{cursor:pointer;font-size:12px;font-weight:600;color:var(--blue);list-style:none;padding:4px 0}
+  details.raw summary::-webkit-details-marker{display:none}
+  details.raw summary::before{content:"▸ ";font-size:10px}
+  details.raw[open] summary::before{content:"▾ "}
+  .quote{border-left:3px solid var(--blue-light);background:#F7F9FC;padding:10px 13px;font-size:12px;
+    line-height:1.7;color:var(--ink-soft);border-radius:0 6px 6px 0;margin-top:8px}
+  .quote .src{display:block;font-size:11px;color:var(--ink-faint);font-weight:600;margin-top:6px}
+
+  .crit-card{background:#fff;border:1px solid var(--border);border-left:4px solid var(--negative);
+    border-radius:0 12px 12px 0;padding:16px 18px;box-shadow:var(--card-shadow)}
+  .crit-card + .crit-card{margin-top:12px}
+  .crit-card h3{font-size:14px;font-weight:700;color:var(--navy-dark);margin-bottom:7px}
+  .crit-card p{font-size:12.5px;line-height:1.7;color:var(--ink-soft)}
+
+  .todo{font-size:11px;font-weight:700;color:var(--amber-ink);background:var(--amber-bg);padding:2px 7px;border-radius:5px;margin-left:6px}
+
+
+  /* ---- s3 LOT 품질 추적 ---- */
+  .lotq-card{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--card-shadow);padding:18px 20px}
+  .lotq-card + .lotq-card{margin-top:14px}
+  .lotq-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+  .lotq-head h3{font-size:14px;font-weight:800;color:var(--navy-dark)}
+  .lotq-head .sum{font-size:12px;color:var(--ink-muted)}
+  .lotq-head .sum b{color:var(--navy);font-weight:800}
+  table.lotq{width:100%;border-collapse:collapse;font-size:12.5px}
+  table.lotq th{text-align:left;font-size:11px;font-weight:700;color:var(--ink-faint);padding:0 8px 8px;border-bottom:1px solid var(--divider)}
+  table.lotq th.num{text-align:right}
+  table.lotq td{padding:9px 8px;border-bottom:1px solid var(--border-soft);vertical-align:middle}
+  table.lotq tr:last-child td{border-bottom:none}
+  table.lotq td.lot{font-weight:700;color:var(--navy-dark);font-variant-numeric:tabular-nums}
+  table.lotq td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-muted)}
+  .rate-chip{display:inline-block;font-size:11.5px;font-weight:800;padding:3px 9px;border-radius:999px}
+  .rate-good{background:var(--positive-bg);color:var(--positive)}
+  .rate-warn{background:var(--amber-bg);color:var(--amber-ink)}
+  .rate-bad{background:var(--negative-bg);color:var(--negative)}
+  .rate-track{height:7px;border-radius:4px;background:var(--border);overflow:hidden;min-width:80px}
+  .rate-fill{height:100%;border-radius:4px}
+  .lotq-note{font-size:12px;color:var(--ink-soft);background:#F7F9FC;border-radius:8px;padding:9px 12px;margin-top:10px}
+  .lot-more{margin-top:8px}
+  .lot-more summary{font-size:12px;color:var(--blue);cursor:pointer;font-weight:700;padding:4px 0}
+  .lot-more table{margin-top:6px}
+  .thr-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:11.5px;color:var(--ink-soft);margin-bottom:14px}
+  .thr-legend span{display:flex;align-items:center;gap:6px}
+  .thr-legend b{font-weight:700}
+
+
+  @media (max-width:1080px){
+    aside.sidebar{display:none}
+    .kpi-row{grid-template-columns:1fr}
+    .drill{grid-template-columns:1fr}
+    .farrow{width:100%;height:24px;transform:rotate(90deg)}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">슬룸</div>
+      <div class="sub">CX · 월간 상품 VOC 리포트</div>
+    </div>
+    <div class="nav-label">A · 현황</div>
+    <a class="nav-item active" href="#s1">1 · 핵심 요약</a>
+    <a class="nav-item" href="#s2">2 · 불량 문의 현황</a>
+    <a class="nav-item" href="#s3">3 · SKU별 불량 상세</a>
+    <a class="nav-item" href="#s4">4 · LOT 품질 추적</a>
+    <div class="nav-label">B · 이슈</div>
+    <a class="nav-item" href="#s5">5 · 반복 VOC</a>
+    <a class="nav-item" href="#s6">6 · 불량 오인 반복 VOC</a>
+    <a class="nav-item" href="#s7">7 · 실제 불량 확정 현황</a>
+    <a class="nav-item" href="#s8">8 · Critical VOC</a>
+    <div class="nav-label">C · 영향</div>
+    <a class="nav-item" href="#s9">9 · 고객 제안·기능 요청</a>
+    <div class="sidebar-footer">
+      <div class="status-strip">
+        <span class="status-dot">데이터 기준</span>
+        <span class="date">2026-06-01 ~ 06-30</span>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="filter-row">
+        <span class="pill navy">2026년 06월</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn-sm">인쇄</button>
+        <button class="btn-sm primary">공유</button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="page-header">
+        <div class="eyebrow">MONTHLY PRODUCT VOC</div>
+        <h1>슬룸 월간 상품 VOC 리포트</h1>
+        <div class="meta">2026년 06월 · CX팀 작성 · 발행 2026-07-23</div>
+      </div>
+
+      <!-- ================= 1. Executive Summary ================= -->
+      <section id="s1">
+        <div class="sec-head">
+          <span class="sec-num">1</span>
+          <span class="sec-title">핵심 요약</span>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="label">6월 불량 문의</div>
+            <div class="denom">6월 접수된 불량 상담 전체</div>
+            <div class="val" id="kpi1">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">불량 확정 비율</div>
+            <div class="denom">6월 불량 상담 중 실제 불량으로 확정된 비율</div>
+            <div class="val" id="kpi3">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">6월 불량 접수 건수</div>
+            <div class="denom">고객센터 접수분과 외부몰 접수분을 합한 전체 불량 접수 건수</div>
+            <div class="val" id="kpi2">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">교환제품 재불량률</div>
+            <div class="denom">불량 확정 중 재불량으로 재접수된 비율</div>
+            <div class="val" id="kpi4">—</div>
+          </div>
+          <div class="kpi">
+            <div class="label">6월 신규 이슈업</div>
+            <div class="denom">이번 리포트에서 새로 분석·정리한 이슈</div>
+            <div class="val" id="kpi5">—</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 2. SKU별 불량 현황 ================= -->
+      <section id="s2">
+        <div class="sec-head">
+          <span class="sec-num">2</span>
+          <span class="sec-title">불량 문의 현황</span>
+            <span class="sec-sub">6월 전체 불량 문의의 SKU별 점유율</span>
+        </div>
+        <div class="card" style="margin-bottom:14px">
+          <div class="share-head">
+            <div>
+              <div class="share-t">전체 불량 문의의 SKU 점유율 <span style="font-weight:500;color:var(--ink-faint);font-size:11.5px">(불량 문의 + 확정) · 불량 문의 건수 기준 내림차순</span></div>
+              <div class="share-s">이번 달 불량 문의 총 <strong id="shareTot">—</strong> 기준</div>
+            </div>
+            <div class="share-cover"><span id="shareCoverLbl">주력 SKU</span> 합계 <strong id="shareCover">—</strong></div>
+          </div>
+          <div class="share-rank" id="shareRank"></div>
+        </div>
+      </section>
+
+      <section id="s3">
+        <div class="sec-head">
+          <span class="sec-num">3</span>
+          <div>
+            <span class="sec-title">SKU별 불량 상세</span>
+            <span class="sec-sub">제품별 불량 확정의 유형별 상세와 주요 LOT</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="dgrid" id="dgrid"></div>
+          <div class="lot-panel" id="lotPanel">
+            <div class="ph">위 도넛에서 <strong style="color:var(--ink-soft)">불량 유형</strong>을 클릭하면 해당 유형의 주요 LOT 3건이 표시됩니다</div>
+          </div>
+          <table class="tbl" style="margin-top:16px">
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th class="num">불량 확정</th>
+                <th class="num">불량 유형</th>
+                <th>가장 많은 LOT</th>
+              </tr>
+            </thead>
+            <tbody id="skuBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= 3. LOT 품질 추적 ================= -->
+      <section id="s4">
+        <div class="sec-head">
+          <span class="sec-num">4</span>
+          <span class="sec-title">LOT 품질 추적</span>
+          
+        </div>
+        <div class="insight" style="margin-bottom:14px">
+          <span class="icon">💡</span>
+          <div class="txt">
+            동일 SKU 안에서 <strong>특정 LOT에 문제가 집중되는지, 모든 LOT에 걸쳐 전반적으로 나타나는지</strong> 참고할 수 있는 지표입니다.<br>
+            특정 LOT에 불량이 집중된다면 해당 LOT으로 생산된 제품을 <strong>모니터링하며 조치를 검토</strong>하고, 여러 LOT에 걸쳐 고르게 나타난다면 <strong>제품 설계 차원의 개선</strong>을 살펴볼 수 있습니다.
+          </div>
+        </div>
+        <div class="thr-legend">
+          <span><span class="rate-chip rate-good">1.0% 미만</span><b>우수 범위</b></span>
+          <span><span class="rate-chip rate-warn">1.0 ~ 3.0%</span><b>정상 범위</b></span>
+          <span><span class="rate-chip rate-bad">3.0% 초과</span><b>확인 필요 · 제조사 협의 기준선</b></span>
+          <span style="color:var(--ink-faint)">※ 이커머스·가전 업계 평균 불량률 1~3% 기준</span>
+        </div>
+        <div id="lotqBody">
+        <div class="lotq-card">
+          <div class="lotq-head">
+            <h3>목 마사지 베개 V2</h3>
+            <span class="sum">불량 <b>509건</b> / 출고 <b>19,586개</b> · 종합 <span class="rate-chip rate-warn">2.6%</span></span>
+          </div>
+          <table class="lotq">
+            <thead><tr><th>LOT</th><th class="num">B2C 출고</th><th class="num">불량 접수</th><th class="num">불량률</th><th style="width:120px">　</th></tr></thead>
+            <tbody>
+            <tr>
+              <td class="lot">2026-03-25</td>
+              <td class="num">500</td>
+              <td class="num">19건</td>
+              <td class="num"><span class="rate-chip rate-bad">3.8%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:100%;background:var(--negative)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-05-04</td>
+              <td class="num">4,340</td>
+              <td class="num">161건</td>
+              <td class="num"><span class="rate-chip rate-bad">3.71%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:100%;background:var(--negative)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-05-15</td>
+              <td class="num">2,105</td>
+              <td class="num">71건</td>
+              <td class="num"><span class="rate-chip rate-bad">3.37%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:96%;background:var(--negative)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-05-26</td>
+              <td class="num">1,320</td>
+              <td class="num">44건</td>
+              <td class="num"><span class="rate-chip rate-bad">3.33%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:95%;background:var(--negative)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-04-01</td>
+              <td class="num">2,485</td>
+              <td class="num">77건</td>
+              <td class="num"><span class="rate-chip rate-bad">3.1%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:89%;background:var(--negative)"></div></div></td>
+            </tr>
+            </tbody>
+          </table>
+          <details class="lot-more">
+            <summary>나머지 LOT 4개 보기</summary>
+            <table class="lotq"><tbody>
+            <tr>
+              <td class="lot">2026-07-10</td>
+              <td class="num">466</td>
+              <td class="num">12건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.58%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:74%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-06-22</td>
+              <td class="num">4,208</td>
+              <td class="num">78건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.85%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:53%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-04-24</td>
+              <td class="num">2,000</td>
+              <td class="num">28건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.4%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:40%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-07-14</td>
+              <td class="num">2,162</td>
+              <td class="num">19건</td>
+              <td class="num"><span class="rate-chip rate-good">0.88%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:25%;background:var(--positive)"></div></div></td>
+            </tr>
+            </tbody></table>
+          </details>
+        </div>
+        <div class="lotq-card">
+          <div class="lotq-head">
+            <h3>골반 마사지기</h3>
+            <span class="sum">불량 <b>38건</b> / 출고 <b>1,507개</b> · 종합 <span class="rate-chip rate-warn">2.52%</span></span>
+          </div>
+          <table class="lotq">
+            <thead><tr><th>LOT</th><th class="num">B2C 출고</th><th class="num">불량 접수</th><th class="num">불량률</th><th style="width:120px">　</th></tr></thead>
+            <tbody>
+            <tr>
+              <td class="lot">2026-04-30</td>
+              <td class="num">1,302</td>
+              <td class="num">37건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.84%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:81%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-05-22</td>
+              <td class="num">133</td>
+              <td class="num">1건</td>
+              <td class="num"><span class="rate-chip rate-good">0.75%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:21%;background:var(--positive)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-07-10</td>
+              <td class="num">64</td>
+              <td class="num">0건</td>
+              <td class="num"><span class="rate-chip rate-good">0.0%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:0%;background:var(--positive)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-07-15</td>
+              <td class="num">8</td>
+              <td class="num">0건</td>
+              <td class="num"><span class="rate-chip rate-good">0.0%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:0%;background:var(--positive)"></div></div></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="lotq-card">
+          <div class="lotq-head">
+            <h3>팔꿈치 마사지기</h3>
+            <span class="sum">불량 <b>46건</b> / 출고 <b>2,895개</b> · 종합 <span class="rate-chip rate-warn">1.59%</span></span>
+          </div>
+          <table class="lotq">
+            <thead><tr><th>LOT</th><th class="num">B2C 출고</th><th class="num">불량 접수</th><th class="num">불량률</th><th style="width:120px">　</th></tr></thead>
+            <tbody>
+            <tr>
+              <td class="lot">2026-05-22</td>
+              <td class="num">2,895</td>
+              <td class="num">46건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.59%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:45%;background:var(--amber)"></div></div></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="lotq-card">
+          <div class="lotq-head">
+            <h3>발편한케어V2</h3>
+            <span class="sum">불량 <b>32건</b> / 출고 <b>3,778개</b> · 종합 <span class="rate-chip rate-good">0.85%</span></span>
+          </div>
+          <table class="lotq">
+            <thead><tr><th>LOT</th><th class="num">B2C 출고</th><th class="num">불량 접수</th><th class="num">불량률</th><th style="width:120px">　</th></tr></thead>
+            <tbody>
+            <tr>
+              <td class="lot">2026-02-06</td>
+              <td class="num">3,778</td>
+              <td class="num">32건</td>
+              <td class="num"><span class="rate-chip rate-good">0.85%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:24%;background:var(--positive)"></div></div></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+                <div class="lotq-card">
+          <div class="lotq-head">
+            <h3>허리편한케어V2</h3>
+            <span class="sum">불량 <b>2261건</b> / 출고 <b>109,074개</b> · 종합 <span class="rate-chip rate-warn">2.07%</span></span>
+          </div>
+          <table class="lotq">
+            <thead><tr><th>LOT</th><th class="num">B2C 출고</th><th class="num">불량 접수</th><th class="num">불량률</th><th style="width:120px">　</th></tr></thead>
+            <tbody>
+            <tr>
+              <td class="lot">2025-07-01</td>
+              <td class="num">3,700</td>
+              <td class="num">139건</td>
+              <td class="num"><span class="rate-chip rate-bad">3.76%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:100%;background:var(--negative)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-06-18</td>
+              <td class="num">3,800</td>
+              <td class="num">140건</td>
+              <td class="num"><span class="rate-chip rate-bad">3.68%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:100%;background:var(--negative)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-07-09</td>
+              <td class="num">1,932</td>
+              <td class="num">60건</td>
+              <td class="num"><span class="rate-chip rate-bad">3.11%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:89%;background:var(--negative)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-07</td>
+              <td class="num">3,890</td>
+              <td class="num">108건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.78%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:79%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-05</td>
+              <td class="num">4,361</td>
+              <td class="num">115건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.64%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:75%;background:var(--amber)"></div></div></td>
+            </tr>
+            </tbody>
+          </table>
+          <details class="lot-more">
+            <summary>나머지 LOT 24개 보기</summary>
+            <table class="lotq"><tbody>
+            <tr>
+              <td class="lot">2025-07-14</td>
+              <td class="num">1,800</td>
+              <td class="num">46건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.56%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:73%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-07-21</td>
+              <td class="num">5,940</td>
+              <td class="num">146건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.46%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:70%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-09-30</td>
+              <td class="num">4,308</td>
+              <td class="num">100건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.32%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:66%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-26</td>
+              <td class="num">4,569</td>
+              <td class="num">102건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.23%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:64%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-12-24</td>
+              <td class="num">1,227</td>
+              <td class="num">27건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.2%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:63%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-21</td>
+              <td class="num">4,467</td>
+              <td class="num">98건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.19%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:63%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-09-02</td>
+              <td class="num">3,171</td>
+              <td class="num">69건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.18%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:62%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-19</td>
+              <td class="num">4,200</td>
+              <td class="num">89건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.12%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:61%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-10-01</td>
+              <td class="num">3,804</td>
+              <td class="num">80건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.1%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:60%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-07-24</td>
+              <td class="num">3,851</td>
+              <td class="num">80건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.08%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:59%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-09-04</td>
+              <td class="num">3,788</td>
+              <td class="num">73건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.93%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:55%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-12</td>
+              <td class="num">4,359</td>
+              <td class="num">79건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.81%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:52%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-10-14</td>
+              <td class="num">3,758</td>
+              <td class="num">68건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.81%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:52%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-09-09</td>
+              <td class="num">4,328</td>
+              <td class="num">77건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.78%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:51%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-10-02</td>
+              <td class="num">1,681</td>
+              <td class="num">30건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.78%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:51%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-28</td>
+              <td class="num">4,457</td>
+              <td class="num">78건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.75%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:50%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-14</td>
+              <td class="num">3,334</td>
+              <td class="num">57건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.71%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:49%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-11-20</td>
+              <td class="num">8,007</td>
+              <td class="num">129건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.61%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:46%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-09-15</td>
+              <td class="num">3,763</td>
+              <td class="num">57건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.51%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:43%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-11-06</td>
+              <td class="num">3,759</td>
+              <td class="num">53건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.41%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:40%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-10-17</td>
+              <td class="num">3,688</td>
+              <td class="num">51건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.38%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:39%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-09-16</td>
+              <td class="num">3,800</td>
+              <td class="num">46건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.21%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:35%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-29</td>
+              <td class="num">1,000</td>
+              <td class="num">12건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.2%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:34%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-09-26</td>
+              <td class="num">4,332</td>
+              <td class="num">52건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.2%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:34%;background:var(--amber)"></div></div></td>
+            </tr>
+            </tbody></table>
+          </details>
+        </div>
+        <div class="lotq-card">
+          <div class="lotq-head">
+            <h3>목베개플러스</h3>
+            <span class="sum">불량 <b>1027건</b> / 출고 <b>38,880개</b> · 종합 <span class="rate-chip rate-warn">2.64%</span></span>
+          </div>
+          <table class="lotq">
+            <thead><tr><th>LOT</th><th class="num">B2C 출고</th><th class="num">불량 접수</th><th class="num">불량률</th><th style="width:120px">　</th></tr></thead>
+            <tbody>
+            <tr>
+              <td class="lot">2025-03-11</td>
+              <td class="num">1,564</td>
+              <td class="num">103건</td>
+              <td class="num"><span class="rate-chip rate-bad">6.59%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:100%;background:var(--negative)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-03-25</td>
+              <td class="num">847</td>
+              <td class="num">54건</td>
+              <td class="num"><span class="rate-chip rate-bad">6.38%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:100%;background:var(--negative)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-12-31</td>
+              <td class="num">1,613</td>
+              <td class="num">61건</td>
+              <td class="num"><span class="rate-chip rate-bad">3.78%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:100%;background:var(--negative)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-03-17</td>
+              <td class="num">2,461</td>
+              <td class="num">78건</td>
+              <td class="num"><span class="rate-chip rate-bad">3.17%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:91%;background:var(--negative)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-02-11</td>
+              <td class="num">1,800</td>
+              <td class="num">49건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.72%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:78%;background:var(--amber)"></div></div></td>
+            </tr>
+            </tbody>
+          </table>
+          <details class="lot-more">
+            <summary>나머지 LOT 14개 보기</summary>
+            <table class="lotq"><tbody>
+            <tr>
+              <td class="lot">2025-12-26</td>
+              <td class="num">2,150</td>
+              <td class="num">57건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.65%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:76%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-07-23</td>
+              <td class="num">2,359</td>
+              <td class="num">62건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.63%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:75%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-02-13</td>
+              <td class="num">3,405</td>
+              <td class="num">87건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.56%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:73%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-12-10</td>
+              <td class="num">1,457</td>
+              <td class="num">37건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.54%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:73%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-02-20</td>
+              <td class="num">4,692</td>
+              <td class="num">115건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.45%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:70%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-01-28</td>
+              <td class="num">3,264</td>
+              <td class="num">78건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.39%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:68%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-12-16</td>
+              <td class="num">908</td>
+              <td class="num">21건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.31%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:66%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-03-13</td>
+              <td class="num">1,000</td>
+              <td class="num">23건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.3%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:66%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-01-15</td>
+              <td class="num">1,800</td>
+              <td class="num">40건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.22%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:63%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-01-09</td>
+              <td class="num">1,503</td>
+              <td class="num">31건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.06%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:59%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-01-19</td>
+              <td class="num">3,427</td>
+              <td class="num">58건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.69%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:48%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-01-22</td>
+              <td class="num">1,836</td>
+              <td class="num">31건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.69%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:48%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-09-05</td>
+              <td class="num">2,410</td>
+              <td class="num">37건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.54%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:44%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2026-03-05</td>
+              <td class="num">384</td>
+              <td class="num">5건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.3%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:37%;background:var(--amber)"></div></div></td>
+            </tr>
+            </tbody></table>
+          </details>
+        </div>
+        <div class="lotq-card">
+          <div class="lotq-head">
+            <h3>발편한케어 V1</h3>
+            <span class="sum">불량 <b>404건</b> / 출고 <b>25,535개</b> · 종합 <span class="rate-chip rate-warn">1.58%</span></span>
+          </div>
+          <table class="lotq">
+            <thead><tr><th>LOT</th><th class="num">B2C 출고</th><th class="num">불량 접수</th><th class="num">불량률</th><th style="width:120px">　</th></tr></thead>
+            <tbody>
+            <tr>
+              <td class="lot">2025-06-04</td>
+              <td class="num">2,944</td>
+              <td class="num">76건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.58%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:74%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-12</td>
+              <td class="num">4,977</td>
+              <td class="num">103건</td>
+              <td class="num"><span class="rate-chip rate-warn">2.07%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:59%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-22</td>
+              <td class="num">7,582</td>
+              <td class="num">129건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.7%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:49%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-10-23</td>
+              <td class="num">3,692</td>
+              <td class="num">37건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.0%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:29%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-09-16</td>
+              <td class="num">6,340</td>
+              <td class="num">59건</td>
+              <td class="num"><span class="rate-chip rate-good">0.93%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:27%;background:var(--positive)"></div></div></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="lotq-card">
+          <div class="lotq-head">
+            <h3>허리편한케어V1</h3>
+            <span class="sum">불량 <b>185건</b> / 출고 <b>27,354개</b> · 종합 <span class="rate-chip rate-good">0.68%</span></span>
+          </div>
+          <table class="lotq">
+            <thead><tr><th>LOT</th><th class="num">B2C 출고</th><th class="num">불량 접수</th><th class="num">불량률</th><th style="width:120px">　</th></tr></thead>
+            <tbody>
+            <tr>
+              <td class="lot">2025-08-12</td>
+              <td class="num">2,400</td>
+              <td class="num">24건</td>
+              <td class="num"><span class="rate-chip rate-warn">1.0%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:29%;background:var(--amber)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-08</td>
+              <td class="num">3,972</td>
+              <td class="num">36건</td>
+              <td class="num"><span class="rate-chip rate-good">0.91%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:26%;background:var(--positive)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-07-18</td>
+              <td class="num">3,896</td>
+              <td class="num">31건</td>
+              <td class="num"><span class="rate-chip rate-good">0.8%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:23%;background:var(--positive)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-06-10</td>
+              <td class="num">3,404</td>
+              <td class="num">27건</td>
+              <td class="num"><span class="rate-chip rate-good">0.79%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:23%;background:var(--positive)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-08-05</td>
+              <td class="num">2,423</td>
+              <td class="num">17건</td>
+              <td class="num"><span class="rate-chip rate-good">0.7%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:20%;background:var(--positive)"></div></div></td>
+            </tr>
+            </tbody>
+          </table>
+          <details class="lot-more">
+            <summary>나머지 LOT 4개 보기</summary>
+            <table class="lotq"><tbody>
+            <tr>
+              <td class="lot">2025-05-29</td>
+              <td class="num">3,079</td>
+              <td class="num">17건</td>
+              <td class="num"><span class="rate-chip rate-good">0.55%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:16%;background:var(--positive)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-06-18</td>
+              <td class="num">3,344</td>
+              <td class="num">16건</td>
+              <td class="num"><span class="rate-chip rate-good">0.48%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:14%;background:var(--positive)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-07-15</td>
+              <td class="num">1,300</td>
+              <td class="num">5건</td>
+              <td class="num"><span class="rate-chip rate-good">0.38%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:11%;background:var(--positive)"></div></div></td>
+            </tr>
+            <tr>
+              <td class="lot">2025-07-08</td>
+              <td class="num">3,536</td>
+              <td class="num">12건</td>
+              <td class="num"><span class="rate-chip rate-good">0.34%</span></td>
+              <td><div class="rate-track"><div class="rate-fill" style="width:10%;background:var(--positive)"></div></div></td>
+            </tr>
+            </tbody></table>
+          </details>
+        </div>
+        <div class="lotq-note">
+          <strong>집계 기준</strong> · 품고 재고 변동 내역의 <strong>B2C 출고 수량</strong>을 분모로 산정했습니다.
+        </div>
+      </div>
+      </section>
+
+      <!-- ================= 3. 이번 달 반복 VOC ================= -->
+      <section id="s5">
+        <div class="sec-head">
+          <span class="sec-num">5</span>
+          <span class="sec-title">반복 VOC</span>
+          <span class="sec-sub">특정 월부터 여러 차례 반복 접수되고 있는 이슈의 진척 상황</span>
+        </div>
+        <div class="insight" style="margin-bottom:14px">
+          <span class="icon">💡</span>
+          <div class="txt">
+            특정 월부터 여러 차례 접수되어 온 이슈의 대응 진척을 정리했습니다.
+            건수는 <strong>6월 접수분</strong> 기준이며, 괄호 안은 최초 접수 이후 누적입니다.
+            각 항목의 <strong>최초 접수 시점</strong>을 보면 언제부터 이어진 이슈인지 확인할 수 있습니다.
+          </div>
+        </div>
+
+        <!-- 카드 1 -->
+        <div class="voc-card">
+          <div class="voc-head">
+            <h3>목 마사지 베개 V2 · 전원이 꺼지지 않음
+              <span class="badge" style="background:var(--negative-bg);color:var(--negative);margin-left:6px">안전 관련</span>
+            </h3>
+            <span class="badge doing">상품팀 대응 중</span>
+          </div>
+          <div class="voc-body">
+            <table class="kv">
+              <tr><th>VOC 요약</th><td>전원 버튼을 눌러도 종료되지 않고, 에어백이 부푼 상태로 계속 작동합니다. 배터리가 소진될 때까지 기다렸다는 응답이 반복적으로 접수되고 있습니다.</td></tr>
+              <tr><th>6월 접수</th><td><strong style="color:var(--navy)">31건</strong> <span style="color:var(--ink-faint)">(5월 8건 → 6월 31건 → 7월 17건, 누적 56건)</span></td></tr>
+              <tr><th>최초 접수</th><td>2026-05-06 <span style="color:var(--ink-faint)">· 3개월째</span></td></tr>
+              <tr><th>6월 LOT 분포</th><td>2026-05-04 14건 · 2026-05-15 8건 · 2026-05-26 5건 · 2026-06-22 3건 · 2026-03-25 1건</td></tr>
+              <tr><th>원문 VOC</th>
+                <td>
+                  <details class="raw">
+                    <summary>고객 발화 원문 보기 (4건)</summary>
+                    <div class="quote">받고 첫날 바로 고장. 전원 버튼이 안 먹혀서 꺼지지도 않고 배터리 없어질 때까지 기다려야 했습니다.
+                      <span class="src">채널톡 · 2026-06-06 · LOT 2026-05-04</span></div>
+                    <div class="quote">처음 받았을 때부터 꺼지지 않아 꺼질 때까지 그냥 두었습니다. 충전 후에도 지속적으로 발생하네요. 강제 종료도 되지 않습니다. 불날까 무서워 꺼질 때까지 대리석 바닥에 두었네요.
+                      <span class="src">채널톡 · 2026-06 · 고객명 마스킹</span></div>
+                    <div class="quote">전원이 안 들어오는 게 아니라 풍선처럼 부풀어 오른 뒤 꺼지지도 않고 작동을 안 합니다.
+                      <span class="src">채널톡 · 2026-06-10 · LOT 2026-05-04</span></div>
+                    <div class="quote">어제 기계 오작동으로 에어가 계속 들어가서 전원 버튼을 아무리 눌러도 어떤 버튼도 작동이 안 되었고, 에어가 터질 것같이 팽창되어서 결국 칼로 구멍내서 파손시켜 에어 주입을 막았습니다. 그래도 기계는 계속 작동되어서 전선을 절단해서 멈추게 했습니다.
+                      <span class="src">채널톡 · 2026-06-19 · LOT 2026-05-04 · 5번 섹션 참고</span></div>
+                  </details>
+                </td>
+              </tr>
+              <tr><th>대응 현황</th><td><strong>불량으로 확인.</strong> 제품이 충전 중에는 작동하지 않도록 설계되어 있어,
+                충전 케이블을 연결한 뒤 분리하면 전원이 강제 차단되고 에어백 공기압도 함께 빠집니다.
+                고객 응대 시 이 방법으로 강제 종료를 안내하고 있으며, 불량 샘플 2~3EA를 제조사로 발송해
+                원인 분석 및 개선 방안을 확인하는 단계입니다.
+                <span style="color:var(--ink-faint)">(2026-07 기준)</span></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 카드 2 -->
+        <div class="voc-card">
+          <div class="voc-head">
+            <h3>목 마사지 베개 V2 · 충전 단자 접지 불량 및 이탈</h3>
+            <span class="badge review">모니터링 중</span>
+          </div>
+          <div class="voc-body">
+            <table class="kv">
+              <tr><th>VOC 요약</th><td>충전이 되지 않아 고객이 직접 커버를 분리해 확인한 결과, 내부 충전 단자의 접착이 떨어져 있거나 들뜬 상태로 확인된 사례입니다.</td></tr>
+              <tr><th>6월 접수</th><td><strong style="color:var(--navy)">7건</strong> <span style="color:var(--ink-faint)">(4월 2건 → 5월 8건 → 6월 7건 → 7월 3건, 누적 20건)</span></td></tr>
+              <tr><th>최초 접수</th><td>2026-04-28 <span style="color:var(--ink-faint)">· 4개월째</span></td></tr>
+              <tr><th>6월 LOT 분포</th><td>2026-05-04 3건 · 2026-04-01 2건 · 2026-05-15 2건</td></tr>
+              <tr><th>원문 VOC</th>
+                <td>
+                  <details class="raw">
+                    <summary>접수 내역 원문 보기 (3건)</summary>
+                    <div class="quote">사진처럼 충전단자가 아예 들려서 충전 자체가 되질 않습니다.<span class="src">채널톡 · 2026-06 · LOT 2026-05-15</span></div>
+                    <div class="quote">충전을 연결해도 충전이 안됩니다. 사진 그대로 충전을 연결해도 불이 들어오지 않아요.<span class="src">채널톡 · 2026-06 · LOT 2026-04-01</span></div>
+                    <div class="quote">충전기를 꽂으면 고정이 되는 게 아니라 막 돌아다니는 느낌이에요. (설명하기가 어렵네요)<span class="src">채널톡 · 2026-05 · LOT 2026-04-01</span></div>
+                  </details>
+                </td>
+              </tr>
+              <tr><th>대응 현황</th><td>현재는 불량 확정 후 교환 또는 반품으로 처리하고 있습니다.</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 카드 3 -->
+        <div class="voc-card">
+          <div class="voc-head">
+            <h3>골반 마사지기 · 에어백 좌우 불균형</h3>
+            <span class="badge doing">상품팀 대응 중</span>
+          </div>
+          <div class="voc-body">
+            <table class="kv">
+              <tr><th>VOC 요약</th><td>에어백이 한쪽만 작동하지 않거나, 한쪽만 유독 크게 부푸는 증상입니다.</td></tr>
+              <tr><th>6월 접수</th><td><strong style="color:var(--navy)">10건</strong> <span style="color:var(--ink-faint)">(채널톡 기준 · 상품팀 공유 시트에는 9건으로 기록)</span></td></tr>
+              <tr><th>최초 접수</th><td>2026-05-16 <span style="color:var(--ink-faint)">· 3개월째</span></td></tr>
+              <tr><th>비중</th><td>6/24 공유 시점 기준, 출시 이후 전체 불량 19건 중 <strong>12건(약 63%)</strong>이 이 증상이었습니다. <span style="color:var(--ink-faint)">(그 외 전원 불량 4건, 온열 불량 1건, 외관 불량 2건)</span></td></tr>
+              <tr><th>6월 LOT 분포</th><td>2026-04-30 9건 · 2026-02-20 1건 — 대부분 단일 LOT에서 발생</td></tr>
+              <tr><th>원문 VOC</th>
+                <td>
+                  <details class="raw">
+                    <summary>접수 내역 원문 보기 (3건)</summary>
+                    <div class="quote">에어백을 OFF로 눌러도 바람이 빠지지가 않습니다.<span class="src">채널톡 · 2026-06 · LOT 2026-04-30</span></div>
+                    <div class="quote">전원이 켜진 후에 에어백이 올라온 상태에서 전원도 안 꺼지고 작동도 되지 않습니다.<span class="src">채널톡 · 2026-06 · LOT 2026-04-30</span></div>
+                  </details>
+                </td>
+              </tr>
+              <tr><th>대응 현황</th><td><strong>조치 방향 확정.</strong> ① 2차 생산 시 좌우 대칭이 되도록 봉제·조립을 제조사에 요청 완료,
+                ② 2차 재발주 건까지 불량 인입을 모니터링하여 <strong>3% 초과 시</strong> 제품 설계를 공장 측과 검토.
+                <span style="color:var(--ink-faint)">(2026-06-24 기준)</span></td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="voc-card">
+          <div class="voc-head">
+            <h3>팔꿈치 마사지기 · 벨크로 접착력 약화</h3>
+            <span class="badge done">상품팀 개선 완료</span>
+          </div>
+          <div class="voc-body">
+            <table class="kv">
+              <tr><th>VOC 요약</th><td>반복적인 벨크로 접착력 관련 문의가 있었고, 상품 리뷰와 채널톡 문의로 접수되었습니다.</td></tr>
+              <tr><th>6월 접수</th><td>팔꿈치 마사지기 채널톡 문의 18건 중 <strong style="color:var(--navy)">2건</strong> · 리뷰 <strong style="color:var(--navy)">11건</strong></td></tr>
+              <tr><th>원문 VOC</th>
+                <td><details class="raw"><summary>접수 내역 원문 보기 (1건)</summary>
+                  <div class="quote">엘보케어 마사지기를 사용하는데 찍찍이 접착력이 처음부터 약한 건가요, 아님 불량인 건가요? 조금만 조여도 사용 중에 풀어지네요.<span class="src">채널톡 · 2026-06 · 불량확정</span></div>
+                </details></td></tr>
+              <tr><th>대응 타임라인</th>
+                <td>
+                  <div class="tl">
+                    <div class="tl-item"><span class="tl-date">07-14</span><span class="tl-txt">CX팀 → 상품팀, 벨크로 접착력 약화 VOC 공유 및 반출 여부 확인 요청</span></div>
+                    <div class="tl-item"><span class="tl-date">07-14</span><span class="tl-txt">상품팀 회신 — 반출 불필요, 접착력 개선 목적 벨크로 샘플링 진행 중</span></div>
+                    <div class="tl-item"><span class="tl-date">07-20</span><span class="tl-txt">상품팀 개선 확정 — 갈퀴를 더 촘촘하게 한 개선 원단(검은색), <strong>3차 발주분부터 적용</strong> (9월 11일 중 입고 예정)</span></div>
+                  </div>
+                  <div style="margin-top:12px">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAEVAoADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6pooooAKKKKACvNdRP/EyvP8Ar4l/9DNelV5vqKf8TC8P/TxL/wChmuXFfCjajuVxRtpOlOU561wm40ilUc0MeadGM0wHqKeooAp4FAMcq1Iopg4NSoRiquIzNXtzEftSD5Tw49Peqcd1uXg10TIsqFGAKsMEetcpeaTqNvdtHbReZEeVYnHFPlbehcZK2ppQ3KnG49DWhFdxgdRXB3d9qFjMwubdo1HAbIINZt747FtAwgXzZccDOB+dbU6VSTsojk4JXbPQdW8TWekWzTXU6RpwBk8sT0A9648fbNa1aW4Kfex1OMDsK8M8V67rl54q0rUtau1axiulIhjJCR89T6/Wvf8AwlcC5t0mB5f5s1pXw7g1CZNOomm4l6W5Gh6RfXtz8gs4WkbJ9BkV5D4S137Z4XdDlrk3Em71O47v612Xx08RLZ+GjpUbk3Wpuu/HURLySfqcD864v4LCzlvry0niEk7puh3H5QRwTjucV0Rwb+qTmu/5GftbVUb3hZ0jn8suPM3Zb616lZrttC3baf5VnWHhawtIwnkfL1OT39a6PS9PWdHiXPkRKSx9eOBXnQi72N6009TstTIXRCSMgLHx+IpbF2dBiBQPWma3uGgS7BzsTAH1FYkepXlpCGfgCvTR5ctzpbiBnGeBWLqVoDC/UntUml64b1trkA1pXEkDL8xHNDEcBIhjcgjFNz7VqazCjT5iORWZ5RFQykJ5mOMU4SH0oCYPNHTpUjFyfwoEmKTGetP8sYoABMMU0yZ6UuwelAQCgB8ZJFC9TSqMdKaMb6AJNuaTBHQ04Uv4UDGU3qak2ikC5oAaDjvUgcDvSeUKURUAO3inLg1EIuealUBaABhxSbfSnbxnFLwR6UARbTQV96kwKTA70gGHpTGUscgVOUFKIwKAIlTPNSBcCgLtfHapsUxEOPal2ZqUIDSbMHigBigjpTH3ZqcAL3pSM9qYFYBs4pST3qfaR/CaicHHQ0gIGJzT0JI5pNhY1IEIoBCgUpwBRijZmgY3rSeWTUoiHc0uzHQ0AV/LK80AZqcjNMKFTkUAN7UmPapFAbvikIxQIbtHpWn4aUDVx/1xf+a1mkGtLw2D/a4P/TF/5rTW4zrKKKK0AKKKKACiiigAooooAKKKKACiiigArzq+I/tC8H/TxL/6Ga9FrzbUAf7RvP8Ar4l/9DNcuK+FGtHcYUBphUqeKUMcUqyA8GuE6CJutTRnpSMobpTkGKYEygU/bUanFSCgQoFDZApyrmnMvy0DQkcmDzUkq+dGVVtpPQ1CoUnripR8tOMmndCkrnlPjHVpo53s7j5WQ85P1rhZWHJBFejfGjwpJdWCeIbHPm2wCXKL/FH2b8P5GvHxfGOPDHmvqcFUVSnzI4KkeWVh2q6WusWktq2DvGBXTeFfiF/whegf2bq9nOdTto9sSgfLKvRX3enrXGnVTG25Dg1laxezXt3DNK7NtQqDnoM9P1q54WFWS5gjUcU7F7V9Vu/EF3LqF/OXlkbPJ+6PQD0FSeHdUn0DXLTUYeGglViCeo7g+xFZaSYVcc/rmkdgXPzYB6CvU5I8vLbQzu73PsHSbd/ENtDeW7bLWVFcSeoI7etdNDZxWNk8MQ4CkknqTjrXBfAPVjqfw+ghdiz2c7wc9hnIH616JMD5Un+6f5V8lOgqU3HsdLqOSLl9IsWll2GVUISPxFYV+41BCkceBnqBWzqyh9FdScAqn8xWTaTLbSCPO4e9WjKRStdFmjYMocH2q5LZXL4HPFbS30SJnAzVG91YBSE60xGRPZyJ96s6cbeMYq3PfSSOcmqkp3HJqGNFc5JpMn0qXHeud1fxRfaZeSwxaBeXcUYz58f3Txk1lOajqzqw2FqYifJS382l+bR0C+9Owa4kePZ72PSJ7W0WGK9u2t3WTk4GORj61q+D9bvNbOpfamjP2a5MSbVx8o9azjWjJ2R218mxNClKrVSSW+uu/L+aOi2HNKErG1zxGdF1DSrM24l/tCbyt27GzkDPv1qTxJr0ej6VdzxTW/2qFNyxuwyT9OtW6kVfyOWGArzdO0fj2++3y1NfHamOArA1U0G/fU9Hs7yYKJJ4ldgvQE+lW5eQKpO6ujCpTdObhLdO33EgIxkUppsWMVLuB7CmQR4pQBTyARTQKAHgU7afSmqcd6lBz3oAj2k07b60/wDGkJHrQBHtFGw9qU9eDT1akBEEY9qXBHUVKc0jKTzQAwEUZPajg96BgHrQAFeM55p6HIHrSbgKazBW9qYh80cktvKkMnlyMpCPjO044NeK+MdJ+KPg3w5f67efEy2eGzjL+WLIAuegUH1Jr2a8v4NNsZ764LiGCMyOVUsQo5OAOTXjEs+qfH/XLZFtLnTvAunzCV3mXa+oup4GP7tNAZfxJ1HW7r4KeDr/AFi6lbUrrUraWZ/uMQwcgHHtivYfHt/pun+E759X1W40i0kj8pr2AMXhJ6FdoJBrgP2lUji8E6JHEgRE1i3VVHQAK+BXYfEuLxLNoazeHtU07To7ZXlvDe2/nK8YXOAuDyMUwPnnU7LxDrUu7wH4h8Y39lECXvdUvPs0dw3ZIdxBZj6dfau6+E+p6DbeJrWO88V+L11t1aA6LrQcqXI5IIXBxjg8VUPg/wAffFzQdJ1T/hMNCuLC2uPtNpizaLbIpx0C+3SuvTwx8YGu4Z7jxZ4bkMbAlvsPzhe4B25HFDA9TEZ7UpQgYzzSI7YAbGcDJ96eSewqQGeWcZJpQvvTsnGMUnIoGBzimljSHd2o2sOvNADt2aKbg96cF3CgREwIORTkenGPPGaY1uV+ZTQArPzWl4bIOrDn/li/81rJCbjycGtXw1Fs1YHOf3L/AM1prcZ1lFFFaAFFFFABRRRQAUUUUAFFFFABRRRQAV5vqAP9o3mP+fiX/wBDNekV5zfj/iYXn/XxL/6Ga5cV8KNaW5XFIyDqKdjNLiuI3IwWWpUcHFJgEUKlIZOuDThxUIyKkVg1FwJ1NSYyKgBxUqnincLETpg5FORiafIu4HFUra5yx56HFIZotHHcQvBMgeKRSrKehB6ivmn4k+DJvCGtvCisbGbL20h6Ff7v1FfSSSis7xV4Zs/GGiy6ddABiN0MuOY37EV3YHFuhPXZ7mNWnzI+SDGSeahvBgKME454HSt3WtIudE1O40+8jMc8DlGBHX3HsawdRYiYKu7O3t3r6mlJSd0cUlYbFIFIDKd3Ufypxbc5bvjGOmaiTAXf94jt3FKSqqCADXVcg+hf2XdV8yx1nSiwIR0nUd8nIP8AIV7nMP3Mn+6f5V8vfsyai8Hj6ayz8l1aOCPUqQRX1LcIRDJx/Cf5V89jo2qt9zaOwa1kaFLg87E/mKwrWMMcknPrW9rAzokg/wBlP5iseCP5awRMy4sC7OTn61Vu0XaQAPrUzNsXGaqXD8daGJGbIuCahY+1WH61HJyKzZaK7MPSuW8ba+1paf2VZjzNRvv3Uca9VB4JNdeqAVnW3hnTLbVptWSDN5MMF2bdt+melZVVJq0Tvy+rQo1fa103y6pdG+l/Lv8AccF4k0mbQrTwvYWYQ3EU52l/utIcEk+2a0fhtJPHb6y8ybpVumZ1j5y2OQK0/G1hc3Wq+Hnt7eWZIrvdIyKSEHHJ9Ki+HELxnXN6Mmb5iNwxmuSMLVtP60Ppq2K9tk7c2nJ6vvd1GZF1pGseO7p9TO/TY7UEWEcvDO4OdxHbpRrGjjVPD2p6rrOifZdVt02mYtxIRxuUelafjb7da+JdD1G2sLy8itQ7SJboTnpx6U+88Zyajay2l14O1uWCUbXQx9R+FJxjeSlv+fmaUq+JcKFTDxXJo0k0nFKWsbuS5ua13fqzX8IqT4Z0z/r3X+VarxPjNR6Esb6RamGylsYwgC28o+aMehrR8vKkV2QVoo+QxkuavOVrXb/MqoDt6UpRjVhYsA0oXB5qznuVxG3rS7GHfNTlVpMD6UhEaws3enrCV71IoHrT8cUAiPYfWkMWacJY/tAt/NTzivmeXuG7b/ex6UR3drLbi4juIWhJ2iQONpOcYzTsFxoiINOC7TT98Zn8gOhlxu2Z+bHrj0pGeMR7zIgXO3duGM+lIAK570beOacqnIB6ntTlAYZBDD1BzQFyHy1JpPLUGpWGDjGM0ix57UWC5GVwad5KuuTUgj70/wAtugFMCvHjlSPanxwpGgSNFRR0VRgD8Kc0RVt1Sr06UIDz/wCL/gLUPiBoFhp+mzW8MltqEV2xmJAKqGBAx35rrNa0o6rot9pwcRtdW7whyM7SykZ/WtXaDQVFMDxDQfg78RPDGlxaXpHxFjtbKHOyJbMELk5PWur8G+FfHGjawbnxF4zGs2XlMotvswT5zjDZHpzXoLqR0pmD3FDAjCjqaXGOlSYA7UcDtSAiwaULmpMgjpSfSgBvlmjHHSnEmgCgZGVJpNpBqUnHFNLUCY0Uvag4o3AGgCtJCQ24Vq+GyP7UUd/Jf+a1WBBHTNXdBQLq4YDGYX/mtNbgdNRRRWgwooooAKKKKACiiigAooooAKKKKACvO77H2+7/AOviX/0M16JXlV5qSf2xqEeeVuph/wCPmuXFP3Ua0dy3xTScVGtwrd6R5AelcRuTD5qkUEdapi4AqZLpScZpXHYtbQRVeUmM7hTzKR3qCaYMOaTBFiK8Rh81WI5UYcEVz0zqCTuxS218Y2xuytTcq1zpUOawrhjp+oyQyHAk/eRn1HetG1vA+Oai8RaW2sWA+zPsu4fnhbsT/dPselVutBLfUSC5DY5rQhlGK4XStdMqlZFaOWNikkbdUYdQa6azvRKowaUZJlSjY4/40eELfUtIPiGBQt3aACXH/LSPOPzGa+dtSQi7YgkAAD9P/r19YeMwtz4N1eM/8+zH8ua+U75T9tkIIAyMnr2r6jJ5uUGn0PPxCsyrJ8pz3Iz7VDMcAfePqasBGdyNp3Z9Mc1FKH8osQQG6V7DRgej/s5Zb4q2BGTmKUNn/cr7AukAgk/3T/Kvkz9mO3RviGJtpzHbS5OfYYr6uuZcwSem0/yrw8f/ABPkaw2F1MbtIYeoT+YrOjjYdq077/kGH6J/MVVDqoyK5kKRG1m2wu4wKwbifMrKM4zW7c3RZNueBWNKEyeBSkJFU5NNNSsBmoyBUMsQHNBz60Ae1LtzUgCqfWn5FMFOxmgA3ZOBThx1pVjxS7fegBQ1KCQDQEp/l4HQ/lQBEjYOKfjmm7f3oTjcRkKTzj1xUjbIpkhkkjSWQEpGzAMwHXA6mgA2gimMgFNub2zsjGLm6ghMv3dzdf8AAe9QTazpsagi7juCc/LbfvmAAySQmcAetFgLSoPWmX91Hp1hc3sv+rgjaRvwFV5Nc0qM7UvYp3xu2Wx81gMZyQucDHc1g+OfEuk/8InqCQahbTs6KhEbbhgkdcVcItySEzgrr4jlPFF9qkatHLcWnlW6Z4+7gH6Z5qjb+MoF8LWWnAsPs9558zCTKj2z3wa4aaG8j1WVY7u2ZWQhGJyyDHQe1VLexub3SUltGt4pI5Cs8byACQjvya9R4aCMfaM9htviRaf8Jje6rKsoSWzEFsFIyeOOPrk1nP4zt4vB+m6Q7SPNHfLLcMCOF3Zzn1zXm4t5/wC14re6mijkmgzBKrACMjseahn0/UbHSrl7l48JICwEgJlXPt0qfq0AU2e6wfEPTD4xn1MzSfY/sSwxg/3xzwPrWRZeMrRfh9Dp63EsWoSXolkXuqeZubp2xXlH9n6hPJazWc6vbMgbG8Zi9sZ5qvaxXtzLexx3G26iycMwAl9h70vqkeg1UPoX/hONHk8cx3LXTizj0/aHx8pYtkj61lT+Lrd/Aupr9ulkvZrs7AM7ghlGMf8AAa8Pm/tK3S2W4dkEjYKn+A+/rVt7fWreaXbO0kKKSk6AFWOOnXil9Uj3Hzn0XN4psH8WaXFDfsLRbaVplwcFsjbkVm2niuNdA8VXCXsguEuJ/s5bOVGBtwfSvAbO+1Saza6t7qRpt21ox94j1p6ahqwuV0+W8lhilO4k8AepIpfVF3D2h9DX/iiJb/wlGmonZOW+1HkK37v+L8acniwG78UI9/Gsdqg+yAdRleo/Gvnu41zxAn+kvPMwtzsR8cYHGRUseva09o0sd3JKbo4l43MoHTJpfU/MPaHuS+N5oPDHhq5W7ja4u5o0umc5OwnBz6GtKLxWG8banZfakeygs/MjXIwGHoe5NfPMPiDVrkwadNcCJLX513qMccinHxdrkV5JqoO1yNjfJwB2xR9UD2h7Zd/EG5XwW2pieFb1bpoyFAzsB6Y9SMCtu58Xrb+J7HTD5ItprcvI5PIbbuGD+mK+eZfEF/8A2aLMPG/2hvOJC5ZW9KsR+LL6e+t5blIFNinK7eGOO9H1QPaHtOm+Ppp9O1q6lRHks5gsIAwoyOAfXp+tLdfEPEuhCBYmF6yC4RfmIZjjaD6968Nh8U30Md7MI4zDc8Y24Ct7Ut3r06Wdha20cYuIz5glX7xJ7e1P6og9oe+SeP7aLUNStWiQC2jLQktzIwONuKp2/wATIhoEd/Lbb5/OMbovCkA8la8XXxIZtUluZoAvlREMgbq2OuapQ+IrmPSLiKSMtCz4gwxwhPJwKPqaD2h75P8AEmwh8QRWJC/ZGAHnKdxLEZ49uuaJPibpyWd5MID5kDhFUtxJnoRXhF5rbQS6d9ijb7RGgDNnls9QB2qQ6xbTX988iSCIRkBA3RvrT+poPaHukHxP0SSyt7hi7FztlVBny2/qKhh+KeiyXs8Eu6JEX92xP+sb09q8HttU2aG5cMvlyBYdg4+maS51Dy9Ts3hHmOVAbcMgZ9BTWCiL2h77P8StJTR21BYpC+4xiJiB8wHr6VJD8SfDrQQyyXLjzBhiq5Ct3FeErfQtPe28ryNEq/KFPOfSs+0n/wCJNLIzrCtu+EUAksT7+tL6lHuP2h9E2fxG0G6uZ4ROYxEMqX6ycZwBXReC/Fek67rf2ewufNlW3d2XaRtG5Bz+dfKj3AGpWcsLhmkwCZOFUnvXrH7PztD8SL+zMyy7NPkbK9P9ZHU1MJGCckxxqXdj6OooorjNQooooAKKKKACiiigAooooAKKKKACvjt/iO+m/FjxVoeozfuDrF0LeQn7n71vlPtX2JX51/GOyvrT4o+K55rW5hjfV7p45GjKqw81sEGoqU1OPKyoycXdH1BZ6iZFHzVoLdErya8Q+FPxGTV7RNKvZgL6EYQsf9avt716pa6tE/yO20+9eROMoOzOyLUldGvJcEcimG6bHFVnmTbkODVY3eD7VnzFWNeDVWHySA+xqf7QJelYSXkTclh+daNrPG4GCKabBpBqcMgt3kQMdozwK5zSdfivwzQyhtjFGXoVPoRXcW+11weQa8z+IPhy78PX3/CQaIuD1mh/hlHcH39DVONwj2O80+83Ywa6Cyuc4BNeY+EfFdnr1il1aSdDtkjb70bDqpHrXdWF0HAINKLa0E0YnxA0ltKm/wCEms1/cqAL+NR/D2k/Dv7fSq2k+JrF4UlS7heJhkOrAgiu9Qx3MDQzKro6lWVuQwPBFfHvj3wfB4W8YanpNtJKtvFKWiAbojcgfgDj8K3p0FUd07ClWcVZo9m+I/xR0xNLfRNMuo557kbZ3jOVjX+7npk14zM/n3LsCArHoT06VlQ26RoF7VbwFXK19Bg68MNHlUTgqXm7ksgCsCewJwO56VXkUbcbwVOOM0rjI6n86qvlcgE8/rXY8yi/smfIe1/swxmTxdfyEY2Wh6Hg8gV9Lzt+4k/3T/KvmT9l6XZ4tu48nL2bE+/zCvpifmGT/dP8q87Gz5qil3SLjsXb1d2mY9Qn8xVfYIxhhVi+nhtdKae4kWOGNVd3Y4CgEEmsafxVYyWI1GFTJYKAZ5gwDQ56ZTr+FZIUkT3XllDgVkScGs658aJNBJcQRII4jv8AKcMZZY8kZCgcHgnnPFZEHia+1plSwtblZLlHu7T90oV4FJHJJ+me/OKTQJHRtk9qZ5bE8D3rjofEV5rMtnEjPZf2vI6wO82PK2ccKOeufrVCLXpL+7SK+8yOC61D+zb26jLKSAMKoPRQSM8c8mp5SjvzJDEzJJNEjou9lZwCq+p9BTLi8tLUKZrqFN671Bblh6gd689u7uXSbK4S5ijurSx1cW07TSFnmTjarDuoGO/ao/Fl8dHvLoWTRKlopnhVmAwrE4CfQsT7U1ADuh4i06SJZLSUXigM0pjIHkouNxbP1HHeqMvjS1+z77eJVlXczRXL+WdoxgjGc5zx+NcN4p8R2UuuXE9leQQJeaOJg2SCWIGU479c5qjqfjyyv57W/iZEkvdNSyk82PdtwOSB68cGmoAei3vi6W0uRpzxAXe1rjzUhaSKSBVyWXkZ5+XOfeobjxReW1xb28bSy/b28uO4khCpG4PzCMfxYH97868wuviPts9BeyjkW4tI5NOWUgEtGQRnHTpis+T4mXbWEYjg3yadetJDI54JbA5x1qlAR6m3iG7CWU1rfX5W+uTZPdP5boJdwCgJ0TjPIHpVK41+WLSZ7wfbmngvGgnk+3EP5ZYqhxxkZGeMfdPrXlA8cahb210lvErm2uVugRwnmY+9j1FVpvGup3TT2zulyqxKCyjhvmLY+mWP50+RBc9X1PWR9l1C3W0ine2uo86hPKXeVCQvBPJ6k4zjirOoXyadZa3pv2W2BdnjtLlgzNui2kg85yQw6HHPvXjCeMtUu1kgE3nJLGGcBsBWByAB7VXTxjq2oXMXmXsssjb3kDNgKTjOO3YfXFPlQXPZrLWpLOxeCzgitoLywSN2MYYRyldzMccnoadaa7LpMUEUTRRwz2BtZ5kAws77v3hHf7p+ma8LHiW9WVVNy7urEMCx2oo4GP8AGoP7ZuVuPIE7tMXzw2QF7Yp2QXPbNB16Ww0mGOUpGsEMsEyqwUzSOdgkPODz6+lY2vaher4Ok0M3cUssdwTiHB8wH+M4+uPwryq41Wa2uJAZDJIxUx/PkD1P1rp/h3dxv4huJLuZSstuSvzcZJxV07KSaFJ6M5+W2vdJvrxbab7WWQxmRYzgEjpzVR9Kubexgu5LgoxkwLfacnHUmvRoNFvLTwaLW1eOe+luWmlBcDYpbse5AArXOh2l74wtr1pVMMVlteN8fNJng4+neu/nMLHk0UF1repsLiYQDyt28joAOMD1qoJrxbM2quWiD7mY9/SvS7jw2934d1aK8WC0uZ7kiCVcFQuQOo6DGat614GtpLvSbGzWL+zsgz7GAkYquN2D1BodSw7Hmc9vPpV3C0F2ZndA21Oik9qiitbi5tbq4kufKkhYEjPLkntXe2Hw6t4J9Q1K11iOSSF38pJkwqADgN6VjyfDe/a2tftN9FDc3DZWLqsh643Zp+0WwrHPRz31xJbpLKyRN8gZjx9aeRqFlLc2dndvMnJ3Kfl9zW5qPhDXJpobRo4/JtECu8eP3eeTn1rNXRtR0+O4SxS4mtp/3KXDR4EuTjAqlICvNPNdW6aibsLOjBPLXgt71JbTXNzeeRfSiFLhR+8b+AetLL4SvYVhV47hb5nKra7RlgB96ntot7qt6WvlngtVBjM2z7gUfl1ougKqT30MMkEUrSwQtuLE5BXPFWHlVDDewXbLLMMPCvaqht7+0tHtoEn8mc8MV/1ijmifTFs47W4jnke4kyzxEY2Y6cU9BWL9qEme4stRuFhY/vFmI+YH+7mom89LQzLc+dHAw3Ds9VYLRtVu5ft1w0DbS5ZuOnQVWH2lYHijLeUDlj2PpTA3RBCCk1rfrmVfmjY8g+1QQwLNLNbX12I5YzlXX+I+9Z01klqtvNbzmWWRcsn9w+lLBZG5uJVvZzCyqWyepPpSA0J4rhLdJhcJKisFcKf1p72mGja1uVcOPmy3zBu2Kxtt15Dhd3lIfmI6GpZrdbYW72s7SySLuYZ+6fSkBpw2yyvJBdzlLhDhfm+Vj702aG8jUyFk8sHa2Oce4qjDaCW7eO+maJ0UtnvmolF35LkM3kRnDHPWmBqzWX+raxl8wEDJZuQ1IlszTMl5IY3TgKp4b61nyIlvHC9pOXlkGXU/wntTkiaS48jUZXTAzkHvQBa+z3awuYwvlA8gkfKfUUslsfKi+zuZZOpfPIPYVSjkvT5jRtmKEc+4pzlIoEnt52Mz8MmeBTAux28v2llvZTEwGMAj5zTIre9CTtEgMZ5ZGPA98VX2O0scV/KUDAHdnnFIi3Mk0kVu5ZUBOc9QKYFiW1Y2yGNnlmTksD9z6V65+zVFdp8RLlrhAudKkOc5LHzIq8cieJbeSRbgiQnBUHivX/2Y1uR4/uHmbcj6XKUOf+mkVY1/4bKhufUVFFFeQdIUUUUAFFFFABRRRQAUUUUAFFFFABXlGtwRXOoX8c8UcsZuZcrIoYH5z2Ner15lqkR/tG8PrcS/+hmpkNHE6h8N/CeoSiaXQbOOZTuEsCmJ1PqGQg0+bwvHHCqW80u5BgGVtxP1NdMUpjR5rOUFLcqMnHY4W4tb6ybEm9V7HqDU9pMSwWUbge9ddJbrIpV1DA9Qaybnw6GO+2fYf7rdK46mGa1idEaye5n3vh2O6iM1pK8MmM/K1Y2nazPY332G8cCTPyP0D+31rpY9M1dBtTZ+LVl6l8O7jW4ZRc35tZWHySQDcUPrzWSoSfQt1Ypas6LT9VUY3Gr+o+TqenywMAQynrXhmp/EdvAHiG58Ma40uoPZBANQhQK0gZA3zJnqM4yD2rSj+O3h6C2Z1N5PJt+WIR4yfTJ6UOhUTtYSnHe5wniDUrv4dePHuLEkwXChp4M8OM4/A+9e1eE/Gdjq9pFc206sjAZGeV9iPWvm/X9cuPFWtTandKqFzhI16IvYUunyz2UnmW00kL/3o2IrslhOaK11MvbavsfYZ8QWOn2Ml7d3McMEK7ndmxxXzD448RjxZ4pv9XjjMcc7gRqeoQDAz71l3Oo3t6AtzdzzAc4dyR+VQLyK1o0PZ6tmdSpzDgOKeDwOaYKXPGK3MyQEflULoOakHAz3pPvEAdaaV3YD2f8AZitc+J9QnGSIbPbnHGSw/wDr19HzkGGT/dP8q8H/AGY7XEuu3GeAsUYB+pNe7zMohk5A+Q5JPtV4/Sq12SJjsUviN5f/AAr/AFMy79ghTdsGTjcvSvH/ABd4u029hvrhbtFivIbVwpkKo0m3DlkHToMHHUV6l8Y2KfCfXnGci0U8f7y18cSX8t1pzIWYsGy7OenoB+FRFDbPTLjx/ClwmoW15PZiGxNv8gDGbgjLdsYNU/8AhYsJi0yeA6hGunwyRwAyhME8g8dic8H2rzvznmspETCkRjIc8kCmWgc+bG2zIUKrMcgD2q9BHZyeODe2FqhtUQ21yZWkJ5bI9umDzVFfGd9caPd6aZwwa4W7Bx0fHPJ9a5ezZmcRuq7MbsE8MT602OR1eRAVCO2XYdwM8fSi4G0nie/eK/to72Z47qTz8Z4BHGTVJtTkubmHfPc3IYbB1JHGcAntmsu4bfdsI2AgOEO3rgc4HtS3LebMFtmBAQY2D7o70BcsS3kyy26o00ko3RSndw+T90Z6cVFcXHkTAB3LxdSrckk8KO3FMu2IW2Syl+YZZiByp70lxgWSw2pbz9w3NjLA/Wi4D9RcIShZ2ZWEhG4ZXjheO+aS8Plr5YXDSRgkM2Sn5CopZYksxDGGW6c4LEEsxzTGcW1tIvLTv1duTRcCzPI1pbgKzEyxn5G7VFHcfZ7W3eIFHcEMrknJPf6VFAy28bibJmZPlZhnHFMtAtuQ9whaQrgZXIHuKQE8X+jxbw2HD8Ds34VEjRw28kmVJ3jaSfvHr09Khs8JIZ542kDZIzzkUyJg141y0QA3cKFGMelAE6Mgdw7nJXJbgDJ/mKbvVpS80jZ28uMD2AFRufPu2uWUqkZCgKBhaZdvFdT5VQqRj7q8cmgCZJld1M7MU6ZGOAOwrX8LStHeSmJ2Mwj+Q7shRWBdSwyCOLrsBZiPWtTw1eQ21ySgZ5AufmPpWtH40TPY2rZ7qK0vWu0nmuCSIgpOEY9zUa3+oLqFvJcTTLCoAOGIJ9RUNjfyyR6hdy3JglbcY1X+NvSoGv7q5ubOOWTCxj72Ometek9DA0bzVb66S6gsDcQ25k3pE5I2Dua27PxjdWv2aR45LqdF8s3L8hVI/nXM6jq10kl4ttcPPE/7tHf7xXFSC6ji020jDuZ/MBeNR8u3HX65paMDptJ1+W30++s5rV7ie5kZxHnlgenFak2vW2pTeHpQJrYWLt9pMpGFJXAGfqK4bT7tLq9ubnUZJQoGF29enFQt9uktrW3WQrHLLlyT09M0nGI9T1VbmOaXVyxVEu4tsEgf/Wcfe9ueKiW1f/hD7Cwt3iluomQzGSUDC5yxX1Irz6+jmt5lFgJ8JFtZmPDN7VXspnitHN8s0rBWCBOdr0uRdwueq+TbXPi+01Bp1MMFoUVC2cuT1+mKim0+6l8Pa9ZXP2eDz3YQNHJvHJGCcdK8oS7vXu4w0kiwoOTnqatXl9KRPFpiTwo4ACEnJOOTRyLuFz1u60gJaeH4bAwMIZQJGdwHKAdVB681Auh2D+KNUvp5El8xERY2XHl4HX8685s9cntrWIl7ia6iAEcuSREO/wBKs6R4j1O21a5vLmV5I5hwrf8ALTtS9nYOY3brwgt34euZbu4iglnuN3nwYdWTPGMdKdqngERLaafplyhSYeZOshG/aP4gOuKzbvxFJd6ENMjs5IZEnVwob7qhsn6cV00Piazu9WsLlISsMcZSSZ26E9qGmh3OaX4ctBeTvDqIZovnkEgAEQAzmsu58GajcQPfahIY4JBvWeEqwcn7o+hr0HTZLUajrdxLOjpdSYgiLgbht/xqDUbZrvwzY2JkSKYTxGVN4IjUNkjP0pczBHnz+H9ahRNNW1lzIvnFODuXsarN4dubSYNCtzNIgEky7eYj6V69ext/bmnTwLG9usbK7hxuHpx6VW07TDFq2vXJkjdp5DsUnhQF4zT5mI8nTSJ793nv3niDAuJMcMewzVZo7qOEwKsgRuWyOten3Wk3N54WhtbwpbyGdWkKncAu7sR7Va1TTWXUtNjtYoXgwfNbI3YHTinzgeTS2CWgiljld3cbmU/wmkS0bULrF5M8ZIzur0uPwva3esatcXckbByBGgGBHgf41hXHhK5vdLmmnljgcvwy8qUzxgiqUl1A41VuE82KBm2c7z6ik+wxxWi3CylnLcp6CuxvvB1xptvAmnyLNLcjDI5GSo7isp/Bd+twf3m5yuWjH8Ao5kBhmGS7miF1I0YfgN6CgJNb3TxWjs4OVDjuK0rjRNQvkUyI0VuCUEoXIUD1qIafdaYvmIrtxsR9vDetNsVijFYx+RLM0xEg42etexfssee3j+5Mhby10uVVz/11iryI6TMyvO0pVgeUIxnNexfsuySjx/dW7D5E0yUgkd/MirKt/DZUPiR9TUUUV5J0hRRRQAUUUUAFFFFABRRRQAUUUUAFcFqFvuu7k46zyf8AoZrva5eWJWmnyP8AltJ/6EaTA5eS3Kmo/LPpXSvYRvUJ0hD0qbDuYAhJPSubk8RarPcXDaV4ffULG2lMLzidUaRl4bYp6gHiuw1O+0fQ7u3ttRvBbSXAJjaRSEOOxbGAfqa4jwrqm7wpaWwubnRYTI7rq4hWaJ28xtyN/c7cnrTsFzd0TW9P1tnit3eO6j/1trOuyWP6qf5jityOzZuin8qyvB1qviI3EurXVjqc+n3BiSaGEKykYKurqehB6fWu6SFA2QoyaOULnwr8b0aT4r698p+WSNPyjUVyUVs/9013XxQuFvviR4jmwCDfSKD7A4/pWBGi4zirEVba2IxxV5Igop2B2FLmgBOKVaQUd6AHgilpgpC1AD2bj3pITvc5GQP51E0nFTWitsJHBPI966sHT56q8tSZOyPpv9niyWz8G3N+ylTd3JGevCjH8ya9PkV5o3YABQpwDyOnX3rzr9n+7abwEkRVQkFxIgIPLdDk/nXcajcPGksFsGyyne2cBeOg968/HUpzxUuZ+7fb+twjsN+MrMnwl8QMv3hZjHH+0tfE8qyzRvcKrmNm2ggcE19q/GYhfhDr5bOPsa5x1+8tfEk5kgOEldY/vYHYfSt4jZLN5l0xMcbZiVVIA7mgGW+ZLaOM+ZGhZ1UDcPeo5BJ8kiSMgcZznkfl3pp3uFmQlZCcANjkVQiUvPOkdkVVGySAAMkD+ZoNxNZwmAqq5XGD1/GoguInO9tyHCZxljS2wIeQTSn5RvJwDk+goARJ5tNjaJ4wI5BlS3J9jTopJLBZJIlUrJjLFuoqsgInIndidmRyCB6CmKz+ajPK4Xdj5cYA+lAFyG4mGLtIo2x97nAH0FNSWa5P2qNEBB3YY4C+lV5XuEMjRSt5WQQTjLfhQ0jx7zBKcbfmPvQA/wC1PeyGXagaPgBuAKT7Q9/KUkCAoRgdB9ajczkq0EpyU+fkDBPalZsxRFJm88ZL5ccYoAWS6kuJDAyJgfxdj+NRTXLsFhMQ3D+IZwR2FIkrMinzv3ofoW7etRE+Z53nTDeeUJPB9uKQEkk8sSiIBCrfxAHj/wCtSidrWNk2LKGACsoPyn1pm/fI4nlTIX5drYAPpgd6iVy0yC6mJTbjIP3cUBYk+0fZ0yUEgbquCNp/rUccwgfe6BsnLLjt9aZIzKIt7R7AMBQfX1pspZF27oyu7sTk+1AB5p3GfyMLnOwDOFq/oVwV1LzUjKAjoVrOf5RJ88WBgEbieKtaS6jUIyTHtYD5Q5JAq6T95CktDoYLg6ndahcO0UCorOBjAJ9AKrNetOtlb+WqMpyX9c+tShhq2q3AiSK1RUztHC8D+dUWmH2eCLYBMXyX747CvTbMbGhe3J025uo1MdyqpsVwOOR2pEWSPSLecXCmR5Aph77cdaZMg0y8kjuFjnUR5G05GSKghglOlfbN6YVwgXPJpXCxesrk6lqztNKluigAsB0wKry6lOlotsoB8yXO89eDxTbc/wBpatHbwiO3BUKS3C8dzUMl0IbWSBokaRpcLJ3AB7UXCxtXV7LYTQeReG4Kw5YEcIx7VDpN3IbaeSW6aAsjYA/jb0qvNv0+W1kk8uZHTzGUc49jSaTvvEu5A8UISN5AH7+w96dxWJf7RuJbiC2wvlod5yO9Wr3Uv7PnuHspzcgqArkdCRyBWWb/ACIbUQqspO4v68dKv3dw+lXYaX7NdCOIEBVGOR0OOpoTCxLbywDRh5k7rdErtiHRwTzk0sVz9s1JknkMdvCm1eenriqlosraXcXQlij+7iM4LNk9qZ9vN3eQ2qxRwiIYL46k9z60X0FYu3kssMdy+nNIys+1GY/MwPWpxAIrRArzPckqQF+6F96pX19JpM91ukS6IOwPjKnI6inQvMNN877YE+dQIAeW96q7CwsMt3NeOLx3WFcAAHnbReajPHGyac8wiL4TJ521HDqs99fqoZYfLAQPj36mnahqs1jJcBJEumZjGJdoO7PendhYvxap5ARjJObsEbXBOAKXTfEGpR3VzJNPMIZSQeeWFVVnIsldrhQQwHkevHWo7XVGvLphJiJYgERgMbfelcDcvvE19PaRW1q0ixq67Yz/AAqK3bfxbbi+tJrmCVpI0KGRcYGa4q6u3shLLbym4dn2CXGd2epqUo0Vvl7khzjbCP4vek0mB3WjanFd6jrEzlhDOwEKuQC3y81LO0knhQ2scLwyjCrE3UDdXmaX13NO0WXjSIYVumPerF7q8tkpa2upbjBHzE9TS5QbPUdSgaCfSmjtpLho22vKvIiGO9R2tvLP4pvriUAW/kIqAnlj34rzq01idmE1xqE0UiqCqhjhz6UqeK9T/tCRRO+3bgsf5UuTQdzubWO6Ww1WEWLxk+Z5SS8K3uPao30y4t/DFrGIDeXEap8qc4J61zA8Tz22mzxw3UkgYFmDckH0FT2PiTzdFgXUZZI5FKshQEEc96fK9wubmoadPd6lpY8qOOKMMX9Wb0xXovwRsns/iVfKLLyof7NfbMBw53x8V5vLriX+t6XHbswAVmkPYccV6R8DriNviPqcUcsj/wCgszA5xnenIrCqvcZUN0e/0UUV5p0BRRRQAUUUUAFFFFABRRRQAUUUUAFcDr3iJtK1BbG10+fUL24aaVYo2VAqK/LMzdBkj1rvq8Y1/wAKXmjeJ7jxrbq1/JaTXDGyilkDSRszZxuYjI9AAD6UAXfCHi6eTRLOXVtN1KJbl3K3RTzIyGc7QSOR2HIrtsVz+h6xruorbTz6VYJZzqH8yG8LsqkZHylRmugBoAbNbxXULQzxJLE/DI6hlP4Gs7TfDVpo0rDTma3snzvsuGhye6g/d/DiqXivxBrHh+IXNho66hahCZH83aYmyMEgAnbjOSOlc1a/EW+ljmubyyuYYINTjimltyJ4ViZR8u4cn7wPT2oA73T7XTrPzU06G1hDNukWAKMt6kDvV3cE+Y9F5NcRptxoc3jCyl8OiLM0EwvhBGUAUYKFxgYbdwM88mur1aX7Npd7Pn/V28jfkpNAHwpr1wb7xBqd2ek13M+fq5NV0OB1qANuZm7kkmpkGRimBNS44pgNLmgBaM0E03NADs00mlpGHFAEch7CtaKIJCiHPAHXrWXCnmXCLjPzCtoN2IOBz+FexlcNJT+RnUZ73+zrfRR+HNRtpJMFLoMoPoVr0y7Xy1kIcklSW54zivFfgbMUtNQPXbcIfbpXtt9bNcIJLZQVkjJOOgOK8itXTxtWk+lvxQ47EfxqG74PeIRnGbIc/wDAlr4glkggtSp5kbhSc19v/Gk7Pg/4hOOlkP8A0Ja+G55oppS0aO6p93c2DQimTQGGCNmcliFwM9zUdq0KSeZNuZSNx44qOd4pwoKu7bSWBOOf/rUjTo8aRGH5wfm+bII7AYqgHRNHK5mZiATwAvGKVminmaSMkIPlUAfrUfnxqhgZCW4C7eVpUkhhVldABgsApP3uwpCHSmKW4GwEqi8qB3pLhoZGjhUEEDc5xzTEkjtyGkVQGODjJP1IprTRoTKsS4/HJpgSSmMRMmSWb5RlcYpryQRxOvzbuiccA0M0DAvHsIXBzggk+wqNjC6AjyQ/3jw3y+1ICxEsMK873RV5DYGTUUDQKVMqOcjcyjvSo1vMpACo38TOpx+AqNWjJKkLuzgfIcY9aBiCSJX87DrvJb5QOlCSQuHmKsGY/IRjCj396N64MYQHHQ7D83/1qAIxlT5eE+6fLPzH0/ChgRSND525Uf5BjJI69yaScxvIAfMwq5PTqac21QBhTuBJwhIHtURAyucBScsRGTsFIAldJFTO8k8noBjtioyEdQNz5D8DIxtHWpPkQK5G7nG1kJ49TUfyklwFI6BQvBoAa7o8Ui7pMcBAMfrU1h5Yu4R8+3eABkfzqB1QOSoDZ6bUxn8KVGxKrgqMEFQqHrVRdncTOqYLqGtRwRLFbr5YUnoCR3NUZZFS1KsmZvNwH9FFWriUXV9ZQqkcWF2F/Uk9TUF0Bbx3kbYkbzNsbg8AA9RXpXMkWJYTaXcRuNs0bReYQp/LNVreGWfTJ7hWGyNwAueeT2FTSQGI2M0hEkcq73VTyAOxqC1R7qC+khYIkWXCE46ngUrhYmVUvdSt7a1RY3ZQpJOMt61FNstoLmKZN0ofYjZ4XBpoxJc2cUC7ZWAVmJ6sadcqts19DcpuZDtjIPGfX3pXAneCS3FpNcgNHMNxAPOBRYwtqEl0bVVWONWkwTjCio3huEt7S4ly0UvAAPOB1p1hBJfXtxFYIwjCs2M87QOadxWGfaIhBEvlkXTNndnt6VcmhOm3aC+hWSIxCQordQRxmqBktjZxsyN9sZxtbPAX0xVqaGS2uYTqKP5MkYfg8ladwC0SeewubqJE8qED7x5AJ7Uz7RFLLbwwQhZ8Ykcn7xJ4plvDPc2tzLZq32eIbmGei54pjGDdbi3D/aiDv3Hr6YpXAvXDJp11PFexLIIxgBTwGI4psCXJ0yS82xeUGVCT94H2qOaAWl3LDqySIEXJXPfHFRwxXMlg86RsYIyAWPYnpTuIsJcR3l7Fb2kCo2AjZPDH1NS3s62FxcpewRu6kxqE4UN6iqBELXUSWSyGZgA/PVvappkjhnuItSjdGizhAf4u2TTuBcRJzpxuPLhMe8LvP38+g9qhhu0urhIba3RSuEOejNnqagT7S1l56xkwqwUsTwDSb7f7QkVkHd2AD+pbPancLGhd3h02e4S6hikIJQKv3QT6VNBLdNZtMPLEaMMk/ePt9KzZvIhnmj1GJ08vO1AeQ3bJqSPzXtHnFs7IrAGQE4X2xRcViZNWE8/lRwp5kY2sT0Y571PfXA0yRvtMELMhyQn3ckVnpLbI6pArtKR+8BPU5qSdYopmjv4ZIYxyVByenHJp3CxdgQ3cRlURhUUO+7r17UwXUbXBtI4wCAXL45+lV4f9IidooHcIA28Nwgz6UJd28RBXd9qJJb020XEy5dRtZxq85jPyh8JjGPemWt3NqEqtEscYcE4YcAfjUck4jjBntzGkmDyc5HrTY7iO62xW1s0qknaM4OKdxWJH1eS0uhEvLuMBh2r2n9mW8vLvxtcG4mDxjT5gi9/9ZHXiEktmko8xWEpAVee9ex/svRgfEO7dI3C/2ZKN5PBPmRVnXfuMuC1R9T0UUV5J0hRRRQAUUUUAFFFFABRRRQAUUUUAFeR3vjnWf+Ex1PTNO8L3eoafYu6zzxsEcSFieA2MjHT1r1yvAfFk3in+0tRkgikTw7Lqcgld7oxtGUmYMd6jckZx7gZoA6jQ/FdpearbzQGSPT9XQpAJUKFLmPhkx2JX9VNdhXA+FTqZ1mGK2xdaZHuaVxfi5iiJHG1jGCW56BvrXfA0ARXl9a6dayXV7PHb28Yy8kjbVUe5Nc7J4c0vxBo99Bo+oiK0v2WTNsQyRShg29R2JxyPxo8c+D73xjYSWEetNaWsirvtvIVlZlbdnd94dAOK5XTtP1iSOxtYbmaTTnRpvs9vOI5bpV+XaJThvlJ+63P+1QB6pGioOMFsfM2ACfrWR43n+zeDddn4+Swnb/yGavaZaQWFnHDbwtCgGdjsWYE9ckk5P41zvxbuxZ/DPxJLnGbJ4/8AvrC/1oA+JojxVhDVdBjmpRntTAlpwNRqfWn8YoAVjTc0E03PPWgCQGlPSmA4FLuxQBPp8TNchv7nOa1HXPDDINUtKZNzlucYxxkVoyABMg4z/Ovocuhagn3MZ7nqPwp0q9fw3Pd6bcBZVuWDoRlW4GPpXc2fijWbKeAFfs/kuTPCwyk6EYOG7EdaX4A6dGfAHmsrFpbuUkkY6YH9K7XVNIs2tZS0S5IPWvksxwrljJVoO0jSK0G/G9z/AMKc8Rsh/wCXIEH/AIEtfEEnnW+RGC28ZckDgj0r7c+OCj/hS/iNchR9gAz6fMtfDAMUUJYyIxxgAg5rtiNlqIyMgdV3s/HOABTEkleJWbcWRsBcjAqCCOFU3PLnuRg0yBFkYuJVXJ4Qg4x9aYFom6aQpICNnzBFYYqPzLjzisq7VccKjDBqERxSSs/nAEHAAU4NOaCNpAjyqMDJ2KSB7UCHgzRlF2uASQSHBJBpztLFuCIy4PLbhkVXnjRigEi85yUUnaBSyxxsiL5yHJwAFO7HvQMmcOjybUccADc4ytIqOAJFXcHU/fkHWmMFEPyunB4JU7jTEiWFGHmAdzvTnPtQBN+82pI25yCVdmkADcdBUSh5I3bD7gwGfN4pIVwow2Wfgq68A0nkxxykrKGOeDt+U0APZ2Z3VThuoIlyAKbJ88jRhuFXIxNkD6Ugjja4Zw+Sh+VgnymkkhiMxbzGYr0ZF+XNADwSCkZG4sMfLLxmoASCkchLb2IIEmB7Z/xp88SPIgaRm43bkTGCaint1LpvdjkHIVcYFAAxOGLN8obj9529KTymQOTtAwMfvMYHU0SbTGFJOGO3aqjOB/WkKZgKFiqggKpHLUgAryZE/dpt4Ak5FMVRjeu1QE4DP+tOMaFGDOyRgbuRkk9qjRVETZYgEdAAcmmB0T3hltbGPYoRWBMgXnJ7E96deolpNdorLOm3bGR+pqCP7QugwwxqxiXEkhAzg5xyank8q3uQ1u/nAxAYP98jmvQT0RkN8jNlaTiVWBYho88hRRbxfbbq98nbCoBk2k8YHQfWo44Vk0wSGfEwlCmM/wB3uamt1S81KRCy2yGPg9uBQBUkYCO0jAxODlnz1J6VZuYfsV1dxXZEoVMKVORuI61WlPl2scTqDJ5m4yDr9KuXNstlek3DLcJ5Qb5Tn5iKdwIBDdjTILnOYi+wc9PXipbRXutUa30zcu5McnBPHNQx21w+k/aFcbFkCbc8jPtUltG1xq0dvYArIyhQScHPfmgCBmg+xl5QwuA+E9Md6tTJcLJam/DiCVAQR12Z7VUlWOGKcT7vOVtseOg55qxLFdeXZSXW428w+XB5Cg84oFYdaLcTJeDThIbeMFm56KPWonMCJbyIzm6Y5f0A7Yp9mlxJNdwaUHMOwsw77B61XZrdbaGbL/ayxyp6AUCLs0Un2uSPVjIi7QxJ6njiooGujp0nlK5tkILkdM9s066WaW+VNVMiBowxYjkrjiooJrr+zp0tw5tlIL46e2aYC4iiuIWtXdp2ALYHIb2p8sYlubhdSaSN0yTkZZm7ZqAiO2lhlglLTuMsuPuntU9xvvbi4/tGZoZR85LDlj2oABLd/Ydqh/s24ZHbPamhIra4ja1mZ5XAZj/dbPahLu4NiYFDeRuDHHTd2pvliwuElhmEkhAcgD7rUXAmkWO6nn+3TPEy5YlhlmanR31wbNo1L+RuGQPuk+/vUUu7VZriS5lWJ+XYsMZPpTk1GZbA2YAEDOGbjv8AWmFhAIrSVZIpd8jjcwA+6amlI1OZkvZihPLPIOTiqnkGwnjnEiSM4D4HO361NdPLrk8ju6o7DLHp0oCxPb3ZhikjhaTYQA4UcMPemCKGNhdeaGlkyCnoKZa6jJaWk1soQrKoDnGTxUaWrQ4u5XUrLkKm7kYp3EW7iRr7bHLI20gIGcYwP8KWGT7DIqW0rZTKhkHUU28un1Ro4EMYfaI128AUlhO2kTEExNLGChLcj8KL6AJ5MU0v2iVxuTAVT1Nez/srzs3xCvIgzGMaZKcHoD5sVeJNbvcSm6DDy4zzz3PtXt37KtyG8eXVuAmF02Vsj73+si61nWfuMcVqj6sooorzDoCiiigAooooAKKKKACiiigAooooAK5uWJWecMAytLICCOD8xrpK8S1zxp8SLbXtStdO8IaXPZRXcyQTy3m1pEDnDEds0XA9EtbS3soFgtYIoIlziOJQqj8BT5Iw6MrDIIwfpXnFn40+IpP+k+E9FA9tQYf+ymt208W+I3X/AErw9p8f+5qDH/2nU8yAy9W8EKuswWVnLfLpt9EfMjkd54VljIZdwY5AIJ6Ecio/+FeXukaZFPYXE41GC+86NLKZljjhdgHVVkJA+Uk11drrk8zf6TYrAMf8s5t/9BWlHfW74+faf9oU+ZAR6bYXNoXNxqU96CAF8xFXb/3yBk1w37Ql2bT4V6mo48+SGL83B/pXpETo4+V1P0Ncf8WvBMvjzwumjxXyWObhJWkaMuCFB4xketO4HxUvNSCvbG/ZluUP/IzQZB/59T/8VTH/AGbbxOniW1P/AG6t/wDFUudAeLg0ua9auf2edWiGYtc0+T2aJ1/xrHvfgj4mtAWE+mSqP7szAn81o9pHuB57zSFsV1N18N/ElrnNlG//AFzmU1z9/omqaef9J0+5iHqUyPzFCnF7MCoGpTIKhJx3wfSmb+aoDd0gBon9c/iavlucrksfXuazdIcfYiWxgNx7VoLIzyZJBOf/AK1fTYPShFGEtz6z+DOmNp/w30hHTY8qNMR/vMSP0xXXXdrHPbyLIoYbT/Kq3he1Fl4b0q2HSO0iX/x0VoTf6mT/AHT/ACr5iq+acpeZstjl/jjhfg34kz0FiP8A0Ja+FXgibBHmPnk4ccV91/HI4+DfiTgH/Qhwen3lr4UKqcMoiO7nAUgCmgY7yUZRgSNnIBLjFNRYgjgRyYU44cYPtSArIFK+WXbII8sgLQhPIJjVl527OtUIRFXmIiQnrgMMKKAgVtiK5LdFWQfzoQFXaNmVOM/cPNKh8ofvEARxkN5fX0oGBWK3KsA+0nbtEoLGiSOJP3gjZNvU+Z835UqiQbXIVEJPz7OR+FMmmYODt/dA48wxdfwoAe8SNGGEbJ/GfMk5IpFWKaMkRlW6BnkxmgmaUkR/MNu7LJ29qaAWjVYnZ+CTvTAU+1IBF2MhfY3BwrNJiiNIjx5YIU/eMh2rThvdQqA5JCn92ABSTF8lCXMg6AIAMUAIYo0kMexJgOdyyHbTYo0DmMQJICM/K5pw3BnSQsGHQIowDSqk4KtIWDEfLsAwD6UCGssaMuEjk3HAQSHj2NLdiOF1IjjOcKEVycCnxrIkSvJu2scERgZprJKUd9zbN2O24igZBLGscfKhZB/Bkk1FKkYjViFU9Qozk1Y8uVncB2VQBzxk1GVYn5fNEWCQWIzmgCN/KaM7RGoK7sKSSfY+9Iyh4lZhHENvAAyWqRlJdPL8xQRk7mHPuKjETFlBLLkkklxk/SgDdtFu7rRPKhGxPL3SY4yBSieKMWclqG81F+bPOXNTafbyXmlLGZhEdh3M7cHGT1qok0Qs7VUUiSJyS4/iPavRXwoyvqLHDE1pdid2S4DDYO3XnNSxlbrULcSkRQbAgYDjA7+9NjSOJ75b0M0zLlfZj3NNyzSWXnE/Zl+QMB+dIYyf93bSQqquDJu39wM1ZkhS0nt5fMWdDFvdM8Bj0FRTv5a3kdr80chz6kKKeUhhWynSQSEqWljPY9hTENtrd7ixuJ1kVfLYYjJ6kntSogn1G3htf3UhUIWLdWPemW8RuUvpGkWFkG9U9TnoKaJy8lrBEgjk+60n94nvRcBZ447U3sd4C8itsjIPAbPWpJoLkWllNMT9nkJRRnoB1pLnyrGe8gugJtnyo6nIz60pt5JLC1uDJi3aQxgFuRxyaYC2cTvqFzDovmBSh78lQOc1U/ci1SR932ovwOwArQsbX7ZqM40dyhA2hd3J45qhIsUdoxm3C6EgCg9AO9Ai1crPLeQJqryRxyRg78c7O1RWs11HZ3Udpva2HMh9QDxmpbqO5kntDqBdYZIwQ2OiVHaS3CwXsViWNvgl/dR0zQIi/d28kFxHLvmcZZcfcParV0ZNSvZ/7RlMMgG93Yck44FVCIovs88cm6djlkx9z0qzcmfUr2X7e/lOU3MzDrxxQAyO/nTTzbKpa3LBmOOM9qQL9guobhJUkkfDkDnafQ06LUJo9Ne0RQbdmDMcd+3NNWMWVxDMXSUuN+z09jQBLcmXWbi4kkeOGQkyPn5efTFC6gI7A2floVZgxfHOfrTJ9+r3NxIAsLZLvnjp2pUvY47BrQwqd7BvMxzx2pgMEDWU0c8uxw+HC5z+BqW7aXWLmRoI44i3zFR8oAAqFYJLa5jmuVDRuAyoT2qW7dtSuZnsYfK3clF/hFFwHW15FbWdxA8EbtMABI3VMelVzbzIwmlX9y/CVNDNapYyxSxbp3ICvn7vrUHlz7g0gbyDkJnvQBavLhL2SNbK28qTaEAX+I+tGmSR2chN5B5rBWUqxxhvWk1CSAyI2mI6MEAAJyS3rSad9m8x21EuTtPA67/eh7AQsk8jmRARAv3uOM17p+ynJbnx3cRpFiYaZMWf+8PNirwgzzq3kx58hjlsdCa90/ZRS1Xx7ceW7NcHS5vMz0A82LFZ1vgY47n1hRRRXnG4UUUUAFFFFABRRRQAUUUUAFFFFABXnd9KWv7xQrjFxKM7ePvmvRK8p1TVCNWv493CXMq/+Pms6j0Gi8oBGMZPuaf5OeQcHsfSsdNSQclunvVuHURnluKyuM04rXYcsSSe9TCAVSi1FSQCelTLfrwRzTEWhHyOMYqTJIALEgepql/aADcnkmj7cpDHsKAHSruJI9TVC53qM1J/aC84Pc1DNeIVyMUgKNzMygkisTULtmGPWte4uFfIOOOKxb7ae1QxmBeXBwxI46fjXOalKTGyk9a3dTQoCO2cmuc1Eg78g9Kx6lo2fDugaPrugRpqOnWtzh3Xc0Y3Dnsw5rP1f4IaHegvpl1cWEnZT+8T8jyPzrb+HbibRpFPVZm/kK6kZQ4NbRk1sSzznTfgXt09YW1kfbMMT+7/AHbHPGO44+tUV+D/AIoiuFkisxfW8cgDG2cMwXPXb1xXrcTncMHkGt3TLmSzmW5jOCD8w7H2r0aOZVqaUb3Rm6aZ3NtGsVtDGoICIqgHtgUTH9zJ/un+VNtLqO9t1mjPDdvQ+lOmH7mT/dP8q5txnL/HQkfBnxMQcH7D/wCzLXwyq3Oxd2WJXgxsMD619zfHMbvg14lB/wCfIf8AoS18Juq7GK3EYyOQoPPtWqAfEtwI8P8AMQTjYRk0iGcFi/KZ6bhuOKbGoAEizordgAc01UGAN6Bj7c1Qh5WcylgcLjlZXHT8aSRp5NjIdgDZAaTgY9qaW+8Hdck53MvNNG7cN0gKEYXcv8qAJJzJPhlURNwGYyfKTTpvPlhYuwwDkkNgZqEZUKTJhOcErxmlYA/MkhKA7m+TCmkA5fMliwZFYx/x7sYA7cUQoflUtFKDzw+Nv1pojabIid2yMvtjwAKFHn/dZ3c/9MxQA63jZ85eGRGY4Tecg9qY0KrO0m9fk+XYWOeKN2diJK+5DhQEAxQyDcIXeUsp+7tHWgBrRPFOrh40JXdtYk5zS+U6FXWRIiy8Dn5h0pXQxPslebe3UYFK+I5BuEoVhkBSvI7UAMaINs3PFECfvLk4A70SgzI2HjCghd6g5J6051EQR8yqjDaoBGSKa42ASgusY4HzjIzQMR43kDklXKrgttOcdvxqPaTb+V5qlUy2WUj8KkIG1pNzqqjPMnzZ9aGEbwttSRBjcd8nLD2oAZtWXIEqsCpYs6424HQVEkaIo2sSrDl2ThfpUqxhlA2lQ46tJ1FMUeYoUgDOV3M3yrRcDpNDhS402GGWXy0K8uR0Gaq74o9PFsqAhZt3mY5PoK2vC9tFeaN5cjbFRTlx6ZPSsx2ji097WILJCZ8+Zt+Y46V6K+FGHUZEqWV5MbtfPMkR2jd0JHBqqVc21s7FjbJJs/HvWvY6Lf8A9pF4NNnvy8eQqISBn1NWE+GfjC5jjRNMmVFbcVchazlVhHdmkYSeyMeV91xd/wBnhwkq424ydoHeo2+zLYWckcjNchyZFI4A7V1938LfFYnlnsrSK3V4wmwzAnpzzWXd/DzXtP0xAbFpLlZcsY2DDZj/ABqVXpt2UkP2U+xiwYu7i8lu5RAdhdRj7x7CqstyTBbQKoVkbJk7kn1rq9F+HHiTX7t7m/gNpCRw0nDEgccCuhtPgrMbVILzVMqH3nyosH8zSliKa6lRoTfQ86u2t9Mv5o2ZLtBHgMDxuI61HHbTSaP9rEyhFlCBN3P1xXr1v8HdFt5BIzXMrAY+dht+uMVUufgvpbIVhuLuLJz94MKlYqDK+rzPM7Im81aO30oGFnAQ5bGTjk1FLLEsM8dyHNysm1DngYPNeg33wgkSSOXT70QGNAv3Tlj659a5jUvAWs6Vb3Mk1p9rP/LOSE5I55yK0jXg9mZujJdDOnS7zZPfbxBMuVIPRAe1NtJLgreJpiObcAs3HOwetRsl79ltp7oN9m3mLBPKY6jHapbLzWa8XTA5gKktj+4PWtjJohIgjWCdXzcFssmOFHarVx52o3rrfyeQxUMzsO2OKqMIAkM2W+0E8pjgCrc7TajesNRkMLFBmRhj5ccUCI4b+SDTpbREDQuwLHHOR05pghFpPFMzJKXw+zOduOgNPhvZLawltY0DRPguxXPTpTPJFrLDcMyvvG7b124PegCWdpNZuZ3jCQM3zMBwAAKYl5DHYNavboZGcMJe4A7U+4aTV7mZ4kSFm+YgfKAAKRLq2jsGtnhVpXYN5ueQB2oAjWKSC4jkuwTE43Kueq1JcyefczPpaNGG/hXsveoxG8dzFJeBjA4yoJ6rmpLmUG4mfS1kQPnC56LQAQ/YvsMqyhjcsQIyDwvrUBkmlZI5S3krwh7e9Twx2bWMpmdhc5HlgdMd6gM0srJE5YQpwhx+dAyxeNbWc/maa7sQo+913d6LKKC68x72YodhYe7UXZg06482yk85UAILDqe9NtIFvxLJPMItqFsep9KLiRC1zJGv2RP9WxyxxXuf7KVrBF8QJ5kuBJLJpU29Mfc/exYrww3RCfZQinJ3F8c/Svcv2UrH7N8QZ5jOjtLpMxKA8p+9i61nV+FlR3PrKiiivPNgooooAKKKKACiiigAooooAKKKKACvAvEs80fiDVNp4+2Tf+hmvfa8K8SxZ1zUzj/l7mP/AI+axrbDRjC7nAIqSPVrhTjBzQYiDu7VE6c9wcVz6lFxNdmiback1YTxGwUk54rKkjwdxqEqDn070OTHY3v+Ej65zz0o/wCElABXPGa5x2JUYzj0qsS4Jx6UudisdMniASR7tx5PH50j6wW6N1rmYGdUjxypHerSMxkABHHWjmY7Gy2pgIWz1HFU5dQ3sAWqmTs96p3DfMSDik5MLC3t6JAS+KwtQZShx171amBZSTWfeRlosg9c0kM3vh5PstbyMH7soP5rXZ+YJB15rz7wASs+oRk/3G/mK7RXK960uSzTt/lbJNaUNyFPseorAS4I71YjusHrVJiOx0fVTp8+1zmF/ve3vXVyyK0DspyChII+leZ2t0JV8rPzfwf4V0Wga5mN7Gdv4T5ZP06VcZdBNEnxyOPg34lOT/x4jp1+8tfCe/YoCI6ADK4r7s+OTbfg14lJGf8AQRx/wJa+E4pExuj2KduDvB59hXSiR8eY7dWETAFvvZBbNRw7g0swUkjglmGaEmjQYKjKnIAHy03z4nlPmRKSem0HH40wEH7+bdgsqjks2M04nz7jCZ56BmwopsjAzbnPmZHQLwB2pJXXzFIbcPu4VOQKAFnbfhArccY3fKKVyBH5ewjb1Ab5QKJZcR7EKuOu0x45pBKQhVV5/iUx8GgAH+joYwQxI3Ao386b8scaNuRi3ZGOc06KQqCjboiVxgJndmkhcBdsiyISflZUGKAETywhY+U25sbc8ilG0K7HygcYKHOfrQDJFvC+YI2PUJjp/WgtIhJPnbWI+bAyaBghUPuby0IGQHzyKSMRlkfEcauDjcuQafIJhMrjznGM8kAgU1vtMhXyg5jAPDsOKBAFDoHbZGnQMFJ5HtRIGZmYhCmcPJs4/KhhIwxH5sZBwfMcYzTXad43HzLhhuO/5c9qQx4EkjExp5u0ZL+X0H070KTIyqhEqgZBePAXFaeheFfEPiW4MemWEtww481G2xr9T0NeqeGP2d3eJJPEepM7Y/1Nr8uPqx6/lWcq0I7s1hRnPZHi2WmcLCJJWf5SPK4B9gK39D+HHizxE4FnpdykbdXnj8uMfnX094d+Gvhzw9HGLLTIFZBgSON7/mea6yCCOIABVAHoK55Yt/ZR0LCJfEzyDwn8Epo9EtrPWZkEihhI0HBYE5AzXd6F8MvDmgQLFbabCcc7pBvJPrk11iyKtNlukQZzWU8ROWjZUaUY7IpfYYIBtSJFHsMVUuEiQdqddajuO1OTWdNKzHb1b+VYK8nZG6h3IruSMcAcmswWas+4qK0fJOcnknvS+UB1610RgkFiotso7U7ygvRasHAqNjWgrEDoSOgqCSM+lWyeKYxppiaM+SPHaqU0KnPFa0nPvVSVA1UmQ0cL4r8EWeu27FAIbgcq68An3HevLXs7qw1C8sbGGWLy0PmLnsByfpXvsycHAryX4h2s8euLJZKQ8sB8wg9QPWu3C1XflZyYimrXRyRW3WOCQP8A6QT9w9hVmYz6heFb9zEWQEuw6Ljiqzx24hgm8w/ad2NmOAtWpnm1K7C30nlZQASMP4e1d5w2Ire+ktrCa1jQPFJje2M8A8c0wwrbzRXDFX3/ADbM9APWnQXrWdnNaoBJHIdrOVzwDxSG2NvJDcuUdZBkJnJAHqKARJcs+rXMzW8YiZvmIXgKAKbHNaLYGB4d07MCJfQelOuHfVrmV7SJYXfkqvAUAU2OWzWweGSItcMwIkB6AdqAGKkguYzebvIYAqD3X2qS5nWO4lfSwwR+FHUhe9RoJXuI/tm9YCPkP+znnFPupUtbmZtL3+WwwoYc475pdRiRQWr2MjyyMLgkeUB0PrmovPknkSA/LGgwDU0VrbSWMkskxWcECNMdfU1EZ3uHS3CqoTgHHXNMRLdRw6Xc74XFwgAPI4z6UW1mdQE0rSpEFUvg8Z9hS3UUekXR/epdouG46E46UlpZy38cssTLGqKXIJx+ApAQeeiKLcRjzM7t/evcv2UrCe1+IlxNKwKzaRKVAPI/exV4cZIVjEZTM+c7j2Fe4fspWl3b/Ea4kuc7JtHlaME9vNiqKvwMqO59aUUUV55sFFFFABRRRQAUUUUAFFFFABRRRQAV4j4g3/21qeFBAupu/wDtmvbq8U17B1zUef8Al7m/9DNZVdho5281C1sgFuriCAkZAeQKT9M1nyeIdNDH/TbUjHaVf8a88+KDFvFUiknCxJgenFC/CjxdP4Vt/FFtpTXWnTqXHkMHkVQSNxQc44NSqd0O538viLTMY+2wEf8AXRf8arN4g04Mdt9Dz/tivGGwMgjGK29U8CeIdH0eLWL3TjFZybOd6l494ym9AdybhyMgZpOin1C56VFrunM7br63Ax3cVLb6rp8zsqXluzMOAHGScV5XJ4M1+HSbDVn0u4W01GbyLRivzTv/ALK9SPQ96fe+H9V8JeI4dN1a2azvUaKRoiwJUNgjOPal7BdwuexQRxNCicHgHOakW3C4OR1qGCUblBwDxTmnUMQcGsEURzI6bvQ96z5CWypHTqTWk8qMDkLx7VVkjgckkLyORSYGXJgZ6nNVrxVEZUduK0J7KNkBQsDnPBNZ91ZSKmcv+LE00A/wW3l6vdoAfmiBz24auzDc1xfhRGj1eQkthoj1+orsT1qwJgakQ81AGp6tigRaViDkH8quPMzwtOrbXUfPjsezfj/Os5GqZJjEGOMqVIYeoxTA7n43Mf8AhS/iNhyTYDr9Vr4UZpCq5V3jUcZFfdnxs/5Iv4iwM/6AMAn3WvhYFIwAXR3XkrnKmu5bGZGzyFQqh8Dlh2o3My/Kjgntnj2psIG5t8gHPAHQ03dvuT84C4ydvOPagB4kccKjA9OG6jvmiJyrEGNmOMcPjn1pkvzTqNy4xyEXoPWmyZcqqFTg4AVeSPegB6M6Tcg4weA1OaV1OAOTx97JAqOYgQrGhB5/u81JnyY2QSAbxtYPHyPpQMbJu6jBPYF84olbCZCIuD93eeaI99sDuzC7L/EnG3296ZFHJCqXDb0DE7GK8EUgBshQNqL0H3zlqVidpY+UpPPBOfpSJG4bzpPMEW4YYKBzQVklleXc7gc7uATQAoVgcv5aZ/vZyKa7EqAWTYBhcg1s6F4a1bxffrFptrPdDOJJmOEX6tXtng34F6bpbxXWszNqM6crE3+rQ/TvWVSvGG5tToSnseM+HvA/iLxVMsem2haDPM8iFYxn69a9l8HfALTrBEm12b+0Js7/ACgMRKfp3r1W1sYbWNYoY0iRRgKgwBVtUCiuGpiZSO2nh4x8ypYaRZaZAkFrBHDEgwqIoAFWtwXoKa8m0HNV3mIFczkdKRbEuO+KcbpQOtZMlww6moXuiF61PMVyGpNqIQHBrJm1J7mTZHkj1qjNK85KAnBPNXLa3SI4UgccVpTjzg0ok8MLErHGC0jkD8T2rS1fSV0aRLVmDy7A0hHQE9hUGnTpaXsE7jKxuHI+lP13WP7X1CS6ChFOAB7Cu2MUonM3Jy8iixqOTHagtTGNIsYxqJjT3NQO2KpCFLU1Y2kYKoJJpqnccZrsPDGiwwW39sX4At4+Y1P/AC0b/CqjG5nUlyo5W/0e90+NJbmFo0k+7nqffFZjkA471veI9cl1S6d5GyM8Y6AegrAAGS56dqqSs9CY3auyhdfu2IJ5ryf4jSztrEMdsHLiFtwX+73r0+9uNzuc14v4n1We68R3UtqXYxgxfJ12jrW+GXv3MMQ7RMtooTFBKXPn7uEx/DViSaXVLsQ3b+V8gVXYYAQdKhaCBo4JjNifO0RY/h9asySvqlz5UrrGVQRhiMAKK9RHnMr2919lsprZUV45OC23JwD1BpjWzRSw3EmGik4Cg9MVNBOllZy2+I38wlDJjPGeopj2rwzRTOQYZAdoz6e1AhZydSuJTZRCFmH3F4wAKbE9otg8UsbG5YjY+eFHepLhjezyvp0JiZhgInYAc02NLP7AwmD/AGpmXYR0A75pgQhppJ0F0ziADCE9l74qSeaOxuJn05mdG+VSw5xjmozJPPMsdwWEAGEJHQd8VLPLHpc0r2LeanKozLyc9eKQDIrSKSye4kn2SqVCR4+/601rg3TR26xqnljaGAxn606OyEtlJdGdUZCAseeWzUTXHnMkMcaqycFv7xNIZYngXSbkrO6XKJhiAcg5FNt7ae8ilkgO2NF3sM44z0p9xarptzsvcTIFDHa2QcjpUNvFdXEcrWqt5SLubHZaAGFrYIE2n7QTnPtXuP7KUd4nxHuWugdr6PKY8+nmxV4c32dVUjm4zz6AV7h+ylLdyfEm6+0h9v8AY8vl5HGPNi6VFX4WOO59a0UUV55sFFFFABRRRQAUUUUAFFFFABRRRQAV4j4iB/trUsf8/U3/AKGa9urxjXYi+salgEn7VMR/32azq7DR4H8TM/8ACVS/9cY/5V7D4M+PXhbwV8MNJsSbm+1e2iMbWccZXDbiclyNuOe2T7Vznir4cReIb4XxupLaUoFYBNwbHTvxXK3/AMLobRRnU5GJ7eUB/WkppIdrnJ+NPFEvjHxFea1NZ2tnJdNkw2y7UXAx+J9T3r0e4+KXh6Q399Z6jrOnajrSWcdw8VqrfYPIQgmMlvnLE4HTAJrkD4BgLY+3S/8AfAqRPh3AzY/tCTH+4KXtY9wsyabxRpM/gSx0dtd1c6pb6l9t8425xEhUJtRt+flALDGPTiofHOvaR4k8WadqGk3V3OogtreT7TB5bBo1Vc/eOc4zU3/CtYcqBqEpz1/djj9antPh3b2l1HM95LKIyH27AMkH1o9pELHZqB853dD1phcFmA65xTSh2HH1NRs2xwxGa5rFA+5jjJ64+tRSIyjAzzUss0eAR96qMl3l2Ibp2pWAezzA5A46UPNI4G5CQKrG+IwDzmnLqfJBwVxTAv6SgW+VwuCVIreY965i31VI5Y24zuA/A10ZkyAaoCQNTw1Qq9ODUhFhWp5b92/+6agVqkLfu2/3T/KmB6J8bMf8KW8Rbun2Bf5rXwq7GWJPMLNGgOAqgZ/Gvun43bf+FKeIt2cf2eM4+q18IgxjbGTtHc5ruWxmxUDujLuxjqoxmnFihdInaJGHKE8mowkQw24DJ655xSM0WC+1TngE9QPWgY4OIJFEZaIYwSDyx7mmMxt3BjJjGRkhuSaVDDjLbScdDTVKj5tq8nIBGaYDrgbXDhm3Oc792TilnwwDKxZhxuL88d6TfE2MLjucimM67yzKMkY4TGfwpASrmaDzGAk2ghfMfp749qZHIGXnaWH95v6UkkiKBgAYGAQuM12ngr4c6p4yjVjC9paK3Nw8eN3so71M5qKuyowcnZHHWVtLezi2giM0rthEXLc/QV6t4I+B091KL7xIRFCeVtIzy3+8ew9q9R8KfD/SfCdqqWturTfxTuAXY/XtXXQWwwOK4KuKb0id9LCqOsjP0fQ7PSLVLWxtYraBBgJGuBWtHFtGakCBRg0bx07VxOVzrSHgLikdiBxTC4xTd4PX86VwsQynd3qF87fWpZRzUOQDk0FFSUnNVZW4q9OgOcVnzcZBpFpjbR0W4AflTxW9ZQRrI7OV2bG5Pfjj8a5hjhsg9K27K5We32k8gc11YeXRmdZdRHaoi+DUsntU2paPPp9ra3TsrJcpvUr29jXVuY3S0KRek38VCz4qMy570hkkklV3ft0pWfFV5G96BjvMCnOARWxfeK7jULOO1cqkUQ2qiDAA+lc8z1E0nvVKbWxMoJ7liWbe3rVS/u9q7FPXrTWl21nXUuSTQnclox/Euqrpul3FwWwVU49z2ryDTbiSIz3UbuzNkMVHJz1rpPiHrhubtNMgf5YzmQ+/pWJpMv8AZcU3lTK0YypbbnORzxXoYaFlc87Ezu7IbJBEwhuDIFcHaE7kVPM8mqSeWSisqCNSBtAFTT2MUzWM8bKVyFC55YHvU8tumqSzQQtGssK+UAvy59yfWu042zOhljtbSS3kjjdmGwOedvPUVEbaRLiOaQN5DgqvP51Yihjt7No50R3fKBi33SD2qJreaO5Rpt/kMMIe2e+KoBbgGSaV9LjdNw2qoOSOOaYtva/YmaVm+0kgIB0HrUlyxtpHfTkkjBGFGcnpyaYLeGS28ySRhOCNigdfXNAiBpbi6uFimfbFGMISOg71LMU0m4lMDJdxjhSV4ORR50t3cLbsQEiG1Tj1pZtmkSyghbqMfKCenIpDI47V5bSS581FCEfJnls+lRGVJnSGOLa6D5mH8RqZLGea0a5QqI4yMgn19qjMkPmLFbx4mUfO3940APlgazuWi1LJReWAbrxxTYPtLxyG1DCMDL4/u054dlyU1PeqDlsHnpxTYZp4o5Vtg/llfn/3c0DIzHBhZdxM7HlewFe4fspXlzdfEq6Fxu2po8qx5/u+bFXh5hjVUnEmZWP3PQV7h+yjfyXnxJuxIMeXpEqrxjjzYqzq/Cxx3PrWiiivPNgooooAKKKKACiiigAooooAKKKKACuS1vwXJd3sl1ZPGBMdzxyEjDdyDg9a62op7hYRzycZ+lKVrXYHBt4F1XaQBaHPrKf/AImuc1b4TeJL6UmJ9OVf9qZv/iK9UbWIVGWkiA9SakS/8wZTaQK5YYjD1Xywmm/JpluMlq0eLp8FPE46y6Zz/wBNm/8AiKkT4L+I0IPmabx/02b/AOIr2hLvJw4x7ipywVdxPFbexiLmZ4uPhB4jDAh9Nx/12b/4ilb4QeIyABJpw5/57N/8TXr7XZz8qjHvTReMwyApFHsYiuzyNvhD4iAYI+nYI7zN/wDEVWf4NeJ2wfM0zI/6bt/8RXs32tu6ip45VlGR17ij2UQueDy/BDxY+SJtLBP/AE3f/wCIqB/gT4uI4m0n3zO//wARXvd1eRWkbPIwVUG5mJwFHvWQ3jPR1OG1G0B9CxqZKnH4nb5ic7bs8V/4UH4v6/aNJ/7/AL//ABFI3wC8YHpPpA/7bv8A/EV7zaaxDfwie1limiJI3IcjI61Zjugxwwx71Spxauh8x89v8APGJ+7caQDx/wAvD/8AxFdJD8JPEywoskmmlwACRO3X/vivZmYIpY9K5vxR8Q/DngtIH8QavaaatwSsQmJLPjqQACcDIycYFP2UQuzgR8J/EY/j07/v83/xNOHwp8RD+PT/APv83/xNek/8JRppj0+QX1oyakwWzZZARckqWAQjr8oJ+gq8Ltu6il7KIXPKx8K/EQ/j0/8A7/N/8TV/SPhZqBu0OqT2yWykFlhcszj05AxXpscgkXIrAn1m91HzH02SK1sYyVN3JGZGlIOCY16bc/xHOew71pDDqT0InUUVqaOvaDY+I9DvNFv499neQtBIoODtI7e46j6V8sav+yH4uj1CRNK1TRZ7EE+XJMzxyFf9pQpGfxr6NimvZ1DReKWYEhci1i6kZA6elTxQatPEksXiOVkcBlYWsXI/Kuh0Gt3+f+Rj9YT6P8P8z5ck/ZF+ILDaL3w8AT/z8SdP+/dK37Ivj9SyxXnh/ZjClriTP/ouvqX+0tT0YebqMkV7Yj/WTpH5csI/vMoyGUdyMEehreaVAgfIKkZBHes5QcTWFRS2PjsfsieP0xsvtA6ck3Mmc+37ulH7I/xBULi90DPVj9qk/T93X1214Rk7QB70iX3mIHTYynkEHINRfWxZ8iH9kb4glSReaD5hPDfa5MAf9+6Qfsi/EFnLS3mgOegP2uTj/wAh19fC7bPKjHtVhHEi7hQB81+Ev2UptHljvNYls9SulwdplYRKfYbefxr1C2+H+p2yBI0skUcALIf/AImu/kuQh2qMmqcuuWsCzmS5t1+zIZJhvGY1AzkjqOlYyoRlqzaNeUVZHJN4J1cjgWn/AH9P/wATUkfg7WEGMWn/AH9P/wATXX2OqQX8EVxDIkkMyh45EOQykZBq5UfVKZf1uocK3g/Vz/Daf9/T/wDE1GfBmsntaf8Af0//ABNd9RS+qUw+t1DgB4L1n0tP+/p/+JpG8F60Rx9j/wC/p/8Aia9Aoo+qUw+t1Dz0+B9bI/5c8/8AXY//ABNRHwHrZ/58/wDv8f8A4mvR6Kf1SmH1uoebt4A1thj/AEL/AL/N/wDE1Wk+G+uvnmx/7/N/8TXqNFL6pTGsZUPJX+F/iA9GsP8Av83/AMTUtp8NvENs+S1gQev75v8A4mvVaKawtNO6B4yo1Y85fwFrLIBts9w6nzjz/wCO1oTeE9XutBSwnFqZoZN0TCU4weoPy121FbKCRm68meVv8NdeYnmx/wC/zf8AxNMPwy1/sbD/AL/N/wDE16vRS9lEr6zM8lb4YeIT/FYf9/m/+JqJ/hX4jbo+n/8Af5v/AImvX6KPZRD61M8bPwm8SH+PTv8Av83/AMTTT8JPEh/5aad/3+b/AOJr2aij2UQ+szPFJfhB4ncYEmm/9/2/+IrO1H4KeMpbeQWsukeaRhd9w4AP/fFe+UU1TSJdebPkA/sn/EKW4eaa90ByxJJNzJ1/791bsf2VvHdghSO78PtnPLzyHg+3l19aUV0KrJbGDV9z5MT9lnx6lzBMLzQiIRgA3Mn/AMbqxN+zD44leR1l0CJni2fJcycn1P7uvquin9YmTyI+UYv2WPGK2Ihkm0RpQOH+0yYBz1/1dRN+yx49kufnv9ENuq4QfaJMg9/+WdfWdFHt5hyI+Tn/AGWfHVpI7afe6IuR8vmXEmc9/wDlnUB/ZQ8dOm5r/QxKuMAXEmD9f3dfXFFP6xMORHyXL+y14/lCKbnw8oRcAi4kyfc/u6S3/ZU8cRE+dcaDOADgG5kHP/fuvrWil9YmPkR8jn9lTx/lQt7oIUfw/aZP/jdOP7KXjaNhJFcaEJOdxNzJ1/7919bUUe3mHIj5Gb9lHx5dZF3faG248kXMhP8A6LpYv2V/iDbxNFHeaAFcbW/0mTkf9+6+uKKPrEw5EfIA/ZJ8diXzftuhZPG37TJ0/wC/de4fBv4O/wDCuVm1DUriC51eeIQE26kRxRA52jPJJIGT7CvT6KmVWUlZgopBRRRWZQUUUUAFFFFABRRRQAUUUUAFFFFABWfdEgyk+9aFQz2wlyR1PB96zqwc4OK6oadnc+UfFF9aRPcaLqOvy+doV1cWyRR20u2XzVJBPzlCR5wGTg4U+1e5+Do30rwrqrz6hFBtvr+b7VKSyQKZnIJ3Y4UY46cV08nhjTppTNJptlJKTku0alifrirgsCFKBE2nqDyDXiYHK61GrCc2rK99erXT3V11N51YyTSOd8GanLq2nT3J1Eahbmc/ZpmMfmGLaMbxGAoJO4gYB2kZ5rp5CfsyU2CwWLgIka5yQgAzVpkDLtI4r3znOS8R3FzDcWgidxHncyL/ABnI4qJbm8PiKJAGhThXhBypGCc/yrpJ9MSZlLokmw5Ut2NJ/Zo8/wA/yk83GN/fFePVy+vKs6iqtJyi7eSWq+Z2RxEFBRcdbNfectrOtPB4psdNtdchS4dkaSwbygohydzMW+cs3RApHI6EZrrrXPmHHTFMOnhnDtFEXHRiASPxq3DCIh6k9TXsHGYfiMn+xtRPfyX/AJVwJ03TtBjh8Qu/2mKWFHs7eRtzPMR8xb/ZU816nfafHfQyQyDKSqUdc4yDXOt8OtGZVVraVlQYUGdiFHtzxXn4zCzqyUo2079zGrTcndGf4PuZpfCdxcm5hgmeaZzPKBsQk5LEZAwPqK0PBWrPrfhXTb+a8ivJ5YQZZo9uGfvwvA+launaBBpVn9jtIVWDJbazbsk9c5q7BYrFgbURRztQYFddCDhTjCW6RpBNRSYs5Pkx5/GvLPiJPqfg7xZbeM7bQIfEFpc2UeitbtOkTwSvPlGBcEFXLhW+g7V606CRdprhvFPwa8J+MdUfU9a0+W6uXCAsLuWNflGF+VWAyMda1KOd0vwTqOh6N8PNOu1ha50zVZLm5WJv3cIeK4bYueqqZFUY7Cuqn1iaDx3aaW+p2gt7iykkWy+USb1ZcMSTuOQWwBgYHejT/hX4e0qHSobSzlRNJvGv7QNcu5SZkKEksSSMHoeK6X7BmQSGOPeP4yBkfjQBU1R549E1R7bPnLaSmPHXfsOP1qndGG38N4tgTCLdVi2f3SAFP8q6KOJY129c9feubuNKvNMgksobWS+0xgQiQyBJrcf3RnAZR2OQR056100JJOz7nNXi90ZdiLc20f2kO8jyBkCERmMhVAJ6dM8fjVu4n8jwdK9nejT/ACbchbh1X5SB1weMntn1qSOSONEX/hG9WbYgQFooySOOp38ngc1NHqDxxCFfD+r+WONpijI/V666lVS+/wAjl5Xb/hx3hy8XVPDen3Msy3HnWqGWQEMGJUbs4985qXw60jeG9N35x5WFz/dH3f8Ax3FRG11DWU+y/Y30yxfiV5GXzXXuqqpIXPdicjsO46D7PGsKwooREAVAo4UDoBXHWktkdOHg1qzm9e1F7aP7NECHkHzP6L3x71n+CtWnvoGt5EUJGCVIGD949ea6W70WG8I8+FJCvAOSCPyplhoUGmK62kCRBzlsMTk/jXzksDjHj1iXUXs1pby7feewq9FYd0+X3u5hWesTHx1f6RNqlpLELKKeG0TaHiYuwbPO4nAB9AMcd66q1Jw+PSo1sP3nmeXGHP8AHgZ/OrccYjXA/E17ZwnI+Pr+60zwjqN1Zzm2mVUQ3A6wI0iq8n/AVLN+FcPDH4ah1LVPBsunWMdvGs819OdPmy9qI9ySNcN8rybjuLEkHsM167dWEdzHJE6JJFIpV43GVYHggj0rl1+F+jgJC7ajNYoVKafNfSParg5A8snlR2U5HtQBL4GtLOz8IaSthp506CS1jlFufvIWUE7uBlvXgc11kefLXPXFQR2hBG7AA7CrNABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUVC1xz8iFh65xQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBNRUP2hv+eR/76FH2hv8Ankf++hQBJJxG30NV0+4v0FFFAC0UUUAFFFFABRRRQAUUUUAFFFFABQTgE+lFFACKdyg+ozS0UUAFFFFABRRRQAUUUUAFIxwpPoM0UUAAOQD6iloooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//2Q==" alt="벨크로 개선 전후 비교 — 개선 원단(좌)이 기존(우)보다 갈퀴가 촘촘함" style="max-width:100%;border-radius:10px;border:1px solid var(--border)">
+                    <div style="font-size:11px;color:var(--ink-faint);margin-top:5px">개선(좌) vs 기존(우) 벨크로 원단 비교 · 상품팀 제공</div>
+                  </div>
+                </td></tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 5. 반복 VOC · 불량 아님 ================= -->
+      <section id="s6">
+        <div class="sec-head">
+          <span class="sec-num">6</span>
+          <span class="sec-title">불량 오인 반복 VOC</span>
+          <span class="sec-sub">제품 결함은 아니지만 반복 접수되는 문의</span>
+        </div>
+        <div class="insight" style="margin-bottom:14px">
+          <span class="icon">💡</span>
+          <div class="txt">
+            불량으로 오인해 문의하였지만, 실제 제품 불량이 아닌 <strong>사용 방법을 오해</strong>한 VOC입니다.
+            사용 방법을 안내하면 해결되는 문의이지만, <strong>상품 페이지 안내 강화</strong>나 제품 구조상 오인하기 쉬운 포인트를 파악해 추후 <strong>제품 디벨롭의 자료</strong>로 활용할 수 있습니다.
+          </div>
+        </div>
+
+        <div class="voc-card">
+          <div class="voc-body">
+            <table class="kv">
+              <tr><th>오인 유형</th>
+                <td>
+                  <div class="mis-detail">
+                    <div class="mis-item">
+                      <div class="mis-head"><span class="mis-t">충전·완충 부족을 고장으로 오인</span><span class="mis-n">22건</span></div>
+                      <div class="mis-q">"충전이 안 되는데요" → 완충 전 사용으로 확인, 완충 후 정상 ("3시간 30분 되니 완충되어 작동")</div>
+                      <details class="pct-more"><summary>제품별 분포 보기</summary><div class="pct-list"><div class="pct-row"><span>목마사지베개V2</span><span class="pct-b"><span class="pct-fill" style="width:23%"></span></span><span class="pct-n">5건 · 23%</span></div><div class="pct-row"><span>목편한케어플라잉</span><span class="pct-b"><span class="pct-fill" style="width:14%"></span></span><span class="pct-n">3건 · 14%</span></div><div class="pct-row"><span>목편한케어</span><span class="pct-b"><span class="pct-fill" style="width:14%"></span></span><span class="pct-n">3건 · 14%</span></div><div class="pct-row"><span>허리편한케어V1</span><span class="pct-b"><span class="pct-fill" style="width:14%"></span></span><span class="pct-n">3건 · 14%</span></div><div class="pct-row"><span>허리편한케어V2</span><span class="pct-b"><span class="pct-fill" style="width:9%"></span></span><span class="pct-n">2건 · 9%</span></div><div class="pct-row"><span>발편한케어V2</span><span class="pct-b"><span class="pct-fill" style="width:5%"></span></span><span class="pct-n">1건 · 5%</span></div><div class="pct-row"><span>허리편한케어마스터</span><span class="pct-b"><span class="pct-fill" style="width:5%"></span></span><span class="pct-n">1건 · 5%</span></div><div class="pct-row"><span>넥숄더힐링케어V2</span><span class="pct-b"><span class="pct-fill" style="width:5%"></span></span><span class="pct-n">1건 · 5%</span></div><div class="pct-row"><span>넥숄더힐링케어V1</span><span class="pct-b"><span class="pct-fill" style="width:5%"></span></span><span class="pct-n">1건 · 5%</span></div><div class="pct-row"><span>목베개플러스</span><span class="pct-b"><span class="pct-fill" style="width:5%"></span></span><span class="pct-n">1건 · 5%</span></div></div></details>
+                    </div>
+                    <div class="mis-item">
+                      <div class="mis-head"><span class="mis-t">어댑터 규격(5V 2A) 오인</span><span class="mis-n">13건</span></div>
+                      <div class="mis-q">"충전 불이 안 들어와요 / 작동이 안 돼요" → 규격(5V 2A) 맞지 않는 어댑터 사용으로 확인</div>
+                      <details class="pct-more"><summary>제품별 분포 보기</summary><div class="pct-list"><div class="pct-row"><span>목마사지베개V2</span><span class="pct-b"><span class="pct-fill" style="width:38%"></span></span><span class="pct-n">5건 · 38%</span></div><div class="pct-row"><span>발편한케어V2</span><span class="pct-b"><span class="pct-fill" style="width:15%"></span></span><span class="pct-n">2건 · 15%</span></div><div class="pct-row"><span>허리편한케어V2</span><span class="pct-b"><span class="pct-fill" style="width:8%"></span></span><span class="pct-n">1건 · 8%</span></div><div class="pct-row"><span>목베개플러스</span><span class="pct-b"><span class="pct-fill" style="width:8%"></span></span><span class="pct-n">1건 · 8%</span></div><div class="pct-row"><span>발편한케어</span><span class="pct-b"><span class="pct-fill" style="width:8%"></span></span><span class="pct-n">1건 · 8%</span></div><div class="pct-row"><span>목편한케어플라잉</span><span class="pct-b"><span class="pct-fill" style="width:8%"></span></span><span class="pct-n">1건 · 8%</span></div><div class="pct-row"><span>허리베개프로</span><span class="pct-b"><span class="pct-fill" style="width:8%"></span></span><span class="pct-n">1건 · 8%</span></div></div></details>
+                    </div>
+                    <div class="mis-item">
+                      <div class="mis-head"><span class="mis-t">EMS 사용법 미숙지 (크림·맨살·밀착)</span><span class="mis-n">11건</span></div>
+                      <div class="mis-q">"자극이 약해요 / 따가워요" → 크림 도포·맨살·밀착 등 EMS 사용법 안내</div>
+                      <details class="pct-more"><summary>제품별 분포 보기</summary><div class="pct-list"><div class="pct-row"><span>발편한케어V2</span><span class="pct-b"><span class="pct-fill" style="width:27%"></span></span><span class="pct-n">3건 · 27%</span></div><div class="pct-row"><span>허리편한케어V2</span><span class="pct-b"><span class="pct-fill" style="width:18%"></span></span><span class="pct-n">2건 · 18%</span></div><div class="pct-row"><span>발편한케어V1</span><span class="pct-b"><span class="pct-fill" style="width:18%"></span></span><span class="pct-n">2건 · 18%</span></div><div class="pct-row"><span>허리편한케어V1</span><span class="pct-b"><span class="pct-fill" style="width:9%"></span></span><span class="pct-n">1건 · 9%</span></div><div class="pct-row"><span>허리편한케어마스터</span><span class="pct-b"><span class="pct-fill" style="width:9%"></span></span><span class="pct-n">1건 · 9%</span></div><div class="pct-row"><span>바디풀고컷</span><span class="pct-b"><span class="pct-fill" style="width:9%"></span></span><span class="pct-n">1건 · 9%</span></div></div></details>
+                    </div>
+                    <div class="mis-item">
+                      <div class="mis-head"><span class="mis-t">무선 제품을 케이블 연결한 채 사용해 오인</span><span class="mis-n">10건</span></div>
+                      <div class="mis-q">"작동을 안 해요" → 케이블 분리 후 사용하는 무선 제품 안내</div>
+                      <details class="pct-more"><summary>제품별 분포 보기</summary><div class="pct-list"><div class="pct-row"><span>허리편한케어V2</span><span class="pct-b"><span class="pct-fill" style="width:40%"></span></span><span class="pct-n">4건 · 40%</span></div><div class="pct-row"><span>목마사지베개V2</span><span class="pct-b"><span class="pct-fill" style="width:30%"></span></span><span class="pct-n">3건 · 30%</span></div><div class="pct-row"><span>골반</span><span class="pct-b"><span class="pct-fill" style="width:20%"></span></span><span class="pct-n">2건 · 20%</span></div><div class="pct-row"><span>허리편한케어V1</span><span class="pct-b"><span class="pct-fill" style="width:10%"></span></span><span class="pct-n">1건 · 10%</span></div></div></details>
+                    </div>
+                    <div class="mis-item">
+                      <div class="mis-head"><span class="mis-t">정상 현상(경고음·발열·유격)을 이상으로 오인</span><span class="mis-n">7건</span></div>
+                      <div class="mis-q">"삑삑 소리가 나요 / 전원부가 흔들려요" → 알림음·단선 방지 유격 등 정상 현상 안내</div>
+                    </div>
+                    <div class="mis-item">
+                      <div class="mis-head"><span class="mis-t">전원 버튼 조작 미숙지 (길게 눌러 종료)</span><span class="mis-n">6건</span></div>
+                      <div class="mis-q">"전원이 안 꺼져요" → 전원 버튼 5초 길게 누르기 안내</div>
+                    </div>
+                    <div class="mis-item">
+                      <div class="mis-head"><span class="mis-t">유선 제품을 충전해서 쓰려다 오인</span><span class="mis-n">6건</span></div>
+                      <div class="mis-q">"충전이 안 돼요" → 케이블 연결한 채 사용하는 유선 제품 안내</div>
+                    </div>
+                    <div class="mis-item">
+                      <div class="mis-head"><span class="mis-t">자동 종료(타이머)를 고장으로 오인</span><span class="mis-n">4건</span></div>
+                      <div class="mis-q">"10분도 안 됐는데 꺼져요" → 자동 종료 타이머(정상) 안내</div>
+                    </div>
+                  </div>
+                </td></tr>
+              <tr><th>개선 방향</th><td>자주 반복되는 오인 유형(정상 작동으로 오해하기 쉬운 경고음·자동 종료, 세척·사용법)을
+                상품 페이지·설명서에서 먼저 짚어주면 문의를 줄일 수 있습니다. 특히 충전 완료 표시나 알림음처럼
+                <strong>정상 동작을 고장으로 오해하는 경우</strong>에 대한 안내가 도움이 될 것으로 보입니다.</td></tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 4. 불량 문의의 실제 불량 비율 ================= -->
+      <section id="s7">
+        <div class="sec-head">
+          <span class="sec-num">7</span>
+          <span class="sec-title">실제 불량 확정 현황</span>
+          <span class="sec-sub">불량 상담 중, 실제 불량으로 확정된 현황입니다</span>
+        </div>
+
+        <div class="primer">
+          <div class="flow">
+            <div class="fstep">
+              <div class="k">접수</div>
+              <div class="v">불량 문의</div>
+              <div class="d">"제품이 작동하지 않아요"</div>
+            </div>
+            <div class="farrow">→</div>
+            <div class="fstep">
+              <div class="k">CX 확인</div>
+              <div class="v">고장 여부 확인</div>
+              <div class="d">올바른 사용법 안내</div>
+            </div>
+            <div class="farrow">→</div>
+            <div class="fsplit">
+              <div class="fout a">
+                <div class="t">불량 확정</div>
+                <div class="s">불량 확정 처리</div>
+              </div>
+              <div class="fout b">
+                <div class="t">불량 미확정</div>
+                <div class="s">올바른 사용법 안내 후 해결 또는 응답 없이 이탈 → 불량 확정처리 되지 않음</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="caveat">
+            <span class="ic">⚠️</span>
+            <div class="tx">
+              불량 미확정에는 올바른 사용법 안내로 해결된 건 외에 응답 없이 상담을 이탈한 건도 섞여 있습니다.
+              이탈 건 중 일부는 실제로는 불량이었을 수 있어, 실제 불량 확정 비율은 표시된 수치보다 <strong>높아질 수</strong> 있습니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <div class="legend">
+            <span><i style="background:var(--seg-confirm)"></i><b>불량 확정</b></span>
+            <span><i style="background:var(--seg-open)"></i><b>불량 미확정</b></span>
+          </div>
+          <div class="chart-wrap" id="wrapStack" style="height:300px">
+            <canvas id="chStack" role="img" aria-label="SKU별 불량 문의의 처리 결과를 불량 확정과 불량 미확정으로 나눈 100퍼센트 스택 막대 그래프">SKU별 불량 문의 처리 결과 구성.</canvas>
+          </div>
+          <div class="footnote">막대 우측 숫자는 해당 SKU의 <strong>불량 문의 총 건수</strong> · 실제 불량 비율이 높은 순으로 정렬</div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th class="num">불량 문의</th>
+                <th class="num">불량 확정</th>
+                <th class="num">불량 미확정</th>
+                <th class="num">실제 불량 비율</th>
+                <th class="num">전월비</th>
+              </tr>
+            </thead>
+            <tbody id="ratioBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= 5. Critical VOC ================= -->
+      <section id="s8">
+        <div class="sec-head">
+          <span class="sec-num">8</span>
+          <span class="sec-title">Critical VOC</span>
+          <span class="sec-sub">신체·재산 피해 위험이 확인된 건</span>
+        </div>
+
+        <div class="crit-card">
+          <h3>목 마사지 베개 V2 · 전원이 꺼지지 않아 발생한 위험 사례</h3>
+          <p style="margin-bottom:12px">3번 섹션의 반복 VOC 중, <strong>실제 위험 상황으로 이어진 사례</strong>를 따로 정리했습니다.
+             전원이 차단되지 않은 상태로 에어백에 공기가 계속 주입되어, 고객이 직접 제품을 파손해 작동을 멈춘 건이 접수되었습니다.</p>
+          <div class="quote" style="margin-bottom:10px">어제 기계 오작동으로 에어가 계속 들어가서 전원 버튼을 아무리 눌러도 어떤 버튼도 작동이 안 되었고, 에어가 터질 것같이 팽창되어서 결국 <strong>칼로 구멍내서 파손</strong>시켜 에어 주입을 막았습니다. 그래도 기계는 계속 작동되어서 <strong>전선을 절단</strong>해서 멈추게 했습니다. 위험해서 못 쓸 물건이네요.
+            <span class="src">채널톡 · 2026-06-19 · LOT 2026-05-04</span></div>
+          <div class="quote" style="margin-bottom:12px">강제 종료도 되지 않습니다. <strong>불날까 무서워</strong> 꺼질 때까지 대리석 바닥에 두었네요.
+            <span class="src">채널톡 · 2026-06 · 고객명 마스킹</span></div>
+          <table class="kv">
+            <tr><th>위험 요인</th><td>전원 차단 불가 상태에서 에어백 공기압이 계속 상승하며, 고객이 발화 가능성을 우려해 제품을 격리하거나 물리적으로 파손하는 상황이 발생</td></tr>
+            <tr><th>관련 건수</th><td>전원 미차단 증상 6월 <strong>31건</strong> 중, 위험 상황이 명시적으로 언급된 건 2건</td></tr>
+            <tr><th>현재 안내</th><td><strong>충전 케이블을 연결한 뒤 분리</strong>하면 전원이 강제 차단되고 에어백 공기압도 함께 빠집니다. 고객 응대 시 이 방법을 안내 중입니다.</td></tr>
+            <tr><th>대응 현황</th><td>상품팀 불량 확인 완료. 불량 샘플 2~3EA를 제조사로 발송해 원인 분석 및 개선 방안 확인 진행 중
+              <span style="color:var(--ink-faint)">(상품팀 회신 기준 2026-07)</span></td></tr>
+          </table>
+        </div>
+
+        
+      </section>
+
+      <!-- ================= 8. 고객 제안·기능 요청 ================= -->
+      <section id="s9">
+        <div class="sec-head">
+          <span class="sec-num">9</span>
+          <span class="sec-title">고객 제안·기능 요청</span>
+          <span class="sec-sub">고객이 직접 언급한 제품·안내 개선 의견</span>
+        </div>
+        <div class="voc-card">
+          <div class="voc-head">
+            <h3>어댑터 동봉 또는 규격 안내 강화</h3>
+          </div>
+          <div class="voc-body">
+            <table class="kv">
+              <tr><th>내용</th><td>제품에 어댑터가 동봉되지 않고 케이블만 제공되다 보니, 고객이 가지고 있는 다른 어댑터를 사용하게 됩니다.
+                이 과정에서 규격(5V 2A)에 맞지 않는 어댑터를 쓰거나, 어떤 어댑터를 써야 할지 몰라 혼란을 겪는 경우가 반복 접수되었습니다.</td></tr>
+              <tr><th>6월 접수</th><td><strong style="color:var(--navy)">10건</strong> · 목편한케어 플라잉·발편한케어V2·목마사지베개V2·목베개플러스·골반·넥숄더프로 등 6개 SKU</td></tr>
+              <tr><th>고객 발화</th>
+                <td><details class="raw"><summary>원문 보기 (3건)</summary>
+                  <div class="quote">충전기는 보내주지도 않았고 짧은 선만 보내줬어요. 충전기 전부를 보내주고 그런 말을 하셔야죠. 사용 환경이 정상적이지 않은…<span class="src">채널톡 · 2026-06-24 · 목편한케어 플라잉</span></div>
+                  <div class="quote">정격전압으로 인해 고장이 많이 발생한다면 전용 어댑터를 물품에 포함시켜야 하지 않을까요?<span class="src">채널톡 · 2026-06-18 · 목편한케어 플라잉</span></div>
+                  <div class="quote">충전기 어댑터가 없어서 USB케이블을 사용한 건데, 그럼 어댑터를 사라는 건가요?<span class="src">채널톡 · 2026-06-24 · 발편한케어 V2</span></div>
+                </details></td></tr>
+              <tr><th>개선 방향</th><td>규격에 맞는 어댑터를 동봉하거나, 어렵다면 구매 페이지·설명서에 <strong>어떤 어댑터를 써야 하는지</strong>가 지금보다 잘 전달되도록 개선이 필요해 보입니다.
+                실제로 "정격 전압 안내가 주의사항에 작게 있어 잘 안 보인다"는 의견도 있어, 표기 위치·크기 개선도 함께 검토할 수 있습니다.
+                어댑터를 동봉하는 허리편한케어 V2는 관련 문의가 크게 적다는 점(4번 섹션 참고)이 이를 뒷받침합니다.
+                <details class="raw" style="margin-top:6px"><summary>정격 전압 표시 관련 원문</summary>
+                  <div class="quote">충전기 5V 2A를 꼭 써야 하는 거면 광고란에 크게 써놔야지, 주의사항에 그렇게 작은 글씨로 써놓으면 누가 그걸 다 읽나요?<span class="src">채널톡 · 2026-06 · 목마사지베개 V2</span></div>
+                </details></td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="voc-card">
+          <div class="voc-head">
+            <h3>커버 세탁 · 커버 별도 판매</h3>
+          </div>
+          <div class="voc-body">
+            <table class="kv">
+              <tr><th>내용</th><td>목베개 계열에서 <strong>커버를 어떻게 세탁하는지</strong> 묻는 문의가 가장 많이 접수된 니즈였습니다.
+                커버가 전선과 일체로 되어 있어 분리가 어렵다는 점이 문의의 공통 배경이며,
+                세탁이 어렵다는 것을 알게 된 고객이 <strong>커버만 따로 구매할 수 있는지</strong>를 다시 묻는 흐름으로 이어집니다.
+                두 문의가 사실상 같은 니즈에서 출발합니다.</td></tr>
+              <tr><th>6월 접수</th>
+                <td>
+                  <div class="mis-detail">
+                    <div class="mis-item">
+                      <div class="mis-head"><span class="mis-t">커버 세탁 방법 문의</span><span class="mis-n">24건</span></div>
+                      <div class="mis-q">목베개플러스 11건 · 목마사지베개 V2 10건 · 목편한케어 플라잉 · 허리베개 · 넥숄더프로 각 1건</div>
+                    </div>
+                    <div class="mis-item">
+                      <div class="mis-head"><span class="mis-t">커버 별도 구매 희망</span><span class="mis-n">7건</span></div>
+                      <div class="mis-q">목마사지베개 V2 5건 · 목편한케어 플라잉 · 넥숄더 힐링케어 V2 각 1건</div>
+                    </div>
+                  </div>
+                  <div style="margin-top:8px">중복 제거 시 <strong style="color:var(--navy)">31건</strong>, 6월 니즈성 문의 중 가장 많습니다.</div>
+                </td></tr>
+              <tr><th>고객 발화</th>
+                <td><details class="raw"><summary>원문 보기 (5건)</summary>
+                  <div class="quote">목베게 샀는데 이거 커버 세탁은 어찌하나요? 전선 때문에 분리할 수가 없어요<span class="src">ALF · 2026-06 · 목베개플러스</span></div>
+                  <div class="quote">목베게 커버 세탁 때문에 문의 드립니다. 탈부착이 불편해서요, 어떻게 떼어 세탁해야 할지 모르겠어서요<span class="src">ALF · 2026-06 · 목베개플러스</span></div>
+                  <div class="quote">머리 안 감고 쓰면 냄새날 거 같은데 세탁이나 관리는 어떻게 해요<span class="src">ALF · 2026-06 · 목베개플러스</span></div>
+                  <div class="quote">베개 커버는 없는 건가요? 오염되면 세탁해야 할 것 같은데요<span class="src">ALF · 2026-06 · 목마사지베개 V2</span></div>
+                  <div class="quote">목편한케어 플라잉 커버가 너무 더러운데 커버만 바꿀 수 없나요?<span class="src">ALF · 2026-06 · 목편한케어 플라잉</span></div>
+                </details></td></tr>
+              <tr><th>참고</th><td>커버가 전선과 일체형으로 설계되어 분리·세탁이 어려운 구조입니다. 목마사지베개 V2는 세탁·커버 관련 안내가 이미 FAQ에 있으나, 커버 세탁·별도 구매에 대한 <strong>고객 니즈가 꾸준히 접수</strong>되고 있어 참고용으로 공유합니다.</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="voc-card">
+          <div class="voc-head">
+            <h3>골반 마사지기 사이즈</h3>
+          </div>
+          <div class="voc-body">
+            <table class="kv">
+              <tr><th>내용</th><td>골반 마사지기는 원사이즈로 운영되는데, <strong>체형이 큰 고객이 착용하지 못해 반품으로 이어진 사례</strong>가 접수되었습니다.</td></tr>
+              <tr><th>6월 접수</th><td><strong style="color:var(--navy)">4건</strong> · 골반 마사지기</td></tr>
+              <tr><th>고객 발화</th>
+                <td><details class="raw"><summary>원문 보기 (3건)</summary>
+                  <div class="quote">골반마사지기를 6월 1일에 구매했습니다. 그런데 제 골반 크기에 비해 작아서 사용할 수가 없습니다. 환불하려고 하는데 어떻게 해야 하나요<span class="src">ALF · 2026-06 · 골반 마사지기</span></div>
+                  <div class="quote">구매했는데요 사이즈가 작아서 골반이 끼어요 어떻게 해야 하나요<span class="src">ALF · 2026-06 · 골반 마사지기</span></div>
+                  <div class="quote">골반 사이즈에 맞지 않아, 사이즈 더 큰 걸 원합니다<span class="src">ALF · 2026-06 · 골반 마사지기</span></div>
+                </details></td></tr>
+              <tr><th>개선 방향</th><td>원사이즈로 대응되지 않는 체형이 있는 것으로 보여, <strong>사이즈 확대</strong>나 <strong>M/L 사이즈로 운영하는 방안</strong>을 검토해볼 여지가 있습니다.</td></tr>
+            </table>
+          </div>
+        </div>
+
+        
+      <div class="voc-card">
+          <div class="voc-head">
+            <h3>구매 페이지 FAQ 보강이 필요한 문의</h3>
+          </div>
+          <div class="voc-body">
+            <table class="kv">
+              <tr><th>내용</th><td>문의하시면 안내가 가능하지만 <strong>구매 페이지에는 없는 내용</strong>이라 반복 접수되는 항목입니다.
+                FAQ에 추가하면 접수 자체를 줄일 수 있는 유형으로 묶었습니다.</td></tr>
+              <tr><th>6월 접수</th>
+                <td>
+                  <div class="mis-detail">
+                    <div class="mis-item">
+                      <div class="mis-head"><span class="mis-t">기내반입 · 휴대 가능 여부</span><span class="mis-n">7건</span></div>
+                      <div class="mis-q">"발마사지기 비행기 반입 되는지 알고 싶어요" / "해외여행 시 가져가도 되나요? 위탁? 기내?" <span class="src-inline">ALF · 발편한케어 6건 · 목편한케어 플라잉 1건</span></div>
+                    </div>
+                  </div>
+                </td></tr>
+              <tr><th>개선 방향</th><td>기내반입은 리튬배터리 규정과 관련되어 여행 전 확인 니즈가 분명한 항목입니다. 발편한케어는 이미 관련 FAQ가 있으나, 휴대해서 사용할 수 있는 다른 SKU에도 같은 안내를 추가해두면 반복 문의를 줄일 수 있을 것으로 보입니다.</td></tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+/* =========================================================================
+   ▼ 데이터 입력부 — 여기만 수정하면 KPI · 점유율 · 도넛 · LOT · 스택바 · 표가 전부 갱신됩니다.
+
+   [SKU 공통]
+   inquiries : 불량 문의 총 건수 (채널톡 '불량문의' + '불량확정' 태그 합)
+   confirmed : 불량 확정 건수   (교환·반품 처리 완료)
+   prevRate  : 전월 실제 불량 비율(%)      — 없으면 null (신제품)
+   isNew     : 신제품 뱃지 표시 여부
+   note      : 한 줄 인사이트. 눈에 띄는 2~3개만. 빈 문자열이면 미표시.
+
+   [labels] 불량 확정 건의 유형별 분해. n 합계 = confirmed 와 일치시킬 것.
+   { label:'유형명', n:건수, lots:[{id:'LOT ID', n:건수}, ...상위 3개] }
+
+   [OTHERS] TOP5 외 나머지 SKU 전체를 합친 값. 점유율 '기타' + KPI 분모에만 사용.
+   ========================================================================= */
+const DATA = [
+  { sku:'목 마사지 베개 V2', useDays:{med:10,w14:64,n:148}, lotTop:{id:'2026-05-04',n:72}, inquiries:231, confirmed:183, prevRate:null, isNew:false,
+    note:'불량 문의의 절반 이상(54%)이 충전·전원 관련으로, 어댑터 오인보다는 제품 자체의 충전·전원부 이슈로 보입니다. 특히 2026년 5월 생산 LOT(05-04·05-15·05-26)에서 충전 불량률이 상대적으로 높게 나타났습니다. 현재 전원이 꺼지지 않는 이슈와 함께 확인 후 조치를 진행 중입니다.',
+    labels:[
+      { label:'충전/전원 불량', n:93, lots:[{id:'2026-05-04',n:42},{id:'2026-05-15',n:22},{id:'2026-05-26',n:14}] },
+      { label:'외관 불량', n:22, lots:[{id:'2026-05-15',n:11},{id:'2026-05-04',n:6},{id:'2026-04-01',n:3}] },
+      { label:'모드 작동 불량', n:19, lots:[{id:'2026-05-04',n:9},{id:'2026-05-15',n:8},{id:'2026-05-26',n:2}] },
+      { label:'에어백 작동 불량', n:17, lots:[{id:'2026-05-04',n:9},{id:'2026-05-15',n:5},{id:'2026-04-01',n:2}] },
+      { label:'소음 불량', n:4, lots:[{id:'2026-05-04',n:3},{id:'2026-05-15',n:1}] },
+      { label:'커버 제작 불량', n:2, lots:[{id:'2026-05-26',n:1},{id:'2026-05-04',n:1}] },
+      { label:'온열 강도 불량', n:2, lots:[{id:'2026-05-04',n:2}] },
+      { label:'유형 미상', n:3, lots:[] },
+    ] },
+
+  { sku:'목베개플러스', useDays:{med:105,w14:10,n:68}, lotTop:{id:'2026-04-17',n:15}, inquiries:135, confirmed:105, prevRate:null, isNew:false,
+    note:'불량 문의의 대부분(66%)이 충전·전원 관련입니다. 유선 제품 특성상 연결 방법을 오인할 여지가 있으나 실제 오인 문의는 많지 않고 대부분 실제 불량으로 추정되어, 목 마사지 베개 V2와 마찬가지로 충전·전원부를 살펴볼 필요가 있습니다.',
+    labels:[
+      { label:'충전/전원 불량', n:74, lots:[{id:'2026-04-17',n:14},{id:'2026-02-20',n:10},{id:'2026-03-17',n:8}] },
+      { label:'외관 불량', n:5, lots:[{id:'2025-12-10',n:2},{id:'2026-03-17',n:1},{id:'2026-01-28',n:1}] },
+      { label:'모드 작동 불량', n:5, lots:[{id:'2026-03-13',n:1},{id:'2026-03-17',n:1},{id:'2026-02-20',n:1}] },
+      { label:'에어백 작동 불량', n:1, lots:[{id:'2026-03-17',n:1}] },
+      { label:'유형 미상', n:2, lots:[] },
+    ] },
+
+  { sku:'허리편한케어V2', useDays:{med:79,w14:6,n:17}, lotTop:{id:'2025-11-20',n:8}, inquiries:45, confirmed:29, prevRate:null, isNew:false,
+    note:'',
+    labels:[
+      { label:'충전/전원 불량', n:17, lots:[{id:'2025-11-20',n:6},{id:'2026-01-08',n:4},{id:'2026-01-07',n:3}] },
+      { label:'에어리프트 오작동', n:4, lots:[{id:'2025-11-20',n:2},{id:'2026-01-08',n:1},{id:'2025-11-06',n:1}] },
+      { label:'EMS 강도 불량', n:1, lots:[{id:'2026-01-07',n:1}] },
+      { label:'소음 불량', n:1, lots:[{id:'2026-01-07',n:1}] },
+      { label:'유형 미상', n:4, lots:[] },
+    ] },
+
+  { sku:'허리편한케어V1', useDays:null, lotTop:{id:'2025-08-12',n:1}, inquiries:8, confirmed:1, prevRate:null, isNew:false,
+    note:'',
+    labels:[
+      { label:'충전/전원 불량', n:1, lots:[{id:'2025-08-12',n:1}] },
+    ] },
+
+  { sku:'발편한케어V2', useDays:{med:43,w14:12,n:8}, lotTop:{id:'2026-02-06',n:7}, inquiries:14, confirmed:11, prevRate:null, isNew:false,
+    note:'',
+    labels:[
+      { label:'충전/전원 불량', n:7, lots:[{id:'2026-02-06',n:4},{id:'2026-01-27',n:3}] },
+      { label:'EMS 강도 불량', n:3, lots:[{id:'2026-02-06',n:3}] },
+    ] },
+
+  { sku:'발편한케어', useDays:{med:5,w14:64,n:11}, lotTop:{id:'2026-01-27',n:6}, inquiries:17, confirmed:11, prevRate:null, isNew:false,
+    note:'',
+    labels:[
+      { label:'EMS 강도 불량', n:7, lots:[{id:'2026-01-27',n:4},{id:'2025-08-22',n:2},{id:'2025-10-23',n:1}] },
+      { label:'충전/전원 불량', n:4, lots:[{id:'2026-01-27',n:2},{id:'2025-08-22',n:1},{id:'2025-09-16',n:1}] },
+    ] },
+
+  { sku:'팔꿈치 마사지기', useDays:{med:7,w14:83,n:12}, lotTop:{id:'2026-05-22',n:12}, inquiries:20, confirmed:14, prevRate:null, isNew:true,
+    note:'아직 1차 발주분만 판매된 신제품으로, 초기에 확인된 벨크로 등 주요 문제점은 현재 상품팀에서 개선을 진행 중입니다.',
+    labels:[
+      { label:'충전/전원 불량', n:6, lots:[{id:'2026-05-22',n:6}] },
+      { label:'외관 불량', n:4, lots:[{id:'2026-05-22',n:4}] },
+      { label:'EMS+TENS 강도 불량', n:2, lots:[{id:'2026-05-22',n:2}] },
+    ] },
+
+  { sku:'골반 마사지기', useDays:{med:10,w14:65,n:20}, lotTop:{id:'2026-04-30',n:19}, inquiries:27, confirmed:23, prevRate:null, isNew:true,
+    note:'불량 문의의 절반가량(48%)이 에어백 좌우 불균형 등 에어백 작동 불량으로, 4번 섹션의 반복 VOC와 같은 건입니다. 제조사에 1차 조치를 요청한 상태이며, 2차 재발주 건까지의 불량률 추세를 지켜볼 예정입니다.',
+    labels:[
+      { label:'에어백 작동 불량', n:10, lots:[{id:'2026-04-30',n:9},{id:'2026-02-20',n:1}] },
+      { label:'충전/전원 불량', n:6, lots:[{id:'2026-04-30',n:6}] },
+      { label:'외관 불량', n:4, lots:[{id:'2026-04-30',n:3},{id:'2026-05-15',n:1}] },
+      { label:'온열 강도 불량', n:1, lots:[{id:'2026-04-30',n:1}] },
+    ] },
+];
+
+/* 확정 외 나머지 SKU 합계 */
+const OTHERS = { inquiries:118, confirmed:47 };
+
+/* 전월 KPI */
+const PREV = { inquiries:null, confirmRate:null, redefectRate:null, newIssues:null };
+
+/* 요약 카드 추가 지표 (6월) */
+const SUMMARY = {
+  redefectRate: 3.7,   /* 교환제품 재불량률 % */
+  redefectNum: 14,     /* 재불량 태그 건수 */
+  redefectDen: 378,    /* 6월 불량 확정 건수 */
+  newIssues: 4         /* 이번 호에서 새로 이슈업한 반복 VOC 건수 */
+};
+
+/* ---------------- 이하 렌더링 (수정 불필요) ---------------- */
+const C = { confirm:'#2E6BE6', open:'#E8A33D' };
+const SHARE = ['#002353','#0C3468','#1D4E9E','#2E6BE6','#6294F0','#9FBEF7','#C6D4EA']; /* SKU + 기타 */
+const LABEL = ['#002353','#12417F','#2E6BE6','#5C8DEE','#9FBEF7','#C6D4EA','#E6EAF1']; /* 불량 유형 (최대 7종) */
+const r1 = n => Math.round(n*10)/10;
+const pct = (n,t) => t ? r1(n/t*100) : 0;
+const fmt = n => n.toLocaleString('ko-KR');
+
+const UNKNOWN='유형 미상';
+const sortLabels = ls => [...ls].sort((a,b) => {
+  const ea = /기타|기타불량|미분류|유형 미상/.test(a.label), eb = /기타|기타불량|미분류|유형 미상/.test(b.label);
+  if (ea !== eb) return ea ? 1 : -1;      // '기타'류는 항상 마지막
+  return b.n - a.n;                        // 나머지는 건수 내림차순
+});
+const rows = DATA.map(d => ({...d, labels: sortLabels(d.labels || []),
+                             open:d.inquiries - d.confirmed, rate:pct(d.confirmed, d.inquiries) }));
+const TOP = {
+  inquiries: rows.reduce((s,r)=>s+r.inquiries,0),
+  confirmed: rows.reduce((s,r)=>s+r.confirmed,0),
+};
+const T = {
+  inquiries: TOP.inquiries + OTHERS.inquiries,
+  confirmed: TOP.confirmed + OTHERS.confirmed,
+};
+T.confirmRate = pct(T.confirmed, T.inquiries);
+
+/* ---- KPI ---- */
+function delta(cur, prev, unit){
+  if (prev === null || prev === undefined) return { txt:'—', cls:'flat' };
+  const d = r1(cur - prev);
+  if (d === 0) return { txt:'— 전월과 동일', cls:'flat' };
+  return { txt:(d>0?'▲ ':'▼ ') + Math.abs(d) + unit + ' 전월 대비', cls: d>0 ? 'up' : 'down' };
+}
+document.getElementById('kpi1').innerHTML = fmt(615) + '<small>건</small>';
+document.getElementById('kpi3').innerHTML = 71.0 + '<small>%</small>';
+document.getElementById('kpi2').innerHTML = fmt(416) + '<small>건</small>';
+document.getElementById('kpi4').innerHTML = SUMMARY.redefectRate + '<small>% · ' + SUMMARY.redefectNum + '/' + SUMMARY.redefectDen + '건</small>';
+document.getElementById('kpi5').innerHTML = fmt(SUMMARY.newIssues) + '<small>건</small>';
+
+
+/* ---- s2 점유율 스트립 ---- */
+const shareItems = [...rows].sort((a,b)=>b.inquiries-a.inquiries)
+  .map(r => ({ name:r.sku, n:r.inquiries }))
+  .concat([{ name:'기타 SKU', n:OTHERS.inquiries, other:true }]);
+document.getElementById('shareTot').textContent = fmt(T.inquiries) + '건';
+document.getElementById('shareCover').textContent = pct(TOP.inquiries, T.inquiries) + '%';
+document.getElementById('shareCoverLbl').textContent = '주력 ' + rows.length + '종';
+const maxN = Math.max(...shareItems.map(s=>s.n));
+  document.getElementById('shareRank').innerHTML = shareItems.map((s,i) => {
+    const p = pct(s.n, T.inquiries);
+    const w = (s.n/maxN*100).toFixed(1);
+    return `<div class="rank-row">
+      <span class="rank-name"><i style="background:${SHARE[i]}"></i>${s.name}</span>
+      <span class="rank-bar"><span class="rank-fill" style="width:${w}%;background:${SHARE[i]}"></span></span>
+      <span class="rank-val"><em>${fmt(s.n)}건</em><strong>${p}%</strong></span>
+    </div>`;
+  }).join('');
+
+/* ---- s2 SKU별 불량 유형 도넛 그리드 ---- */
+const grid = document.getElementById('dgrid');
+const panel = document.getElementById('lotPanel');
+const byConfirmed = [...rows].sort((a,b)=>b.confirmed-a.confirmed);
+/* 도넛 배치: 기존 확정 SKU끼리 내림차순 → 이번 달 신규 SKU끼리 내림차순 */
+const byDonut = [...rows].sort((a,b)=>{
+  if (a.isNew !== b.isNew) return a.isNew ? 1 : -1;
+  return b.confirmed - a.confirmed;
+});
+let sel = null;
+
+byDonut.forEach((r,i) => {
+  grid.insertAdjacentHTML('beforeend', `
+    <div class="dcard" id="dc${i}">
+      <div class="dtitle">${r.sku}${r.isNew?'<span class="tag-new">신규</span>':''}</div>
+      <div class="dtot">불량 확정 ${fmt(r.confirmed)}건</div>
+      <div class="dwrap">
+        <canvas id="dn${i}" role="img" aria-label="${r.sku}의 불량 유형별 구성 도넛 차트">${r.labels.map(l=>l.label+' '+l.n+'건').join(', ')}</canvas>
+        <div class="dcenter"><span class="n">${fmt(r.confirmed)}</span><span class="u">확정 건</span></div>
+      </div>
+      <div class="dleg" id="dl${i}">
+        ${r.labels.map((l,k)=>`<button data-s="${i}" data-l="${k}">
+          <i style="background:${l.label===UNKNOWN?'#D7DEE9':LABEL[k%LABEL.length]}"></i>
+          <span class="nm">${l.label}</span>
+          <span class="ct">${l.n}</span>
+        </button>`).join('')}
+      </div>
+    </div>`);
+});
+
+function showLots(si, li){
+  const r = byDonut[si], l = r.labels[li];
+  const lots = (l.lots || []).filter(x => x && x.n > 0);
+  const max = lots.length ? Math.max(...lots.map(x=>x.n)) : 0;
+  sel = si+'-'+li;
+  document.querySelectorAll('.dcard').forEach((c,i)=>c.classList.toggle('sel', i===si));
+  document.querySelectorAll('.dleg button').forEach(b =>
+    b.classList.toggle('on', +b.dataset.s===si && +b.dataset.l===li));
+  panel.innerHTML = `
+    <div class="lot-head">
+      <div>
+        <h4>${r.sku}<span class="lot-chip">${l.label}</span></h4>
+      </div>
+      <span class="tot">${l.label} ${fmt(l.n)}건 · 해당 SKU 불량 확정의 ${pct(l.n, r.confirmed)}%</span>
+    </div>
+    <div class="lot-list">
+      ${lots.length ? lots.map((x,k)=>`
+        <div class="lot-item">
+          <span class="lot-rank">${k+1}</span>
+          <div class="lot-meta">
+            <div class="id">LOT ${x.id}</div>
+            <div class="ty">${l.label} · ${pct(x.n, l.n)}%</div>
+            <div class="lot-bar"><span style="width:${x.n/max*100}%"></span></div>
+          </div>
+          <span class="lot-n">${fmt(x.n)}건</span>
+        </div>`).join('') : `<div class="lot-empty">이 유형은 LOT 매핑 데이터가 없습니다</div>`}
+    </div>
+    ${lots.length ? '<div style="font-size:11px;color:var(--ink-faint);margin-top:12px">상위 3개 LOT · 품고 검품 기록 기준</div>' : ''}`;
+}
+
+byDonut.forEach((r,i) => {
+  new Chart(document.getElementById('dn'+i), {
+    type:'doughnut',
+    data:{ labels:r.labels.map(l=>l.label), datasets:[{ data:r.labels.map(l=>l.n),
+      backgroundColor:r.labels.map((l,k)=>l.label===UNKNOWN?'#D7DEE9':LABEL[k%LABEL.length]), borderWidth:2, borderColor:'#fff', hoverOffset:5 }]},
+    options:{ responsive:true, maintainAspectRatio:false, cutout:'66%',
+      onClick:(e,el)=>{ if(el.length) showLots(i, el[0].index); },
+      onHover:(e,el)=>{ e.native.target.style.cursor = el.length ? 'pointer' : 'default'; },
+      plugins:{ legend:{ display:false },
+        tooltip:{ callbacks:{ label:x => x.label+': '+fmt(x.raw)+'건 ('+pct(x.raw, r.confirmed)+'%)' } } }
+    }
+  });
+});
+grid.addEventListener('click', e => {
+  const b = e.target.closest('.dleg button');
+  if (b) showLots(+b.dataset.s, +b.dataset.l);
+});
+
+/* ---- s2 표 ---- */
+const skuBody = document.getElementById('skuBody');
+byConfirmed.forEach(r => {
+  const L = r.lotTop;
+  skuBody.insertAdjacentHTML('beforeend', `
+    <tr>
+      <td class="sku">${r.sku}${r.isNew?'<span class="tag-new">팔로잉</span>':''}</td>
+      <td class="num">${fmt(r.confirmed)}건</td>
+      <td class="num">${r.labels.filter(l=>l.label!==UNKNOWN).length}종</td>
+      <td>${L ? `<span style="font-variant-numeric:tabular-nums;font-weight:700;color:var(--navy-dark)">${L.id}</span>
+            <span class="sub">확정 ${r.confirmed}건 중 ${L.n}건</span>` : '<span class="sub">—</span>'}</td>
+    </tr>`);
+});
+skuBody.insertAdjacentHTML('beforeend', `
+  <tr style="background:var(--hover)">
+    <td class="sku" style="color:var(--ink-faint)">기타 SKU 합계</td>
+    <td class="num" style="color:var(--ink-faint)">${fmt(OTHERS.confirmed)}건</td>
+    <td class="num" style="color:var(--ink-faint)">—</td>
+    <td class="sub">—</td>
+  </tr>`);
+
+/* ---- s4 스택바 (2뎁스) ---- */
+const byRate = [...rows].sort((a,b)=>b.rate-a.rate);   /* 실제 불량 비율 내림차순 */
+document.getElementById('wrapStack').style.height = (byRate.length*46 + 80) + 'px';
+new Chart(document.getElementById('chStack'), {
+  type:'bar',
+  data:{ labels: byRate.map(r=>r.sku), datasets:[
+    { label:'불량 확정', data: byRate.map(r=>pct(r.confirmed,r.inquiries)), backgroundColor:C.confirm,
+      borderRadius:{topLeft:4,bottomLeft:4}, borderSkipped:false, barThickness:26 },
+    { label:'불량 미확정', data: byRate.map(r=>pct(r.open,r.inquiries)), backgroundColor:C.open,
+      borderRadius:{topRight:4,bottomRight:4}, borderSkipped:false, barThickness:26 },
+  ]},
+  options:{ indexAxis:'y', responsive:true, maintainAspectRatio:false,
+    layout:{ padding:{ right:60 } },
+    scales:{
+      x:{ stacked:true, max:100, grid:{ color:'#E6EAF1' }, border:{display:false},
+          ticks:{ color:'#94A2B6', font:{size:11}, callback:v=>v+'%' } },
+      y:{ stacked:true, grid:{ display:false }, border:{display:false},
+          ticks:{ color:'#3A4A63', font:{size:12.5, weight:'600'} } }
+    },
+    plugins:{ legend:{ display:false },
+      tooltip:{ callbacks:{ label:x => {
+        const r = byRate[x.dataIndex];
+        const n = x.datasetIndex === 0 ? r.confirmed : r.open;
+        return x.dataset.label + ': ' + fmt(n) + '건 (' + x.raw + '%)';
+      }}}
+    }
+  },
+  plugins:[{ id:'totals', afterDatasetsDraw(ch){
+    const cx = ch.ctx; cx.save();
+    cx.font = "700 12px 'Pretendard Variable', Pretendard, sans-serif";
+    cx.fillStyle = '#56657D'; cx.textBaseline = 'middle';
+    ch.getDatasetMeta(1).data.forEach((b,i) => cx.fillText(fmt(byRate[i].inquiries)+'건', ch.chartArea.right + 8, b.y));
+    cx.restore();
+  }}]
+});
+
+/* ---- s4 표 ---- */
+const rb = document.getElementById('ratioBody');
+byRate.forEach(r => {
+  const d = delta(r.rate, r.prevRate, '%p');
+  rb.insertAdjacentHTML('beforeend', `
+    <tr>
+      <td class="sku">${r.sku}${r.isNew?'<span class="tag-new">신제품</span>':''}</td>
+      <td class="num">${fmt(r.inquiries)}건</td>
+      <td class="num">${fmt(r.confirmed)}<span class="sub">${pct(r.confirmed,r.inquiries)}%</span></td>
+      <td class="num">${fmt(r.open)}<span class="sub">${pct(r.open,r.inquiries)}%</span></td>
+      <td class="num" style="font-weight:700;color:var(--navy-dark)">${r.rate}%</td>
+      <td class="num delta ${d.cls}" style="font-size:11.5px">${r.prevRate===null?'신규':d.txt.replace(' 전월 대비','')}</td>
+    </tr>`);
+  if (r.note) rb.insertAdjacentHTML('beforeend',
+    `<tr class="row-note"><td colspan="6" style="color:var(--ink);line-height:1.6">💡 <strong style="color:var(--navy)">${r.sku}</strong> — ${r.note}</td></tr>`);
+});
+
+/* ---- 검증: labels 합계 vs confirmed ---- */
+rows.forEach(r => {
+  const s = r.labels.reduce((a,l)=>a+l.n,0);
+  if (s !== r.confirmed) console.warn(`[데이터 확인] ${r.sku}: labels 합계 ${s} ≠ confirmed ${r.confirmed}`);
+});
+
+/* ---- 스크롤스파이 ---- */
+const navs = document.querySelectorAll('.nav-item');
+const obs = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting)
+    navs.forEach(n => n.classList.toggle('active', n.getAttribute('href') === '#'+e.target.id)); });
+}, { rootMargin:'-70px 0px -70% 0px' });
+document.querySelectorAll('section[id]').forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
