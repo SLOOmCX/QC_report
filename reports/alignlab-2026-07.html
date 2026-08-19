@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>얼라인랩 릴렉스 손목 마사지기 · 월간 상품 VOC 리포트 · 2026.07</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+:root{
+  --red:#B0302F; --red-dark:#8A2423; --red-deep:#631B1A;
+  --ink:#2A1A1A; --ink-2:#7A6560; --ink-3:#A79490;
+  --paper:#FEFAF9; --pink:#FBEDED; --pink-2:#F6E3E2;
+  --line:#EBDAD9; --line-2:#DEC9C8;
+  --pos:#2E7D6B; --neg:#B0302F; --amber:#C0791C;
+  --card:#FFFFFF;
+  --r:14px;
+  --shadow:0 1px 2px rgba(99,27,26,.04),0 8px 24px rgba(99,27,26,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Pretendard",system-ui,-apple-system,sans-serif;
+  font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px; margin:0 auto; padding:0 20px 90px}
+
+/* ---------- sidebar ---------- */
+.sidebar{
+  position:fixed; left:0; top:0; bottom:0; width:238px; z-index:50;
+  background:linear-gradient(180deg,#4A1615 0%,var(--red-deep) 55%,#4E1615 100%);
+  color:#fff; padding:30px 0 24px; overflow-y:auto;
+  border-right:1px solid rgba(0,0,0,.2);
+}
+.sb-brand{padding:0 24px 20px; border-bottom:1px solid rgba(255,255,255,.1); margin-bottom:14px}
+.sb-brand .b-name{font-size:24px; font-weight:800; letter-spacing:-.01em}
+.sb-brand .b-sub{font-size:12px; opacity:.68; font-weight:500; margin-top:3px}
+.sb-group{font-size:11px; letter-spacing:.14em; font-weight:700; text-transform:uppercase;
+  color:rgba(255,255,255,.42); padding:16px 24px 8px}
+.sb-link{display:block; padding:10px 24px; color:rgba(255,255,255,.8); text-decoration:none;
+  font-size:14.5px; font-weight:500; border-left:3px solid transparent; transition:.15s;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.sb-link:hover{background:rgba(255,255,255,.06); color:#fff}
+.sb-link.active{background:rgba(255,255,255,.12); color:#fff; font-weight:700;
+  border-left-color:#fff}
+.sb-link .n{display:inline-block; min-width:16px; font-weight:700; opacity:.85}
+.main{margin-left:238px}
+
+@media (max-width:960px){
+  .sidebar{display:none}
+  .main{margin-left:0}
+}
+
+/* ---------- header ---------- */
+.hero{
+  background:linear-gradient(135deg,var(--red-deep) 0%,var(--red) 62%,var(--red-dark) 100%);
+  color:#fff; padding:56px 0 44px; position:relative; overflow:hidden;
+  border-bottom:4px solid var(--red-deep);
+}
+.hero::after{
+  content:""; position:absolute; right:-90px; top:-90px; width:340px; height:340px;
+  border:38px solid rgba(255,255,255,.06); border-radius:50%;
+}
+.hero .wrap{padding-bottom:0}
+.hero .eyebrow{font-size:13px; letter-spacing:.22em; font-weight:600; opacity:.82; text-transform:uppercase}
+.hero h1{margin:12px 0 8px; font-size:33px; font-weight:800; letter-spacing:-.02em; line-height:1.2}
+.hero .sub{font-size:16px; opacity:.9; font-weight:500}
+.hero .meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px}
+.pill{background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.22);
+  padding:6px 14px; border-radius:100px; font-size:13px; font-weight:600; backdrop-filter:blur(4px)}
+.pill strong{font-weight:800}
+
+/* ---------- section ---------- */
+section{margin-top:52px}
+.s-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px}
+.s-num{font-size:13px; font-weight:800; color:var(--red); letter-spacing:.05em;
+  border:1.5px solid var(--red); border-radius:7px; padding:2px 8px; line-height:1.3}
+.s-head h2{font-size:22px; font-weight:800; letter-spacing:-.01em; margin:0}
+.s-sub{color:var(--ink-2); font-size:14px; margin:2px 0 20px}
+
+/* ---------- kpi ---------- */
+.kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+.kpi{background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:18px 16px; box-shadow:var(--shadow); position:relative; overflow:hidden}
+.kpi::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--red)}
+.kpi .k-label{font-size:13.5px; color:var(--ink); font-weight:700; line-height:1.35}
+.kpi .k-desc{font-size:11.5px; color:var(--ink-2); font-weight:500; line-height:1.4; margin-top:5px; min-height:32px}
+.kpi .k-val{font-size:29px; font-weight:800; letter-spacing:-.02em; margin-top:6px; color:var(--ink)}
+.kpi .k-val .u{font-size:15px; font-weight:700; color:var(--ink-2); margin-left:2px}
+.kpi .k-val .sub{font-size:13px; font-weight:700; color:var(--ink-2); margin-left:6px}
+.kpi.accent::before{background:linear-gradient(var(--red),var(--red-dark))}
+.kpi.accent .k-val{color:var(--red)}
+
+/* ---------- bars (s2) ---------- */
+.panel{background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:24px; box-shadow:var(--shadow)}
+.bars{display:flex; flex-direction:column; gap:14px}
+.bar-row{display:grid; grid-template-columns:112px 1fr 128px; align-items:center; gap:14px}
+.bar-name{font-weight:700; font-size:14.5px}
+.bar-track{background:var(--pink); border-radius:8px; height:26px; overflow:hidden; position:relative}
+.bar-fill{height:100%; background:linear-gradient(90deg,var(--red),var(--red-dark));
+  border-radius:8px; display:flex; align-items:center; transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.bar-val{display:flex; gap:8px; justify-content:flex-end; align-items:baseline; font-variant-numeric:tabular-nums}
+.bar-val .cnt{font-weight:800; font-size:15px}
+.bar-val .pct{color:var(--ink-2); font-size:13px; font-weight:600; min-width:52px; text-align:right}
+.tag-new{font-size:10.5px; font-weight:700; color:var(--red); background:var(--pink);
+  border:1px solid var(--line-2); padding:1px 7px; border-radius:100px}
+
+/* ---------- donut (s3) ---------- */
+.donut-grid{display:grid; grid-template-columns:300px 1fr; gap:32px; align-items:center}
+.donut-wrap{position:relative; width:300px; height:300px; margin:0 auto}
+.donut-center{position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center; pointer-events:none}
+.donut-center .dc-num{font-size:44px; font-weight:800; line-height:1; color:var(--ink)}
+.donut-center .dc-lab{font-size:13px; color:var(--ink-2); font-weight:600; margin-top:6px}
+.donut svg{transform:rotate(-90deg)}
+.donut-seg{cursor:pointer; transition:opacity .2s, stroke-width .2s}
+.donut-seg:hover{opacity:.85}
+.leg{display:flex; flex-direction:column; gap:9px}
+.leg-item{display:grid; grid-template-columns:16px 1fr auto; gap:12px; align-items:center;
+  cursor:pointer; padding:8px 10px; border-radius:10px; border:1px solid transparent; transition:.15s}
+.leg-item:hover{background:var(--pink); border-color:var(--line)}
+.leg-item.active{background:var(--pink); border-color:var(--line-2)}
+.leg-dot{width:14px; height:14px; border-radius:4px}
+.leg-name{font-weight:700; font-size:14.5px}
+.leg-val{font-variant-numeric:tabular-nums; font-weight:700; font-size:14px; color:var(--ink-2)}
+.type-detail{margin-top:20px; background:var(--pink); border:1px solid var(--line);
+  border-radius:12px; padding:18px 20px; font-size:14px; line-height:1.65}
+.type-detail h4{margin:0 0 6px; font-size:15px; font-weight:800; color:var(--red-dark)}
+.type-detail .sym{color:var(--ink-2)}
+.type-detail .q{margin-top:10px; padding:10px 14px; background:#fff; border-left:3px solid var(--red);
+  border-radius:0 8px 8px 0; font-style:italic; color:var(--ink); font-size:13.5px}
+
+/* ---------- rate (4) ---------- */
+.rate-hero{display:grid; grid-template-columns:auto 1fr; gap:36px; align-items:center}
+.rate-big{text-align:center; padding:8px 28px 8px 0; border-right:1px solid var(--line)}
+.rate-big .rb-num{font-size:60px; font-weight:800; color:var(--red); letter-spacing:-.03em; line-height:1}
+.rate-big .rb-lab{font-size:13px; color:var(--ink-2); font-weight:600; margin-top:8px}
+.rate-calc{font-size:14px}
+.rate-calc .rc-eq{font-size:15px; margin-bottom:14px; color:var(--ink-2)}
+.rate-calc .rc-eq b{color:var(--ink); font-weight:800}
+.lot-tab{width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums}
+.lot-tab th,.lot-tab td{text-align:left; padding:7px 10px; font-size:13.5px; border-bottom:1px solid var(--line)}
+.lot-tab th{color:var(--ink-2); font-weight:600; font-size:12.5px}
+.lot-tab td.n{text-align:right; font-weight:700}
+.lot-tab tr:last-child td{border-bottom:none; font-weight:800; background:var(--pink)}
+
+/* ---------- voc cards (s5/s9) ---------- */
+.voc-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.voc-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:20px 22px; box-shadow:var(--shadow)}
+.voc-card.wide{grid-column:1/-1}
+.voc-head{display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap}
+.voc-head .vt{font-size:16px; font-weight:800; letter-spacing:-.01em}
+.chip{font-size:11.5px; font-weight:700; padding:3px 10px; border-radius:100px;
+  background:var(--pink); color:var(--red-dark); border:1px solid var(--line-2)}
+.chip.warn{background:#FBF0DF; color:var(--amber); border-color:#EAD6AF}
+.kv{display:grid; grid-template-columns:96px 1fr; gap:6px 14px; font-size:13.5px; margin:4px 0}
+.kv dt{color:var(--ink-2); font-weight:600}
+.kv dd{margin:0; font-weight:600}
+.quote{margin-top:12px; padding:11px 15px; background:var(--pink); border-left:3px solid var(--red);
+  border-radius:0 8px 8px 0; font-size:13.5px; font-style:italic; color:var(--ink); line-height:1.6}
+.quote+.quote{margin-top:8px}
+.src{font-size:11.5px; color:var(--ink-3); margin-top:8px}
+
+/* ---------- 오인 (6) ---------- */
+.mis-intro{background:var(--pink); border:1px solid var(--line); border-radius:12px;
+  padding:16px 20px; font-size:14px; line-height:1.65; margin-bottom:20px}
+.mis-intro b{color:var(--red-dark)}
+.pct-row{display:grid; grid-template-columns:150px 1fr 44px; gap:14px; align-items:center; margin-bottom:12px}
+.pct-n{font-weight:700; font-size:14px}
+.pct-b{background:var(--pink); border-radius:7px; height:22px; overflow:hidden}
+.pct-fill{height:100%; background:linear-gradient(90deg,var(--red),var(--red-dark)); border-radius:7px}
+.pct-c{font-weight:800; font-variant-numeric:tabular-nums; font-size:13.5px; text-align:right}
+.mis-note{font-size:13px; color:var(--ink-2); margin-top:6px; line-height:1.6}
+.istat{display:flex; gap:10px; margin:4px 0 14px; flex-wrap:wrap}
+.istat .it{flex:1; min-width:88px; background:var(--pink); border:1px solid var(--line);
+  border-radius:10px; padding:9px 12px; text-align:center}
+.istat .it .v{font-size:21px; font-weight:800; color:var(--ink); letter-spacing:-.01em; line-height:1}
+.istat .it .v.red{color:var(--red)}
+.istat .it .l{font-size:11px; color:var(--ink-2); font-weight:600; margin-top:5px}
+.action-box{margin-top:20px; background:linear-gradient(135deg,#631B1A,#8A2423); color:#fff;
+  border-radius:14px; padding:20px 24px}
+.action-box .ab-t{font-size:15px; font-weight:800; margin-bottom:12px; display:flex; align-items:center; gap:8px}
+.action-box .ab-t::before{content:"→"; font-weight:800}
+.action-box ol{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px}
+.action-box li{font-size:14px; line-height:1.55; padding-left:2px}
+.action-box li b{font-weight:800}
+.action-box .ab-eff{margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,.18);
+  font-size:13px; opacity:.92}
+
+/* ---------- weekly (s7) ---------- */
+.wk-chart{display:grid; grid-template-columns:repeat(5,1fr); gap:20px; align-items:end;
+  height:230px; padding:0 8px; margin-bottom:14px}
+.wk-col{display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%}
+.wk-stack{width:52px; display:flex; flex-direction:column-reverse; border-radius:6px 6px 0 0; overflow:hidden}
+.wk-seg{width:100%}
+.wk-total{font-weight:800; font-size:15px; margin-bottom:6px}
+.wk-lab{font-size:12px; color:var(--ink-2); font-weight:600; margin-top:9px; text-align:center}
+.wk-legend{display:flex; flex-wrap:wrap; gap:14px; justify-content:center; font-size:12.5px; color:var(--ink-2)}
+.wk-legend span{display:inline-flex; align-items:center; gap:6px; font-weight:600}
+.wk-legend i{width:11px; height:11px; border-radius:3px; display:inline-block}
+
+/* ---------- footnote ---------- */
+.foot{margin-top:56px; padding-top:24px; border-top:1px solid var(--line);
+  font-size:12.5px; color:var(--ink-3); line-height:1.7}
+.foot b{color:var(--ink-2)}
+.foot ul{margin:8px 0 0; padding-left:18px}
+
+@media (max-width:820px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .donut-grid{grid-template-columns:1fr}
+  .rate-hero{grid-template-columns:1fr}
+  .rate-big{border-right:none; border-bottom:1px solid var(--line); padding:0 0 20px}
+  .voc-grid{grid-template-columns:1fr}
+  .bar-row{grid-template-columns:88px 1fr 96px; gap:8px}
+  .wk-chart{gap:8px}
+}
+</style>
+</head>
+<body>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sb-brand">
+    <div class="b-name">얼라인랩</div>
+    <div class="b-sub">CX · 월간 상품 VOC 리포트</div>
+  </div>
+  <div class="sb-group">A · 현황</div>
+  <a class="sb-link" href="#s1"><span class="n">1</span> 핵심 요약</a>
+  <a class="sb-link" href="#s2"><span class="n">2</span> 불량 유형 점유율</a>
+  <a class="sb-link" href="#s3"><span class="n">3</span> 불량 유형 상세</a>
+  <a class="sb-link" href="#s4"><span class="n">4</span> 출고 대비 접수율</a>
+  <div class="sb-group">B · 이슈</div>
+  <a class="sb-link" href="#s5"><span class="n">5</span> 불량 오인 &amp; 주요 이슈</a>
+  <a class="sb-link" href="#s6"><span class="n">6</span> Critical VOC</a>
+  <div class="sb-group">C · 영향</div>
+  <a class="sb-link" href="#s7"><span class="n">7</span> 고객 제안·개선</a>
+</nav>
+
+<div class="main">
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">얼라인랩 · 월간 상품 VOC 리포트</div>
+    <h1>릴렉스 손목 마사지기 품질 리포트</h1>
+    <div class="sub">고객 문의·불량 접수·출고 데이터 기반 품질 현황</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ================= s1 ================= -->
+<section id="s1">
+  <div class="s-head"><span class="s-num">1</span><h2>핵심 요약</h2></div>
+  <div class="kpis">
+    <div class="kpi">
+      <div class="k-label">7월 불량 문의</div>
+      <div class="k-desc">7월 접수된 불량 상담 전체</div>
+      <div class="k-val">84<span class="u">건</span></div>
+    </div>
+    <div class="kpi">
+      <div class="k-label">불량 접수 건수</div>
+      <div class="k-desc">교환·반품으로 접수된 전체 불량 건수</div>
+      <div class="k-val">69<span class="u">건</span></div>
+    </div>
+    <div class="kpi accent">
+      <div class="k-label">출고 대비 접수율</div>
+      <div class="k-desc">6~7월 출고 26,267건 대비 불량 접수 비율</div>
+      <div class="k-val">0.26<span class="u">%</span></div>
+    </div>
+    <div class="kpi accent">
+      <div class="k-label">불량 확정율</div>
+      <div class="k-desc">불량 상담 중 실제 불량로 확정된 비율</div>
+      <div class="k-val">48.0<span class="u">%</span><span class="sub">36/75</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= s2 ================= -->
+<section id="s2">
+  <div class="s-head"><span class="s-num">2</span><h2>불량 유형 점유율</h2></div>
+  <div class="panel">
+    <div class="bars" id="s2bars"></div>
+  </div>
+</section>
+
+<!-- ================= s3 ================= -->
+<section id="s3">
+  <div class="s-head"><span class="s-num">3</span><h2>불량 유형 상세</h2></div>
+  <div class="panel">
+    <div class="donut-grid">
+      <div class="donut donut-wrap" id="donut">
+        <svg viewBox="0 0 200 200" width="300" height="300" id="donutSvg"></svg>
+        <div class="donut-center">
+          <div class="dc-num">69</div>
+          <div class="dc-lab">불량 접수 건</div>
+        </div>
+      </div>
+      <div class="leg" id="legend"></div>
+    </div>
+    <div class="type-detail" id="typeDetail"></div>
+  </div>
+</section>
+
+<!-- ================= s4 ================= -->
+<section id="s4">
+  <div class="s-head"><span class="s-num">4</span><h2>출고 대비 접수율</h2></div>
+  <div class="panel">
+    <div class="rate-hero">
+      <div class="rate-big">
+        <div class="rb-num">0.26%</div>
+        <div class="rb-lab">불량 접수율</div>
+      </div>
+      <div class="rate-calc">
+        <table class="lot-tab">
+          <thead><tr><th>제조 LOT</th><th style="text-align:right">6~7월 출고(B2C)</th></tr></thead>
+          <tbody>
+            <tr><td>2026-06-22</td><td class="n">15,046</td></tr>
+            <tr><td>2026-05-29</td><td class="n">6,921</td></tr>
+            <tr><td>2026-05-20</td><td class="n">4,300</td></tr>
+            <tr><td>합계</td><td class="n">26,267</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= s5 ================= -->
+<section id="s5">
+  <div class="s-head"><span class="s-num">5</span><h2>불량 오인 &amp; 주요 이슈</h2></div>
+  <div class="panel">
+    <div class="mis-intro">
+      불량 상담 중 실제 불량로 확정되는 비율은 <b>48%</b>이며, 나머지 절반가량은 사용법 오인에서 비롯됩니다. 전체 접점(상담 + 카카오톡을 통한 직접 불량 접수)까지 넓혀 보면 불량 주장의 <b>약 60%</b>가 실제 불량이 아닌 오인으로, 사용법 안내만으로 해결되어 종결되는 비율이 높습니다. 특히 아래 이슈들이 핵심입니다.
+    </div>
+    <div class="voc-grid">
+      <div class="voc-card">
+        <div class="voc-head"><span class="vt">전원 불량 오인</span><span class="chip">관련 문의 ~49건</span></div>
+        <div class="istat">
+          <div class="it"><div class="v red">~19</div><div class="l">실제 불량</div></div>
+          <div class="it"><div class="v">~30</div><div class="l">해결(사용법 오인)</div></div>
+          <div class="it"><div class="v">77%</div><div class="l">재문의 없이 종결</div></div>
+        </div>
+        <dl class="kv">
+          <dt>원인</dt><dd>배터리 아이콘이 실시간 배터리 잔량 표기가 아니라, 완충처럼 보여 “배터리는 찼는데 작동에 이상이 있다”로 오해</dd>
+          <dt>상담 대응</dt><dd>정격 5V 1A 어댑터로 충전 후, 배터리 아이콘이 점멸하지 않을 때까지 충전 후 사용 안내 → 상당수 해결</dd>
+        </dl>
+        <div class="quote">“배터리가 세 칸이면 완충이지 어댑터랑 무슨 상관이죠”</div>
+      </div>
+      <div class="voc-card">
+        <div class="voc-head"><span class="vt"><code>--</code> 표시 오인</span><span class="chip">관련 문의 ~17건</span></div>
+        <div class="istat">
+          <div class="it"><div class="v red">~3</div><div class="l">실제 불량</div></div>
+          <div class="it"><div class="v">~14</div><div class="l">해결(사용법 오인)</div></div>
+          <div class="it"><div class="v">79%</div><div class="l">재문의 없이 종결</div></div>
+        </div>
+        <dl class="kv">
+          <dt>원인</dt><dd>마그네틱 패드를 부착하지 않거나 장착 방향이 틀리면 화면에 <code>--</code> 표시. 대부분 사용법 오해</dd>
+          <dt>상담 대응</dt><dd>패드 장착 방향·밀착 재안내 → 대부분 종결</dd>
+        </dl>
+        <div class="quote">“--만 표시되고 작동이 안 돼요 (360도 돌려 다 끼워봤는데도)”</div>
+      </div>
+    </div>
+    <div class="voc-grid" style="margin-top:16px">
+      <div class="voc-card">
+        <div class="voc-head"><span class="vt">액정 보호필름 오인</span><span class="chip">3건</span></div>
+        <dl class="kv">
+          <dt>원인</dt><dd>출고 시 액정에 부착된 보호필름을 기스·불량으로 오인</dd>
+          <dt>상담 대응</dt><dd>보호필름 제거 후 사용 안내 → 필름 제거 안내만으로 해결되는 사례 반복</dd>
+        </dl>
+        <div class="quote">“액정에 기스가 있어요” → 보호필름 제거 안내 후 해결</div>
+      </div>
+      <div class="voc-card">
+        <div class="voc-head"><span class="vt">카카오톡 선물하기 불량 접수 현황</span><span class="chip">안내 후 철회 ~25%</span></div>
+        <dl class="kv">
+          <dt>배경</dt><dd>고객이 직접 접수할 수 있어, 사용법 인지 전 불량으로 오인해 먼저 접수하는 경우</dd>
+          <dt>대응</dt><dd>카카오 선물하기 전산으로 상담 요청·사용법을 안내하며, 이 중 <b>약 25%</b>(4건 중 1건)가 불량 반품·교환까지 가지 않고 구매결정으로 철회됨</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="action-box">
+      <div class="ab-t">종합 액션</div>
+      <ol>
+        <li>위 오인은 <b>배터리 아이콘·마그네틱 장착·정격 5V 1A 어댑터·보호필름 제거·착용 후 작동</b>이라는 5개 제품 특성 인지 부족에서 공통으로 발생 → 상품 페이지의 관련 안내 내용을 강화하는 것이 하나의 방법이 될 수 있음</li>
+        <li>얼라인랩 고객센터 연락 시 고객이 스스로 해결할 수 있는 방법을 먼저 제시할 수 있도록, ALF 자동응답·상담 안내를 더 고도화할 필요가 있음</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= s6 ================= -->
+<section id="s6">
+  <div class="s-head"><span class="s-num">6</span><h2>Critical VOC</h2></div>
+  <div class="panel">
+    <div class="voc-card" style="box-shadow:none; border-color:var(--line-2)">
+      <div class="voc-head"><span class="vt">저온화상 주장 — 주의 안내 관찰</span><span class="chip warn">모니터링</span></div>
+      <dl class="kv">
+        <dt>현황</dt><dd>7월 이슈는 아니나, 6월 말 사용 후 저온화상을 주장한 고객이 있었음. 피해 보상까지 요구했으나 우선 <b>반품 처리로 종결</b></dd>
+        <dt>관찰 포인트</dt><dd>현재 상세페이지에 저온화상 주의 안내가 있으나, 유사 건수가 늘어나면 주의 안내를 강화할 필요가 있음</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ================= s7 ================= -->
+<section id="s7">
+  <div class="s-head"><span class="s-num">7</span><h2>고객 제안 · 개선 아이디어</h2></div>
+  <div class="voc-grid">
+    <div class="voc-card">
+      <div class="voc-head"><span class="vt">스트랩 착용·조정 불편</span><span class="chip">사용성</span></div>
+      <dl class="kv">
+        <dt>고객 목소리</dt><dd>스트랩 탈부착·조정이 번거롭고, 밀착이 조금만 어긋나도 작동이 안 된다는 불편이 반복</dd>
+        <dt>개선 방향</dt><dd>스트랩 핏·고정 방식 개선 검토, 착용 가이드(사진·영상) 노출 강화</dd>
+      </dl>
+      <div class="quote">“여러 번 뗐다 붙였다 하니 억지로 되긴 하는데 조정이 너무 힘들어요”</div>
+    </div>
+    <div class="voc-card">
+      <div class="voc-head"><span class="vt">스트랩 별도 구매 요청</span><span class="chip">소모품 · 판매</span></div>
+      <dl class="kv">
+        <dt>고객 목소리</dt><dd>본품은 정상인데 스트랩만 파손·노후되어, 스트랩만 별도로 구매·교체하고 싶다는 문의</dd>
+        <dt>개선 방향</dt><dd>스트랩 단독(소모품) 판매·교체 옵션 도입 검토</dd>
+      </dl>
+      <div class="quote">“손목 스트랩이 고장난 것 같은데 스트랩만 구매 가능할까요”</div>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+</div>
+
+</div>
+</div><!--/main-->
+
+<script>
+// ---------- sidebar scroll-spy ----------
+(function(){
+  const links=[...document.querySelectorAll('.sb-link')];
+  const secs=[...document.querySelectorAll('section')];
+  const setActive=id=>links.forEach(l=>l.classList.toggle('active',l.getAttribute('href').slice(1)===id));
+  function onScroll(){
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4){
+      setActive(secs[secs.length-1].id); return;
+    }
+    let cur=secs[0].id;
+    for(const s of secs){ if(s.getBoundingClientRect().top<=150) cur=s.id; else break; }
+    setActive(cur);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  onScroll();
+})();
+
+// ---------- 데이터 ----------
+const TYPES = [
+  {name:"충전/전원", cnt:31, color:"#8A2423",
+   sym:"완충 표시인데 충전기 분리 시 전원 꺼짐, 전원버튼 눌러도 미점등, 삐삐 기계음(충전 부족·충전 불량).",
+   q:"완충 표시가 뜨는데 충전기를 빼면 불이 안 들어와요, 전원버튼 눌러도 꺼지고"},
+  {name:"EMS강도", cnt:18, color:"#B0302F",
+   sym:"온열은 정상이나 EMS 전기 자극이 약하거나 미작동, 1~9단계 진동 없음. 스트랩·패드 밀착 부족과 실제 불량이 혼재.",
+   q:"온열 기능은 느껴지는데 전기 자극이 안 느껴지는 건 왜일까요"},
+  {name:"버튼", cnt:13, color:"#C85451",
+   sym:"M버튼·+/− 버튼·전원버튼 물리 무반응·오작동. 완충 상태에서도 버튼 반응 없음.",
+   q:"M버튼을 오래 누르면 켜지는데 +,− 버튼을 눌러도 작동이 안 됩니다"},
+  {name:"LED", cnt:6, color:"#D98583",
+   sym:"강도 조절 숫자 LED 일부 미점등, 화면 표시 일부 결손.",
+   q:"강도 조절하는 숫자 LED 일부에 불이 안 들어와요"},
+  {name:"외관", cnt:1, color:"#E9B9B8",
+   sym:"본체 외관 스크래치·마감 불량.",
+   q:"수령 시 외관에 기스가 있었어요"}
+];
+const TOTAL = TYPES.reduce((a,t)=>a+t.cnt,0);
+
+// 합계가 정확히 100.0%가 되도록 반올림 (largest remainder method)
+// 소수 1자리 기준. 반환값은 문자열 배열 (예: ["44.9","26.1",...])
+const PCTS = (function(){
+  const raw = TYPES.map(t => t.cnt/TOTAL*1000);      // 소수1자리 -> *1000
+  const floors = raw.map(v => Math.floor(v));
+  let diff = 1000 - floors.reduce((a,b)=>a+b,0);      // 100.0% - 합계
+  const order = raw.map((v,i)=>({i, r: v - Math.floor(v)}))
+                   .sort((a,b)=>b.r - a.r);
+  const out = [...floors];
+  for (let k=0; k<diff; k++) out[order[k].i]++;
+  return out.map(v => (v/10).toFixed(1));
+})();
+
+// ---------- s2 bars ----------
+(function(){
+  const max = Math.max(...TYPES.map(t=>t.cnt));
+  const el = document.getElementById('s2bars');
+  el.innerHTML = TYPES.map((t,i)=>{
+    return `<div class="bar-row">
+      <div class="bar-name">${t.name}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:0" data-w="${t.cnt/max*100}"></div></div>
+      <div class="bar-val"><span class="cnt">${t.cnt}건</span><span class="pct">${PCTS[i]}%</span></div>
+    </div>`;
+  }).join('');
+  requestAnimationFrame(()=>{ setTimeout(()=>{
+    el.querySelectorAll('.bar-fill').forEach(b=>b.style.width=b.dataset.w+'%');
+  },100)});
+})();
+
+// ---------- s3 donut ----------
+(function(){
+  const svg = document.getElementById('donutSvg');
+  const R=70, C=100, circ=2*Math.PI*R;
+  let off=0;
+  const ns="http://www.w3.org/2000/svg";
+  TYPES.forEach((t,i)=>{
+    const frac=t.cnt/TOTAL;
+    const c=document.createElementNS(ns,'circle');
+    c.setAttribute('cx',C); c.setAttribute('cy',C); c.setAttribute('r',R);
+    c.setAttribute('fill','none'); c.setAttribute('stroke',t.color);
+    c.setAttribute('stroke-width',26);
+    c.setAttribute('stroke-dasharray',`${frac*circ} ${circ-frac*circ}`);
+    c.setAttribute('stroke-dashoffset',-off*circ);
+    c.setAttribute('class','donut-seg');
+    c.dataset.i=i;
+    c.addEventListener('click',()=>select(i));
+    svg.appendChild(c);
+    off+=frac;
+  });
+  const leg=document.getElementById('legend');
+  leg.innerHTML=TYPES.map((t,i)=>`
+    <div class="leg-item" data-i="${i}">
+      <span class="leg-dot" style="background:${t.color}"></span>
+      <span class="leg-name">${t.name}</span>
+      <span class="leg-val">${t.cnt}건 · ${PCTS[i]}%</span>
+    </div>`).join('');
+  leg.querySelectorAll('.leg-item').forEach(x=>x.addEventListener('click',()=>select(+x.dataset.i)));
+  window.select=function(i){
+    const t=TYPES[i];
+    document.querySelectorAll('.leg-item').forEach(x=>x.classList.toggle('active',+x.dataset.i===i));
+    document.querySelectorAll('.donut-seg').forEach(x=>x.setAttribute('stroke-width',+x.dataset.i===i?32:26));
+    document.querySelector('.dc-num').textContent=t.cnt;
+    document.querySelector('.dc-lab').textContent=t.name+' 불량';
+    document.getElementById('typeDetail').innerHTML=
+      `<h4>${t.name} 불량 · ${t.cnt}건 (${PCTS[i]}%)</h4>
+       <div class="sym">${t.sym}</div>
+       <div class="q">“${t.q}”</div>`;
+  };
+  select(0);
+})();
+
+
+</script>
+</body>
+</html>

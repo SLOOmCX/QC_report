@@ -3,58 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>슬룸 · 월간 상품 VOC 리포트</title>
+<title>월간 상품 VOC 리포트</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
 <style>
   :root{
     --bg:#EEF1F6; --surface:#FFFFFF; --border:#E6EAF1; --border-soft:#F0F3F8;
-    --navy:#002353; --navy-dark:#0B1F3A; --ink:#0B1F3A; --ink-muted:#7A879B;
-    --ink-soft:#8A97AB; --ink-faint:#94A2B6; --blue:#2E6BE6; --highlight:#EAF0FA;
+    --ink:#0B1F3A; --ink-muted:#7A879B; --ink-soft:#8A97AB; --ink-faint:#94A2B6;
+    --highlight:#EAF0FA;
     --card-shadow:0 1px 2px rgba(11,31,58,.04),0 2px 8px rgba(11,31,58,.04);
     --card-shadow-lg:0 4px 20px rgba(11,31,58,.08);
+
+    /* 브랜드 accent (섹션 안에서 --accent, --accent-soft 로 오버라이드) */
+    --sloom-accent:#2E6BE6;         /* 슬룸 블루 */
+    --sloom-accent-soft:#EAF0FA;
+    --sloom-ink:#0B1F3A;
+
+    --align-accent:#8A2423;         /* 얼라인랩 딥레드 */
+    --align-accent-soft:#F5EDED;
+    --align-ink:#3A1211;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);color:var(--ink);
     -webkit-font-smoothing:antialiased;line-height:1.5;word-break:keep-all}
-  .wrap{max-width:920px;margin:0 auto;padding:56px 24px 80px}
+  .wrap{max-width:1160px;margin:0 auto;padding:56px 24px 80px}
 
-  .hero{margin-bottom:40px}
-  .hero .logo{font-size:15px;font-weight:800;color:var(--navy);letter-spacing:.02em}
-  .hero h1{font-size:30px;font-weight:800;color:var(--navy-dark);letter-spacing:-.02em;margin:8px 0 10px}
-  .hero p{font-size:14px;color:var(--ink-muted);max-width:560px}
+  /* ---------- Hero ---------- */
+  .hero{margin-bottom:44px}
+  .hero .kicker{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint)}
+  .hero h1{font-size:30px;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin:10px 0 10px}
+  .hero p{font-size:14px;color:var(--ink-muted);max-width:620px}
 
+  /* ---------- Brand section ---------- */
+  .brands{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-top:36px}
+  .brand{--accent:var(--sloom-accent);--accent-soft:var(--sloom-accent-soft);--brand-ink:var(--sloom-ink);
+    min-width:0}
+  .brand.sloom   {--accent:var(--sloom-accent);--accent-soft:var(--sloom-accent-soft);--brand-ink:var(--sloom-ink)}
+  .brand.align   {--accent:var(--align-accent);--accent-soft:var(--align-accent-soft);--brand-ink:var(--align-ink)}
+
+  .brand-head{display:flex;align-items:center;gap:12px;padding-bottom:16px;margin-bottom:20px;
+    border-bottom:1px solid var(--border)}
+  .brand-mark{width:34px;height:34px;border-radius:8px;overflow:hidden;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--accent-soft);color:var(--accent);
+    font-size:14px;font-weight:800;letter-spacing:-.02em}
+  .brand-mark img{width:100%;height:100%;object-fit:cover;opacity:.92;filter:saturate(.85)}
+  .brand-wordmark{height:24px;width:auto;display:block;opacity:.92}
+  .brand-name{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .brand-name .kr{font-size:15px;font-weight:800;color:var(--brand-ink);letter-spacing:-.01em}
+  .brand-name .en{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-faint)}
+  .brand-name.sr{position:absolute;left:-9999px}
+  .brand-count{margin-left:auto;font-size:11px;font-weight:700;color:var(--ink-soft);
+    background:var(--border-soft);padding:4px 10px;border-radius:20px}
+
+  /* ---------- Cards ---------- */
   .latest-label{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--blue);margin:0 0 12px}
+    color:var(--accent);margin:0 0 12px}
 
   .card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:16px;
-    box-shadow:var(--card-shadow);text-decoration:none;color:inherit;transition:box-shadow .18s,transform .18s,border-color .18s}
-  .card:hover{box-shadow:var(--card-shadow-lg);transform:translateY(-2px);border-color:var(--blue)}
+    box-shadow:var(--card-shadow);text-decoration:none;color:inherit;
+    transition:box-shadow .18s,transform .18s,border-color .18s}
+  .card:hover{box-shadow:var(--card-shadow-lg);transform:translateY(-2px);border-color:var(--accent)}
 
-  .latest{padding:26px 28px;margin-bottom:36px;position:relative;overflow:hidden}
-  .latest::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,rgba(46,107,230,.06),transparent 60%);pointer-events:none}
-  .latest .period{font-size:13px;font-weight:700;color:var(--blue)}
-  .latest h2{font-size:22px;font-weight:800;color:var(--navy-dark);margin:6px 0 8px;letter-spacing:-.01em}
+  .latest{padding:26px 28px;margin-bottom:24px;position:relative;overflow:hidden}
+  .latest::before{content:'';position:absolute;inset:0;
+    background:linear-gradient(120deg,color-mix(in srgb,var(--accent) 8%,transparent),transparent 60%);
+    pointer-events:none}
+  .latest .period{font-size:13px;font-weight:700;color:var(--accent)}
+  .latest h2{font-size:22px;font-weight:800;color:var(--brand-ink);margin:6px 0 8px;letter-spacing:-.01em}
   .latest .meta{font-size:13px;color:var(--ink-muted)}
   .latest .go{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;
-    font-weight:700;color:var(--blue)}
+    font-weight:700;color:var(--accent)}
 
   .section-label{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
     color:var(--ink-faint);margin:0 0 14px}
   .list{display:flex;flex-direction:column;gap:10px}
   .row{display:flex;align-items:center;gap:16px;padding:16px 20px}
-  .row .rperiod{font-size:14px;font-weight:800;color:var(--navy-dark);min-width:92px}
+  .row .rperiod{font-size:14px;font-weight:800;color:var(--brand-ink);min-width:92px}
   .row .rtitle{font-size:13.5px;color:var(--ink);flex:1}
-  .row .rtag{font-size:11px;font-weight:700;color:var(--ink-soft);background:var(--highlight);
-    padding:3px 9px;border-radius:20px}
   .row .rarrow{color:var(--ink-faint);font-size:15px}
 
-  .empty{padding:40px;text-align:center;color:var(--ink-faint);font-size:13px}
+  .empty{padding:32px;text-align:center;color:var(--ink-faint);font-size:13px}
 
-  footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);
-    font-size:12px;color:var(--ink-faint);line-height:1.7}
-  footer strong{color:var(--ink-muted);font-weight:700}
-
+  @media(max-width:900px){
+    .brands{grid-template-columns:1fr;gap:40px}
+  }
   @media(max-width:560px){
     .wrap{padding:36px 18px 60px}
     .hero h1{font-size:24px}
@@ -66,66 +101,108 @@
 <body>
   <div class="wrap">
     <div class="hero">
-      <div class="logo">슬룸 · SLOOM</div>
+      <div class="kicker">CX Monthly</div>
       <h1>월간 상품 VOC 리포트</h1>
-      <p>고객센터로 접수된 불량·오인·개선 제안을 상품 단위로 정리한 CX 월간 리포트입니다. 매월 발행됩니다.</p>
+      <p>고객센터로 접수된 불량·오인·개선 제안을 상품 단위로 정리한 브랜드별 월간 CX 리포트입니다.</p>
     </div>
 
-    <!-- 최신 리포트 (자동으로 목록 첫 항목이 여기 렌더됨) -->
-    <div id="latestSlot"></div>
-
-    <div class="section-label">지난 리포트</div>
-    <div class="list" id="archiveSlot"></div>
-
-    <footer>
-      <strong>발행</strong> · 슬룸 CX팀 &nbsp;|&nbsp; <strong>문의</strong> · CX 담당자<br>
-      리포트 데이터는 각 월의 고객센터 접수분을 기준으로 집계됩니다.
-    </footer>
+    <!-- 브랜드 섹션이 여기에 렌더됩니다 -->
+    <div id="brandsSlot" class="brands"></div>
   </div>
 
 <script>
 /* =========================================================================
-   ▼ 매달 여기에 한 줄만 추가하면 됩니다 (최신이 맨 위)
+   ▼ 매달 여기에 한 줄만 추가하면 됩니다 (각 브랜드 배열 안에서 최신이 맨 위)
    period: 화면 표시용 / file: reports/ 폴더의 파일명 / note: 짧은 설명(선택)
    ========================================================================= */
-const REPORTS = [
-  { period: "2026년 7월", file: "reports/2026-07.html", note: "9개 SKU 불량·오인·개선 제안 분석" },
-  { period: "2026년 6월", file: "reports/2026-06.html", note: "8개 SKU 불량·오인·개선 제안 분석" },
-  // { period: "2026년 7월", file: "reports/2026-07.html", note: "" },
+const BRANDS = [
+  {
+    id: "sloom",
+    kr: "슬룸",
+    en: "SLOOM",
+    logo: "assets/sloom-icon.png",       // 's' 문자 아이콘
+    initial: "S",
+    reports: [
+      { period: "2026년 7월", file: "reports/2026-07.html", note: "9개 SKU 불량·오인·개선 제안 분석" },
+      { period: "2026년 6월", file: "reports/2026-06.html", note: "8개 SKU 불량·오인·개선 제안 분석" },
+    ],
+  },
+  {
+    id: "align",
+    kr: "얼라인랩",
+    en: "ALIGN.LAB",
+    logo: "assets/alignlab-logo.png",    // 정사각 아이콘 → 뱃지로 표시
+    initial: "A",
+    reports: [
+      { period: "2026년 7월", file: "reports/alignlab-2026-07.html", note: "릴렉스 손목 마사지기 불량·오인 분석" },
+    ],
+  },
 ];
 /* ===================== 이 아래는 수정할 필요 없습니다 ===================== */
 
 const fmtMeta = r => r.note ? r.note : "월간 상품 VOC 리포트";
 
-if (REPORTS.length === 0) {
-  document.getElementById('latestSlot').innerHTML =
-    '<div class="card empty">아직 발행된 리포트가 없습니다.</div>';
-} else {
-  const [latest, ...rest] = REPORTS;
-
-  // 최신 리포트 (큰 카드)
-  document.getElementById('latestSlot').innerHTML = `
-    <div class="latest-label">최신 리포트</div>
-    <a class="card latest" href="${latest.file}">
-      <div class="period">${latest.period}</div>
-      <h2>${latest.period} 상품 VOC 리포트</h2>
-      <div class="meta">${fmtMeta(latest)}</div>
-      <span class="go">리포트 열기 →</span>
-    </a>`;
-
-  // 지난 리포트 (목록)
-  const arc = document.getElementById('archiveSlot');
-  if (rest.length === 0) {
-    arc.innerHTML = '<div class="card empty">지난 리포트가 아직 없습니다.</div>';
+function renderBrand(b){
+  const count = b.reports.length;
+  let head;
+  if (b.wordmark){
+    // 가로형 워드마크: 로고 자체가 브랜드명을 담고 있으므로 텍스트는 접근성용으로만 숨김
+    head = `
+      <img class="brand-wordmark" src="${b.wordmark}" alt="${b.kr} 로고">
+      <span class="brand-name sr"><span class="kr">${b.kr}</span><span class="en">${b.en}</span></span>`;
+  } else if (b.logo){
+    head = `
+      <span class="brand-mark"><img src="${b.logo}" alt="${b.kr} 로고"></span>
+      <span class="brand-name">
+        <span class="kr">${b.kr}</span>
+        <span class="en">${b.en}</span>
+      </span>`;
   } else {
-    arc.innerHTML = rest.map(r => `
-      <a class="card row" href="${r.file}">
-        <span class="rperiod">${r.period}</span>
-        <span class="rtitle">${fmtMeta(r)}</span>
-        <span class="rarrow">→</span>
-      </a>`).join('');
+    head = `
+      <span class="brand-mark">${b.initial}</span>
+      <span class="brand-name">
+        <span class="kr">${b.kr}</span>
+        <span class="en">${b.en}</span>
+      </span>`;
   }
+
+  let body = "";
+  if (count === 0){
+    body = `<div class="card empty">아직 발행된 리포트가 없습니다.</div>`;
+  } else {
+    const [latest, ...rest] = b.reports;
+    body += `
+      <div class="latest-label">최신 리포트</div>
+      <a class="card latest" href="${latest.file}">
+        <div class="period">${latest.period}</div>
+        <h2>${latest.period} 상품 VOC 리포트</h2>
+        <div class="meta">${fmtMeta(latest)}</div>
+        <span class="go">리포트 열기 →</span>
+      </a>`;
+    if (rest.length){
+      body += `<div class="section-label">지난 리포트</div>
+        <div class="list">
+          ${rest.map(r => `
+            <a class="card row" href="${r.file}">
+              <span class="rperiod">${r.period}</span>
+              <span class="rtitle">${fmtMeta(r)}</span>
+              <span class="rarrow">→</span>
+            </a>`).join('')}
+        </div>`;
+    }
+  }
+
+  return `
+    <section class="brand ${b.id}">
+      <div class="brand-head">
+        ${head}
+        <span class="brand-count">${count}개 리포트</span>
+      </div>
+      ${body}
+    </section>`;
 }
+
+document.getElementById('brandsSlot').innerHTML = BRANDS.map(renderBrand).join('');
 </script>
 </body>
 </html>
