@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>얼라인랩 · 월간 상품 VOC 리포트 · 2026.08</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+
+:root{
+  --red:#B0302F; --red-dark:#8A2423; --red-deep:#631B1A;
+  --ink:#2A1A1A; --ink-2:#7A6560; --ink-3:#A79490;
+  --paper:#FEFAF9; --pink:#FBEDED; --pink-2:#F6E3E2;
+  --line:#EBDAD9; --line-2:#DEC9C8;
+  --pos:#2E7D6B; --neg:#B0302F; --amber:#C0791C;
+  --card:#FFFFFF;
+  --r:14px;
+  --shadow:0 1px 2px rgba(99,27,26,.04),0 8px 24px rgba(99,27,26,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Pretendard",system-ui,-apple-system,sans-serif;
+  font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px; margin:0 auto; padding:0 20px 90px}
+
+/* ---------- sidebar ---------- */
+.sidebar{
+  position:fixed; left:0; top:0; bottom:0; width:238px; z-index:50;
+  background:linear-gradient(180deg,#4A1615 0%,var(--red-deep) 55%,#4E1615 100%);
+  color:#fff; padding:30px 0 24px; overflow-y:auto;
+  border-right:1px solid rgba(0,0,0,.2);
+}
+.sb-brand{padding:0 24px 20px; border-bottom:1px solid rgba(255,255,255,.1); margin-bottom:14px}
+.sb-brand .b-name{font-size:24px; font-weight:800; letter-spacing:-.01em}
+.sb-brand .b-sub{font-size:12px; opacity:.68; font-weight:500; margin-top:3px}
+.sb-group{font-size:11px; letter-spacing:.14em; font-weight:700; text-transform:uppercase;
+  color:rgba(255,255,255,.42); padding:16px 24px 8px}
+.sb-link{display:block; padding:10px 24px; color:rgba(255,255,255,.8); text-decoration:none;
+  font-size:14.5px; font-weight:500; border-left:3px solid transparent; transition:.15s;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.sb-link:hover{background:rgba(255,255,255,.06); color:#fff}
+.sb-link.active{background:rgba(255,255,255,.12); color:#fff; font-weight:700;
+  border-left-color:#fff}
+.sb-link .n{display:inline-block; min-width:16px; font-weight:700; opacity:.85}
+.main{margin-left:238px}
+
+@media (max-width:960px){
+  .sidebar{display:none}
+  .main{margin-left:0}
+}
+
+/* ---------- header ---------- */
+.hero{
+  background:linear-gradient(135deg,var(--red-deep) 0%,var(--red) 62%,var(--red-dark) 100%);
+  color:#fff; padding:56px 0 44px; position:relative; overflow:hidden;
+  border-bottom:4px solid var(--red-deep);
+}
+.hero::after{
+  content:""; position:absolute; right:-90px; top:-90px; width:340px; height:340px;
+  border:38px solid rgba(255,255,255,.06); border-radius:50%;
+}
+.hero .wrap{padding-bottom:0}
+.hero .eyebrow{font-size:13px; letter-spacing:.22em; font-weight:600; opacity:.82; text-transform:uppercase}
+.hero h1{margin:12px 0 8px; font-size:33px; font-weight:800; letter-spacing:-.02em; line-height:1.2}
+.hero .sub{font-size:16px; opacity:.9; font-weight:500}
+.hero .meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px}
+.pill{background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.22);
+  padding:6px 14px; border-radius:100px; font-size:13px; font-weight:600; backdrop-filter:blur(4px)}
+.pill strong{font-weight:800}
+
+/* ---------- section ---------- */
+section{margin-top:52px}
+.s-head{display:flex; align-items:baseline; gap:12px; margin-bottom:6px}
+.s-num{font-size:13px; font-weight:800; color:var(--red); letter-spacing:.05em;
+  border:1.5px solid var(--red); border-radius:7px; padding:2px 8px; line-height:1.3}
+.s-head h2{font-size:22px; font-weight:800; letter-spacing:-.01em; margin:0}
+.s-sub{color:var(--ink-2); font-size:14px; margin:2px 0 20px}
+
+/* ---------- kpi ---------- */
+.kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+.kpi{background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:18px 16px; box-shadow:var(--shadow); position:relative; overflow:hidden}
+.kpi::before{content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--red)}
+.kpi .k-label{font-size:13.5px; color:var(--ink); font-weight:700; line-height:1.35}
+.kpi .k-desc{font-size:11.5px; color:var(--ink-2); font-weight:500; line-height:1.4; margin-top:5px; min-height:32px}
+.kpi .k-val{font-size:29px; font-weight:800; letter-spacing:-.02em; margin-top:6px; color:var(--ink)}
+.kpi .k-val .u{font-size:15px; font-weight:700; color:var(--ink-2); margin-left:2px}
+.kpi .k-val .sub{font-size:13px; font-weight:700; color:var(--ink-2); margin-left:6px}
+.kpi.accent::before{background:linear-gradient(var(--red),var(--red-dark))}
+.kpi.accent .k-val{color:var(--red)}
+
+/* ---------- bars (s2) ---------- */
+.panel{background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:24px; box-shadow:var(--shadow)}
+.bars{display:flex; flex-direction:column; gap:14px}
+.bar-row{display:grid; grid-template-columns:112px 1fr 128px; align-items:center; gap:14px}
+.bar-name{font-weight:700; font-size:14.5px}
+.bar-track{background:var(--pink); border-radius:8px; height:26px; overflow:hidden; position:relative}
+.bar-fill{height:100%; background:linear-gradient(90deg,var(--red),var(--red-dark));
+  border-radius:8px; display:flex; align-items:center; transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.bar-val{display:flex; gap:8px; justify-content:flex-end; align-items:baseline; font-variant-numeric:tabular-nums}
+.bar-val .cnt{font-weight:800; font-size:15px}
+.bar-val .pct{color:var(--ink-2); font-size:13px; font-weight:600; min-width:52px; text-align:right}
+.tag-new{font-size:10.5px; font-weight:700; color:var(--red); background:var(--pink);
+  border:1px solid var(--line-2); padding:1px 7px; border-radius:100px}
+
+/* ---------- donut (s3) ---------- */
+.donut-grid{display:grid; grid-template-columns:300px 1fr; gap:32px; align-items:center}
+.donut-wrap{position:relative; width:300px; height:300px; margin:0 auto}
+.donut-center{position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center; pointer-events:none}
+.donut-center .dc-num{font-size:44px; font-weight:800; line-height:1; color:var(--ink)}
+.donut-center .dc-lab{font-size:13px; color:var(--ink-2); font-weight:600; margin-top:6px}
+.donut svg{transform:rotate(-90deg)}
+.donut-seg{cursor:pointer; transition:opacity .2s, stroke-width .2s}
+.donut-seg:hover{opacity:.85}
+.leg{display:flex; flex-direction:column; gap:9px}
+.leg-item{display:grid; grid-template-columns:16px 1fr auto; gap:12px; align-items:center;
+  cursor:pointer; padding:8px 10px; border-radius:10px; border:1px solid transparent; transition:.15s}
+.leg-item:hover{background:var(--pink); border-color:var(--line)}
+.leg-item.active{background:var(--pink); border-color:var(--line-2)}
+.leg-dot{width:14px; height:14px; border-radius:4px}
+.leg-name{font-weight:700; font-size:14.5px}
+.leg-val{font-variant-numeric:tabular-nums; font-weight:700; font-size:14px; color:var(--ink-2)}
+.type-detail{margin-top:20px; background:var(--pink); border:1px solid var(--line);
+  border-radius:12px; padding:18px 20px; font-size:14px; line-height:1.65}
+.type-detail h4{margin:0 0 6px; font-size:15px; font-weight:800; color:var(--red-dark)}
+.type-detail .sym{color:var(--ink-2)}
+.type-detail .q{margin-top:10px; padding:10px 14px; background:#fff; border-left:3px solid var(--red);
+  border-radius:0 8px 8px 0; font-style:italic; color:var(--ink); font-size:13.5px}
+
+/* ---------- rate (4) ---------- */
+.rate-hero{display:grid; grid-template-columns:auto 1fr; gap:36px; align-items:center}
+.rate-big{text-align:center; padding:8px 28px 8px 0; border-right:1px solid var(--line)}
+.rate-big .rb-num{font-size:60px; font-weight:800; color:var(--red); letter-spacing:-.03em; line-height:1}
+.rate-big .rb-lab{font-size:13px; color:var(--ink-2); font-weight:600; margin-top:8px}
+.rate-calc{font-size:14px}
+.rate-calc .rc-eq{font-size:15px; margin-bottom:14px; color:var(--ink-2)}
+.rate-calc .rc-eq b{color:var(--ink); font-weight:800}
+.lot-tab{width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums}
+.lot-tab th,.lot-tab td{text-align:left; padding:7px 10px; font-size:13.5px; border-bottom:1px solid var(--line)}
+.lot-tab th{color:var(--ink-2); font-weight:600; font-size:12.5px; line-height:1.35; vertical-align:bottom}
+.lot-tab td.n{text-align:right; font-weight:700}
+.lot-tab tr.sub td{font-weight:800; background:var(--pink-2); border-top:1px solid var(--line-2)}
+.lot-tab tr.dim td{color:var(--ink-2)}
+.lot-tab tr.tot td{border-bottom:none; font-weight:800; background:var(--pink); border-top:1px solid var(--line-2)}
+.lot-tab td.na{text-align:right; color:var(--ink-3); font-weight:600}
+
+/* ---------- voc cards (s5/s9) ---------- */
+.voc-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.voc-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+  padding:20px 22px; box-shadow:var(--shadow)}
+.voc-card.wide{grid-column:1/-1}
+.voc-head{display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap}
+.voc-head .vt{font-size:16px; font-weight:800; letter-spacing:-.01em}
+.chip{font-size:11.5px; font-weight:700; padding:3px 10px; border-radius:100px;
+  background:var(--pink); color:var(--red-dark); border:1px solid var(--line-2)}
+.chip.warn{background:#FBF0DF; color:var(--amber); border-color:#EAD6AF}
+.kv{display:grid; grid-template-columns:96px 1fr; gap:6px 14px; font-size:13.5px; margin:4px 0}
+.kv dt{color:var(--ink-2); font-weight:600}
+.kv dd{margin:0; font-weight:600}
+.quote{margin-top:12px; padding:11px 15px; background:var(--pink); border-left:3px solid var(--red);
+  border-radius:0 8px 8px 0; font-size:13.5px; font-style:italic; color:var(--ink); line-height:1.6}
+.quote+.quote{margin-top:8px}
+.src{font-size:11.5px; color:var(--ink-3); margin-top:8px}
+
+/* ---------- 오인 (6) ---------- */
+.kpi-top{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:18px}
+.track{border:1px solid var(--line-2); border-radius:14px; padding:0 0 16px; margin-bottom:14px; background:var(--card); box-shadow:var(--shadow); overflow:hidden}
+.track-head{display:flex; align-items:baseline; gap:10px; padding:13px 20px;
+  background:linear-gradient(180deg,#FDF4F3,var(--pink)); border-bottom:1px solid var(--line-2)}
+.track-head h3{margin:0; font-size:15px; font-weight:800; color:var(--red-deep)}
+.track-head .rt{margin-left:auto; font-size:12.5px; color:var(--ink-2)}
+.track-kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:0; padding:0 6px}
+.track-kpis.four{grid-template-columns:repeat(4,1fr)}
+.route{margin-bottom:18px; background:var(--card); border:1px solid var(--line-2); border-radius:14px; box-shadow:var(--shadow); overflow:hidden}
+.route-head{padding:13px 20px; background:linear-gradient(180deg,#FDF4F3,var(--pink)); border-bottom:1px solid var(--line-2);
+  font-size:14px; font-weight:800; color:var(--red-deep)}
+.route-body{padding:16px 20px 8px}
+.route-row{display:grid; grid-template-columns:1fr 210px 96px; align-items:center; gap:12px; padding:7px 0}
+.route-name{font-size:13.5px; color:var(--ink)}
+.route-name .sub2{display:block; font-size:11.5px; color:var(--ink-3); margin-top:2px}
+.route-track{height:12px; background:var(--pink-2); border-radius:100px; overflow:hidden}
+.route-fill{height:100%; background:linear-gradient(90deg,var(--red-dark),var(--red)); border-radius:100px}
+.route-val{text-align:right; font-variant-numeric:tabular-nums; font-size:13.5px; font-weight:800; color:var(--red-deep)}
+.route-val .pct{display:block; font-size:11.5px; font-weight:700; color:var(--ink-2)}
+@media (max-width:900px){ .route-row{grid-template-columns:1fr 96px} .route-track{display:none} }
+.track-kpis .tc{padding:14px 14px 4px; border-right:1px solid var(--line)}
+.track-kpis .tc:last-child{border-right:none}
+.track-kpis .tl{font-size:12px; color:var(--ink-2); font-weight:600}
+.track-kpis .td2{font-size:11px; color:var(--ink-3); line-height:1.45; margin-top:3px; min-height:30px}
+.track-kpis .tv{font-size:24px; font-weight:800; color:var(--red-deep); margin-top:6px; font-variant-numeric:tabular-nums}
+.track-kpis .tv .u{font-size:13px; font-weight:700; margin-left:2px}
+.track-kpis .tv .sub{display:block; font-size:11.5px; font-weight:700; color:var(--ink-2); margin-top:2px}
+.track-flow{font-size:12.5px; color:var(--ink-2); padding:10px 20px 0; border-top:1px solid var(--line); margin-top:10px}
+.track-flow b{color:var(--red-dark)}
+@media (max-width:900px){
+  .track-kpis{grid-template-columns:repeat(2,1fr)}
+  .track-kpis .tc:nth-child(2){border-right:none}
+  .kpi-top{grid-template-columns:1fr}
+}
+.mis-intro{background:var(--pink); border:1px solid var(--line); border-radius:12px;
+  padding:16px 20px; font-size:14px; line-height:1.65; margin-bottom:20px}
+.mis-intro b{color:var(--red-dark)}
+.pct-row{display:grid; grid-template-columns:150px 1fr 44px; gap:14px; align-items:center; margin-bottom:12px}
+.pct-n{font-weight:700; font-size:14px}
+.pct-b{background:var(--pink); border-radius:7px; height:22px; overflow:hidden}
+.pct-fill{height:100%; background:linear-gradient(90deg,var(--red),var(--red-dark)); border-radius:7px}
+.pct-c{font-weight:800; font-variant-numeric:tabular-nums; font-size:13.5px; text-align:right}
+.mis-note{font-size:13px; color:var(--ink-2); margin-top:6px; line-height:1.6}
+.istat{display:flex; gap:10px; margin:4px 0 14px; flex-wrap:wrap}
+.istat .it{flex:1; min-width:88px; background:var(--pink); border:1px solid var(--line);
+  border-radius:10px; padding:9px 12px; text-align:center}
+.istat .it .v{font-size:21px; font-weight:800; color:var(--ink); letter-spacing:-.01em; line-height:1}
+.istat .it .v.red{color:var(--red)}
+.istat .it .l{font-size:11px; color:var(--ink-2); font-weight:600; margin-top:5px}
+.action-box{margin-top:20px; background:linear-gradient(135deg,#631B1A,#8A2423); color:#fff;
+  border-radius:14px; padding:20px 24px}
+.action-box .ab-t{font-size:15px; font-weight:800; margin-bottom:12px; display:flex; align-items:center; gap:8px}
+.action-box .ab-t::before{content:"→"; font-weight:800}
+.action-box ol{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px}
+.action-box li{font-size:14px; line-height:1.55; padding-left:2px}
+.action-box li b{font-weight:800}
+.action-box .ab-eff{margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,.18);
+  font-size:13px; opacity:.92}
+
+/* ---------- weekly (s7) ---------- */
+.wk-chart{display:grid; grid-template-columns:repeat(5,1fr); gap:20px; align-items:end;
+  height:230px; padding:0 8px; margin-bottom:14px}
+.wk-col{display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%}
+.wk-stack{width:52px; display:flex; flex-direction:column-reverse; border-radius:6px 6px 0 0; overflow:hidden}
+.wk-seg{width:100%}
+.wk-total{font-weight:800; font-size:15px; margin-bottom:6px}
+.wk-lab{font-size:12px; color:var(--ink-2); font-weight:600; margin-top:9px; text-align:center}
+.wk-legend{display:flex; flex-wrap:wrap; gap:14px; justify-content:center; font-size:12.5px; color:var(--ink-2)}
+.wk-legend span{display:inline-flex; align-items:center; gap:6px; font-weight:600}
+.wk-legend i{width:11px; height:11px; border-radius:3px; display:inline-block}
+
+/* ---------- footnote ---------- */
+.foot{margin-top:56px; padding-top:24px; border-top:1px solid var(--line);
+  font-size:12.5px; color:var(--ink-3); line-height:1.7}
+.foot b{color:var(--ink-2)}
+.foot ul{margin:8px 0 0; padding-left:18px}
+
+@media (max-width:820px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .donut-grid{grid-template-columns:1fr}
+  .rate-hero{grid-template-columns:1fr}
+  .rate-big{border-right:none; border-bottom:1px solid var(--line); padding:0 0 20px}
+  .voc-grid{grid-template-columns:1fr}
+  .bar-row{grid-template-columns:88px 1fr 96px; gap:8px}
+  .wk-chart{gap:8px}
+}
+
+/* ---- 8월 추가: SKU 탭/비교 ---- */
+.skutabs{display:flex; gap:8px; margin:0 0 18px}
+.skutab{flex:1; text-align:center; padding:11px 14px; border:1px solid var(--line); background:#fff;
+  border-radius:11px; cursor:pointer; font-weight:700; font-size:14.5px; color:var(--ink-2); transition:.15s}
+.skutab:hover{border-color:var(--line-2); background:var(--pink)}
+.skutab.on{background:linear-gradient(135deg,var(--red-deep),var(--red)); color:#fff; border-color:var(--red-deep)}
+.skutab .sub{display:block; font-size:11.5px; font-weight:600; opacity:.75; margin-top:3px}
+.pane{display:none} .pane.on{display:block}
+.kpis.two{grid-template-columns:repeat(4,1fr)}
+.sku-badge{font-size:11px; font-weight:700; padding:2px 9px; border-radius:100px; margin-left:8px;
+  background:var(--pink); color:var(--red-dark); border:1px solid var(--line-2)}
+.lot-tab td.warn{color:var(--red); font-weight:800}
+.lot-tab tr.hl td{background:var(--pink)}
+.cmp{width:100%; border-collapse:collapse; font-size:14px; margin-top:4px}
+.cmp th,.cmp td{padding:11px 14px; border:1px solid var(--line); text-align:left}
+.cmp th{background:var(--pink); color:var(--red-dark); font-weight:700; font-size:13px}
+.cmp td.n{text-align:right; font-variant-numeric:tabular-nums; font-weight:700}
+.cmp td.k{background:#FDF6F5; font-weight:700; width:30%}
+.crit{background:linear-gradient(135deg,#631B1A,#8A2423); color:#fff; border-radius:14px; padding:22px 26px}
+.crit h4{margin:0 0 10px; font-size:16px; font-weight:800}
+.crit h4 .chip{background:rgba(255,255,255,.18); color:#fff; border-color:rgba(255,255,255,.34); vertical-align:2px; margin-left:8px}
+.crit .cst{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0}
+.crit .cst .c{flex:1; min-width:96px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.2);
+  border-radius:10px; padding:10px 12px; text-align:center}
+.crit .cst .c .v{font-size:20px; font-weight:800}
+.crit .cst .c .l{font-size:11px; opacity:.85; margin-top:4px; font-weight:600}
+.crit .kv2{display:grid; grid-template-columns:88px 1fr; gap:6px 14px; font-size:13.5px; margin-top:6px}
+.crit .kv2 dt{opacity:.8; font-weight:700} .crit .kv2 dd{margin:0}
+@media (max-width:820px){.kpis.two{grid-template-columns:repeat(2,1fr)}}
+
+
+.lot-guide{background:linear-gradient(180deg,#FDF4F3,var(--pink)); border:1px solid var(--line-2); border-radius:12px; padding:16px 20px; margin-bottom:16px}
+.lot-guide .lg-t{font-size:14px; line-height:1.65; color:var(--ink)}
+.lot-guide .lg-d{font-size:13.5px; line-height:1.65; color:var(--ink-2); margin-top:6px}
+.lot-guide .lg-scale{display:flex; flex-wrap:wrap; gap:14px; margin-top:12px; padding-top:11px; border-top:1px solid var(--line-2); font-size:12.5px; color:var(--ink-2); align-items:center}
+.lot-guide .lg-scale b{font-weight:800; margin-right:4px}
+.lot-guide .lg-scale b.g{color:#2E7D6B} .lot-guide .lg-scale b.a{color:#C0791C} .lot-guide .lg-scale b.r{color:#B0302F}
+.lot-guide .lg-scale .note{color:var(--ink-3)}
+
+
+.kpis{grid-template-columns:repeat(5,minmax(0,1fr))}
+.kpi .k-label{font-size:12.5px}
+.kpi .k-desc{font-size:11px; min-height:30px}
+.kpi .k-val{font-size:25px}
+.kpi .k-val .sub{font-size:12px; margin-left:4px}
+.note-box{margin-top:16px; background:var(--wash,#FBF3F2); border:1px solid var(--line);
+  border-left:4px solid var(--red); border-radius:0 12px 12px 0; padding:16px 20px}
+.note-box .nb-t{font-size:13.5px; font-weight:800; color:var(--red-dark); margin-bottom:8px}
+.note-box p{margin:0 0 8px; font-size:13px; line-height:1.68; color:var(--ink-2)}
+.note-box p:last-child{margin-bottom:0}
+.note-box b{color:var(--ink)}
+@media (max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
+
+</style>
+</head>
+<body>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sb-brand">
+    <div class="b-name">얼라인랩</div>
+    <div class="b-sub">CX · 월간 상품 VOC 리포트</div>
+  </div>
+  <div class="sb-group">A · 현황</div>
+  <a class="sb-link" href="#s1"><span class="n">1</span> 핵심 요약</a>
+  <a class="sb-link" href="#s2"><span class="n">2</span> 불량 문의 현황</a>
+  <a class="sb-link" href="#s3"><span class="n">3</span> 제품별 불량 상세</a>
+  <a class="sb-link" href="#s4"><span class="n">4</span> LOT 품질 추적</a>
+  <div class="sb-group">B · 이슈</div>
+  <a class="sb-link" href="#s5"><span class="n">5</span> 불량 오인 &amp; 주요 이슈</a>
+  <a class="sb-link" href="#s6"><span class="n">6</span> 반복 VOC</a>
+  <div class="sb-group">C · 영향</div>
+  <a class="sb-link" href="#s7"><span class="n">7</span> 고객 제안·개선</a>
+</nav>
+
+<div class="main">
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">얼라인랩 · 월간 상품 VOC 리포트</div>
+    <h1>릴렉스 손목 마사지기 · 미니 EMS 릴렉스 마사지기 품질 리포트</h1>
+    <div class="sub">8월 고객 문의와 불량 접수, 출고량으로 본 제품 품질 현황</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- s1 -->
+<section id="s1">
+  <div class="s-head"><span class="s-num">1</span><h2>핵심 요약</h2></div>
+
+  <div class="kpi-top">
+    <div class="kpi">
+      <div class="k-label">8월 불량 접수 건수</div>
+      <div class="k-desc">두 접점을 합해 교환·반품으로 접수된 전체 불량 건수</div>
+      <div class="k-val">152<span class="u">건</span></div>
+    </div>
+    <div class="kpi accent">
+      <div class="k-label">출고 대비 접수율</div>
+      <div class="k-desc">7~8월 누적 출고 34,653건 대비 비율</div>
+      <div class="k-val">0.44<span class="u">%</span></div>
+    </div>
+  </div>
+
+  <!-- 유입 경로 -->
+  <div class="route">
+    <div class="route-head">불량 접수 152건이 들어온 경로</div>
+    <div class="route-body">
+      <div class="route-row">
+        <div class="route-name">얼라인랩 고객센터 상담
+          <span class="sub2">상담을 거쳐 접수까지 진행된 건</span></div>
+        <div class="route-track"><div class="route-fill" style="width:100%"></div></div>
+        <div class="route-val">73건<span class="pct">48.0%</span></div>
+      </div>
+      <div class="route-row">
+        <div class="route-name">카카오톡 선물하기 고객센터 문의
+          <span class="sub2">카카오톡 고객센터를 거쳐 접수된 건</span></div>
+        <div class="route-track"><div class="route-fill" style="width:56.2%"></div></div>
+        <div class="route-val">41건<span class="pct">27.0%</span></div>
+      </div>
+      <div class="route-row">
+        <div class="route-name">카카오톡 선물하기 셀프 접수
+          <span class="sub2">문의 없이 고객이 카카오톡에서 직접 접수한 건</span></div>
+        <div class="route-track"><div class="route-fill" style="width:46.6%"></div></div>
+        <div class="route-val">34건<span class="pct">22.4%</span></div>
+      </div>
+      <div class="route-row">
+        <div class="route-name">얼라인랩·카카오톡 양쪽 접수
+          <span class="sub2">카카오톡에 먼저 문의한 뒤 얼라인랩 고객센터로 다시 문의한 건</span></div>
+        <div class="route-track"><div class="route-fill" style="width:5.5%"></div></div>
+        <div class="route-val">4건<span class="pct">2.6%</span></div>
+      </div>
+      <p class="mis-note" style="margin-top:10px">
+        경로는 접수 건의 주문번호를 두 접점의 문의 기록과 대조해 판별했습니다.
+        <b>양쪽 접수 4건</b>은 모두 카카오톡이 먼저였고, 얼라인랩 고객센터를 먼저 거친 뒤 카카오톡으로 넘어간 건은 없었습니다.
+      </p>
+    </div>
+  </div>
+
+  <!-- 얼라인랩 고객센터 -->
+  <div class="track">
+    <div class="track-head">
+      <h3>얼라인랩 고객센터</h3>
+      <span class="rt">상담을 거쳐 들어오는 문의</span>
+    </div>
+    <div class="track-kpis">
+      <div class="tc">
+        <div class="tl">8월 문의</div>
+        <div class="td2">상담원이 응대한 전체 상담</div>
+        <div class="tv">161<span class="u">건</span></div>
+      </div>
+      <div class="tc">
+        <div class="tl">불량 문의</div>
+        <div class="td2">이 중 불량으로 분류된 상담</div>
+        <div class="tv">148<span class="u">건</span><span class="sub">91.9%</span></div>
+      </div>
+      <div class="tc">
+        <div class="tl">불량 확정 · 접수</div>
+        <div class="td2">증빙 확인 후 교환·반품으로 접수된 건</div>
+        <div class="tv">77<span class="u">건</span><span class="sub">전체 접수의 50.7%</span></div>
+      </div>
+    </div>
+    <div class="track-flow">
+      문의 161건 → 불량 문의 <b>148건(91.9%)</b> → 불량 확정·접수 <b>77건</b>
+    </div>
+  </div>
+
+  <!-- 카카오톡 고객센터 -->
+  <div class="track">
+    <div class="track-head">
+      <h3>카카오톡 고객센터</h3>
+      <span class="rt">고객센터 문의 경로와 셀프 접수 경로</span>
+    </div>
+    <div class="track-kpis four">
+      <div class="tc">
+        <div class="tl">고객센터 문의</div>
+        <div class="td2">카카오톡 고객센터로 접수된 전체 문의</div>
+        <div class="tv">201<span class="u">건</span></div>
+      </div>
+      <div class="tc">
+        <div class="tl">불량 문의</div>
+        <div class="td2">이 중 불량·불량교환·불량반품 문의</div>
+        <div class="tv">91<span class="u">건</span><span class="sub">45.3%</span></div>
+      </div>
+      <div class="tc">
+        <div class="tl">문의 경유 접수</div>
+        <div class="td2">문의를 거쳐 교환·반품으로 접수된 건</div>
+        <div class="tv">45<span class="u">건</span></div>
+      </div>
+      <div class="tc">
+        <div class="tl">셀프 접수</div>
+        <div class="td2">고객이 카카오톡에서 직접 접수, 증빙 확인 완료</div>
+        <div class="tv">34<span class="u">건</span></div>
+      </div>
+    </div>
+    <div class="track-flow">
+      불량 확정·접수 <b>79건</b> (문의 경유 45 + 셀프 34)
+      &nbsp;·&nbsp; 고객센터 문의량이 얼라인랩 고객센터의 <b>1.25배</b>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <div class="nb-t">두 트랙을 나눠 보는 이유</div>
+    <p>선물하기 특성상 고객은 얼라인랩 고객센터로 직접 문의하기보다 <b>카카오톡 고객센터로 문의하는 비중이 높습니다.</b>
+    얼라인랩 고객센터 단일로는 전체를 볼 수 없어 두 채널을 함께 봅니다.</p>
+    <p><b>셀프 접수 34건도 불량 확정입니다.</b> 증빙이 확인된 건만 교환·반품으로 처리되고,
+    증빙이 없거나 잘못 접수된 건은 보류 후 안내로 전환됩니다.
+    34건 중 33건은 불량 유형까지 기재되어 있어 제품별 불량 유형과 LOT 집계에 반영되어 있습니다.</p>
+  </div>
+</section>
+
+<!-- s2 -->
+<section id="s2">
+  <div class="s-head"><span class="s-num">2</span><h2>불량 문의 현황</h2></div>
+  <div class="mis-intro">
+    8월 불량 문의는 두 접점을 합해 <b>239건</b>입니다. 접점별 구성은 아래와 같습니다.
+  </div>
+  <div class="panel" style="box-shadow:none; border-color:var(--line-2)">
+    <table class="lot-tab">
+      <thead><tr>
+        <th>접점</th>
+        <th style="text-align:right">불량 문의</th>
+        <th style="text-align:right">점유율</th>
+      </tr></thead>
+      <tbody>
+        <tr class="hl"><td>얼라인랩 고객센터</td><td class="n">148</td><td class="n warn">61.9%</td></tr>
+        <tr><td>카카오톡 고객센터</td><td class="n">91</td><td class="n">38.1%</td></tr>
+        <tr class="tot"><td>합계</td><td class="n">239</td><td class="n">100.0%</td></tr>
+      </tbody>
+    </table>
+    <p class="mis-note">
+      카카오톡 고객센터는 배송·취소 등 불량 외 문의도 함께 들어오므로,
+      전체 문의 대비 비율이 아니라 불량 문의만 추려 접점별 구성을 봅니다.
+    </p>
+  </div>
+
+  <div class="mis-intro" style="margin-top:18px">
+    불량 문의 <b>239건</b>의 제품별 점유율입니다.
+    미니 EMS 릴렉스 마사지기는 7월 말 출시로 8월이 판매 첫 달입니다.
+  </div>
+  <div class="panel">
+    <div id="skubars"></div>
+    <p class="mis-note">막대 오른쪽은 두 접점 합산 건수입니다.</p>
+  </div>
+</section>
+
+<!-- s3 -->
+<section id="s3">
+  <div class="s-head"><span class="s-num">3</span><h2>제품별 불량 상세</h2></div>
+  <div class="skutabs">
+    <div class="skutab on" data-p="w">릴렉스 손목 마사지기<span class="sub">불량 95건</span></div>
+    <div class="skutab" data-p="m">미니 EMS 릴렉스 마사지기<span class="sub">불량 64건</span></div>
+  </div>
+  <div class="panel">
+    <div class="donut-grid">
+      <div class="donut donut-wrap" id="donut">
+        <svg viewBox="0 0 200 200" width="300" height="300" id="donutSvg"></svg>
+        <div class="donut-center">
+          <div class="dc-num">95</div>
+          <div class="dc-lab">불량 접수 건</div>
+        </div>
+      </div>
+      <div class="leg" id="legend"></div>
+    </div>
+    <div class="type-detail" id="typeDetail"></div>
+  </div>
+</section>
+
+<!-- s4 -->
+<section id="s4">
+  <div class="s-head"><span class="s-num">4</span><h2>LOT 품질 추적</h2></div>
+  <div class="lot-guide">
+    <div class="lg-t">💡 동일 SKU 안에서 <b>특정 LOT에 문제가 집중되는지, 모든 LOT에 걸쳐 전반적으로 나타나는지</b> 참고할 수 있는 지표입니다.</div>
+    <div class="lg-d">특정 LOT에 불량이 집중된다면 해당 LOT으로 생산된 제품을 <b>모니터링하며 조치를 검토</b>하고, 여러 LOT에 걸쳐 고르게 나타난다면 <b>제품 설계 차원의 개선</b>을 살펴볼 수 있습니다.</div>
+    <div class="lg-scale">
+      <span><b class="g">1.0% 미만</b> 우수 범위</span>
+      <span><b class="a">1.0 ~ 3.0%</b> 정상 범위</span>
+      <span><b class="r">3.0% 초과</b> 확인 필요 · 제조사 협의 기준선</span>
+      <span class="note">※ 이커머스·가전 업계 평균 불량률 1~3% 기준</span>
+    </div>
+  </div>
+  <div class="panel">
+    <h3 style="margin:0 0 10px; font-size:15px; font-weight:800; color:var(--red-dark)">릴렉스 손목 마사지기</h3>
+    <table class="lot-tab">
+      <thead><tr><th>제조 LOT</th><th style="text-align:right">7~8월 출고</th><th style="text-align:right">불량</th><th style="text-align:right">불량률</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>2026-06-22</td><td class="n">21,256</td><td class="n">60</td><td class="n warn">0.28%</td></tr>
+        <tr><td>2026-08-12</td><td class="n">5,909</td><td class="n">5</td><td class="n">0.08%</td></tr>
+        <tr class="sub"><td>소계 (위 2개 LOT)</td><td class="n">27,165</td><td class="n">65</td><td class="n">0.24%</td></tr>
+        <tr class="dim"><td>기타 LOT 11종</td><td class="na">산출 불가</td><td class="n">26</td><td class="na">—</td></tr>
+        <tr class="dim"><td>LOT 미확인</td><td class="na">—</td><td class="n">4</td><td class="na">—</td></tr>
+        <tr class="tot"><td>불량 접수 총계</td><td class="na">—</td><td class="n">95</td><td class="na">—</td></tr>
+      </tbody>
+    </table>
+    <p class="mis-note">LOT 2026-06-22의 불량률이 신규 LOT(08-12) 대비 약 3.5배 높습니다. 08-12는 8월 중순 출고로 관찰 기간이 짧아 9월 재확인이 필요합니다.<br>
+    <b>기타 LOT 11종(26건)</b>은 2~5월 생산분입니다. 7~8월에 출고된 물량이 없거나 극소량이라 불량률을 낼 수 없어 따로 표기했습니다. <b>LOT 미확인 4건</b>은 5월 이전에 출고된 것으로 보여 제조 LOT을 확인하지 못한 건입니다.</p>
+
+    <h3 style="margin:26px 0 10px; font-size:15px; font-weight:800; color:var(--red-dark)">미니 EMS 릴렉스 마사지기</h3>
+    <table class="lot-tab">
+      <thead><tr><th>제조 LOT</th><th style="text-align:right">7~8월 출고</th><th style="text-align:right">불량</th><th style="text-align:right">불량률</th></tr></thead>
+      <tbody>
+        <tr class="hl"><td>2026-07-16 <span class="sku-badge">초도</span></td><td class="n">2,877</td><td class="n">50</td><td class="n warn">1.74%</td></tr>
+        <tr><td>2026-08-27</td><td class="n">4,557</td><td class="n">14</td><td class="n">0.31%</td></tr>
+        <tr class="tot"><td>합계</td><td class="n">7,434</td><td class="n">64</td><td class="n">0.86%</td></tr>
+      </tbody>
+    </table>
+    <p class="mis-note">초도 LOT(2026-07-16)의 불량률이 <b>1.74%</b>로 후속 LOT(0.31%) 대비 약 5.6배이며, 선 빠짐 불량이 이 LOT에 집중되어 있습니다. 불량 64건 모두 제조 LOT이 확인됐습니다.<br>
+    후속 LOT(08-27)은 8월 말 출고분이라 관찰 기간이 짧아, 9월 데이터로 재확인이 필요합니다.</p>
+  </div>
+</section>
+
+<!-- s5 -->
+<section id="s5">
+  <div class="s-head"><span class="s-num">5</span><h2>불량 오인 &amp; 주요 이슈</h2></div>
+  <div class="mis-intro">
+    두 접점은 고객과 소통하는 방식이 달라, 알 수 있는 것도 다릅니다.
+    <b>얼라인랩 고객센터</b>는 고객과 직접 주고받기 때문에 사용 환경과 요구를 파악할 수 있고,
+    <b>카카오톡 고객센터</b>는 상담원을 통해 건너 전달되어 증상 확인이 제한적인 대신,
+    어떤 문의가 접수까지 가지 않고 안내만으로 끝나는지가 드러납니다.
+  </div>
+
+  <!-- 얼라인랩 고객센터 -->
+  <div class="track">
+    <div class="track-head">
+      <h3>얼라인랩 고객센터를 통한 상담</h3>
+      <span class="rt">불량 상담 148건 기준</span>
+    </div>
+    <div style="padding:16px 20px 4px">
+      <div class="mis-intro" style="margin-bottom:14px">
+        릴렉스 손목 마사지기는 불량 주장 130건 중 <b>41건(31.5%)</b>이 사용 오인이었고, 7월과 동일한 패턴이 반복됩니다.
+        미니 EMS 릴렉스 마사지기는 오인율이 <b>12.5%</b>(9/72건)로 낮아 대부분이 실제 불량입니다.
+        고객이 직접 이야기한 내용에서 아래 패턴이 반복 확인됩니다.
+      </div>
+      <table class="lot-tab">
+        <thead><tr>
+          <th>고객이 이야기한 상황</th>
+          <th style="text-align:right; width:64px">건수</th>
+          <th style="text-align:right; width:104px">릴렉스<br>손목 마사지기</th>
+          <th style="text-align:right; width:112px">미니 EMS<br>릴렉스 마사지기</th>
+        </tr></thead>
+        <tbody>
+          <tr class="hl"><td>착용해야 작동하는 것을 모른 채 문의</td><td class="n">35</td><td class="n">34</td><td class="n">1</td></tr>
+          <tr><td>PC·노트북 USB로 충전</td><td class="n">26</td><td class="n">24</td><td class="n">2</td></tr>
+          <tr><td>배터리 아이콘이 실시간 잔량이 아님을 모름</td><td class="n">23</td><td class="n">23</td><td class="n">0</td></tr>
+          <tr><td>충전 중에 작동을 시도</td><td class="n">12</td><td class="n">9</td><td class="n">3</td></tr>
+          <tr><td>동봉 어댑터가 아닌 고속충전기 사용</td><td class="n">11</td><td class="n">10</td><td class="n">1</td></tr>
+          <tr><td>자극이 약하거나 느껴지지 않는다고 표현</td><td class="n">6</td><td class="n">4</td><td class="n">2</td></tr>
+          <tr><td>맨살·수분·크림 도포가 필요한 것을 모름</td><td class="n">5</td><td class="n">2</td><td class="n">3</td></tr>
+          <tr><td>한쪽만 작동한다고 인식</td><td class="n">4</td><td class="n">1</td><td class="n">3</td></tr>
+        </tbody>
+      </table>
+      <p class="mis-note">
+        상담 한 건에 여러 상황이 함께 나타나 건수 합계는 148건을 넘습니다.<br>
+        <b>충전 환경</b>(PC USB 26건 · 고속충전기 11건 · 충전 중 작동 12건)이 가장 큰 덩어리입니다.
+        제품에 어댑터가 동봉되지 않아 고객이 각자 가진 충전기를 쓰는 데서 출발하는 문제입니다.
+      </p>
+    </div>
+    <div class="mis-intro" style="margin:4px 20px 12px">
+      불량 유형별로 고객이 실제로 무엇을 오해하는지, 신청 시 남긴 발화를 대표 사례로 정리했습니다.
+    </div>
+    <div class="voc-grid" style="padding:0 20px 4px">
+      <div class="voc-card">
+        <div class="voc-head"><span class="vt">충전 · 전원</span><span class="chip">릴렉스 손목 마사지기</span></div>
+        <dl class="kv">
+          <dt>고객 발화</dt><dd>“완충상태인데 기기가작동을안합니다”<br>“하루 15시간 이상 충전해도 전원이 들어오지 않습니다”<br>“삑-삑- 소리만 나고 지금 켜지지도 않아요”</dd>
+          <dt>실제 원인</dt><dd>충전 부족. 고속충전기 사용으로 충전이 진행되지 않은 경우 포함</dd>
+          <dt>무엇을 오해하나</dt><dd>배터리 칸이 항상 가득 차 보이는 것을 <b>완충으로 확신</b>합니다. 오래 꽂아두면 충전된다고 생각해 정격(5V 1A) 개념이 없고, 배터리 부족 경고음을 고장 신호로 받아들입니다</dd>
+        </dl>
+      </div>
+      <div class="voc-card">
+        <div class="voc-head"><span class="vt"><code>--</code> 화면 표시</span><span class="chip">릴렉스 손목 마사지기</span></div>
+        <dl class="kv">
+          <dt>고객 발화</dt><dd>“완충인데 m버튼 꾹 누르면 <code>--</code>이것만 뜨고 다른게 아무것도 안눌림 그러고 바로 꺼져버립니다”<br>“전원을 키면 화면만 나오고 그냥 꺼집디다”</dd>
+          <dt>실제 원인</dt><dd>마그네틱 미장착·방향 오류 또는 미착용 상태로, 안전을 위해 작동이 제한된 상태</dd>
+          <dt>무엇을 오해하나</dt><dd><code>--</code>는 “장착해 주세요”라는 <b>안내 신호인데 에러 코드로 읽습니다.</b> 착용 전에 켜보고 판단하는 경우도 많습니다</dd>
+        </dl>
+      </div>
+      <div class="voc-card">
+        <div class="voc-head"><span class="vt">EMS 자극 강도</span><span class="chip">릴렉스 손목 마사지기 · 미니 EMS 릴렉스 마사지기</span></div>
+        <dl class="kv">
+          <dt>고객 발화</dt><dd>“8-9로 둬야 느껴지는 정도? 온열기능은 잘 됩니다”<br>“물이나 크림바르고 작동했는데도 전혀 마사지 기능이 되지를 않습니다”</dd>
+          <dt>실제 원인</dt><dd>충전 부족으로 저주파 출력이 낮아진 경우가 확인됩니다. 맨살 밀착이나 크림 도포 여부는 자극 세기와 큰 관계가 없었습니다</dd>
+          <dt>무엇을 오해하나</dt><dd>온열이 정상 작동하니 <b>충전은 충분하다고 판단합니다.</b> 실제로는 배터리가 부족할 때 온열보다 저주파 자극이 먼저 약해집니다</dd>
+        </dl>
+      </div>
+      <div class="voc-card">
+        <div class="voc-head"><span class="vt">외관 · 액정 기스</span><span class="chip">릴렉스 손목 마사지기</span></div>
+        <dl class="kv">
+          <dt>고객 발화</dt><dd>“사용도 안했는데 기스가 엄청 나있으”<br>“제품 디스플레이에서 스크래치 상처가 많아 불량 교환 요청”</dd>
+          <dt>실제 원인</dt><dd>LED 디스플레이에 부착된 보호필름 표면의 기스</dd>
+          <dt>무엇을 오해하나</dt><dd>필름이 부착된 상태를 모른 채 <b>액정 자체가 손상된 것으로 봅니다.</b> 필름 제거 안내만으로 대부분 종결됩니다</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <!-- 카카오톡 고객센터 -->
+  <div class="track">
+    <div class="track-head">
+      <h3>카카오톡 고객센터를 통한 상담</h3>
+      <span class="rt">불량 문의 91건 기준</span>
+    </div>
+    <div style="padding:16px 20px 4px">
+      <div class="mis-intro" style="margin-bottom:14px">
+        카카오톡으로 들어온 불량 문의 91건 중 <b>42건(46.2%)</b>은 교환·반품 접수까지 가지 않고 안내만으로 종결됐습니다.
+        이 42건에 우리가 어떤 내용을 안내했는지 정리하면, <b>38건(90.5%)</b>이 사용법 안내로 해결된 건입니다.
+      </div>
+      <table class="lot-tab">
+        <thead><tr>
+          <th>안내한 내용</th>
+          <th style="text-align:right; width:64px">건수</th>
+          <th style="text-align:right; width:104px">릴렉스<br>손목 마사지기</th>
+          <th style="text-align:right; width:112px">미니 EMS<br>릴렉스 마사지기</th>
+        </tr></thead>
+        <tbody>
+          <tr class="hl"><td>마그네틱 장착 방향·손목 스트랩 부착</td><td class="n">20</td><td class="n">20</td><td class="n">0</td></tr>
+          <tr><td>충전 부족 (삐 소리는 배터리 부족 신호)</td><td class="n">18</td><td class="n">17</td><td class="n">1</td></tr>
+          <tr><td>착용해야 작동 (미착용 시 안전상 제한)</td><td class="n">16</td><td class="n">16</td><td class="n">0</td></tr>
+          <tr><td>정격 5V 1A 어댑터 사용 (고속충전 불가)</td><td class="n">14</td><td class="n">13</td><td class="n">1</td></tr>
+          <tr><td>배터리 잔량이 실시간 표시가 아님</td><td class="n">13</td><td class="n">13</td><td class="n">0</td></tr>
+          <tr><td>보호필름 부착 상태</td><td class="n">3</td><td class="n">3</td><td class="n">0</td></tr>
+          <tr><td>맨살·수분·크림 도포 필요</td><td class="n">3</td><td class="n">2</td><td class="n">1</td></tr>
+          </tbody>
+      </table>
+      <div class="mis-intro" style="margin-top:14px">
+        <b>SKU별 차이가 뚜렷합니다.</b> 릴렉스 손목 마사지기는 불량 문의 68건 중 <b>40건(58.8%)</b>이 안내만으로 종결됐고,
+        미니 EMS 릴렉스 마사지기는 23건 중 <b>2건(8.7%)</b>뿐입니다.
+      </div>
+      <p class="mis-note">
+        안내 내용이 <b>장착 방향·충전 부족·착용 여부·정격 어댑터·배터리 표시</b> 다섯 가지에 집중되는데,
+        이는 얼라인랩 고객센터에서 고객이 직접 이야기한 상황과 정확히 같은 항목입니다.
+        접점이 달라도 같은 지점에서 오인이 반복된다는 뜻입니다.
+      </p>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <div class="nb-t">두 접점을 합한 오인 규모</div>
+    <p>얼라인랩 고객센터 기준 오인은 <b>41건</b>입니다. 여기에 카카오톡으로 들어와 사용법 안내로 종결된
+    <b>38건</b>이 더해지면, 8월 사용 오인은 최소 <b>79건</b> 규모입니다.
+    카카오톡 경유 건은 교환·반품 접수 기록에 남지 않아 그동안 오인 집계에서 빠져 있었습니다.</p>
+    <p>다만 카카오톡은 상담원을 통해 내용이 건너 전달되어 증상 확인이 제한적입니다.
+    고객 요구도 <b>“교환”, “교환/반품”</b>처럼 결과만 전달되는 경우가 많아, 실제 사용 상황을 되묻기 어렵습니다.
+    자료 요청만 하고 확인 없이 끝난 건은 없었습니다.</p>
+  </div>
+
+  <div class="action-box">
+    <div class="ab-t">사용설명 개선 — 진행 현황</div>
+    <ol>
+      <li><b>동봉 안내 인쇄물 제작 완료</b>(26.08.28) — 앞면은 마그네틱 장착 안내(“딸깍 소리가 나도록 끼워주세요” + 착용법 QR코드),
+        뒷면은 LED 디스플레이 보호필름 제거 안내입니다. 위 오인 유형 중 <b><code>--</code> 화면 표시</b>와
+        <b>외관·액정 기스</b>를 개봉 시점에 직접 대응합니다</li>
+    </ol>
+    <div class="ab-eff">
+      참고 — 이번 인쇄물에는 <b><code>--</code> 표시의 의미</b>와 <b>정격 5V 1A 어댑터 사용</b> 문구가 포함되지 않았습니다.
+      두 항목은 오인 건수 상위에 있어 추가를 검토할 만하나, 우선 이번 인쇄물 배부 후 오인율 추이를 확인한 뒤 판단하는 것이 적절합니다.
+    </div>
+  </div>
+</section>
+
+<!-- s6 -->
+<section id="s6">
+  <div class="s-head"><span class="s-num">6</span><h2>반복 VOC</h2></div>
+  <div class="panel">
+    <div class="crit">
+      <h4>미니 EMS 릴렉스 마사지기 — 제품 선 빠짐 <span class="chip warn">조치 중</span></h4>
+      <div class="cst">
+        <div class="c"><div class="v">21건</div><div class="l">8월 선 빠짐 접수</div></div>
+        <div class="c"><div class="v">2026-07-16</div><div class="l">집중 LOT</div></div>
+        <div class="c"><div class="v">1.74%</div><div class="l">해당 LOT 불량률</div></div>
+        <div class="c"><div class="v">O</div><div class="l">상품전략팀 공유</div></div>
+      </div>
+      <dl class="kv2">
+        <dt>증상</dt><dd>제품 수령 후 착용 시 본체 연결선이 빠지거나 끊어짐(단선). LOT 확인된 건은 전부 초도 LOT(2026-07-16)</dd>
+        <dt>원인</dt><dd>초도 생산 시 전수 검사를 거쳐 출고된 건으로, 외부의 물리적인 힘이 가해져 발생한 것으로 추정. 정확한 원인은 제조사 측에서 지속 모니터링 중</dd>
+        <dt>제품 개선</dt><dd>초도품은 연결선 고정부가 금속 2개 구조였으나, 내구성 강화를 위해 <b>2차 발주분부터 금속 고정 1개를 추가(총 3개)</b>하여 보강 예정</dd>
+        <dt>안내 보강</dt><dd>상세페이지 Q&amp;A와 설명서에 “강한 힘으로 끈을 잡아당기면 파손될 수 있다”는 주의 문구 추가 예정</dd>
+        <dt>보상</dt><dd>향후 동일 불량 발생 시 발생 수량만큼 제조사 보상을 받기로 협의 완료</dd>
+        <dt>모니터링</dt><dd>26.09.04부터 <b>선 빠짐·끊어짐을 별도 항목으로 분류</b>해 누적 관리 중. 초도 LOT 잔여 재고 점검과 후속 LOT(08-27) 추이 관찰 예정</dd>
+      </dl>
+    </div>
+    <p class="mis-note" style="margin-top:14px">8월 외관 불량 37건 중 선 빠짐으로 확인된 건은 20건이고, 나머지 17건은 액정 스크래치 등 다른 사유가 섞여 있습니다. 접수 시 외관 불량 사유를 나눠 기록하지 않아 선 빠짐 21건에도 누락이 있을 수 있습니다. 9월부터 선 빠짐을 별도 항목으로 분류하고 있어, 다음 달부터는 정확한 건수 확인이 가능합니다.</p>
+    <div class="voc-card" style="box-shadow:none; border-color:var(--line-2); margin-top:16px">
+      <div class="voc-head"><span class="vt">저온화상 주장 — 주의 안내 관찰</span><span class="chip warn">모니터링</span></div>
+      <dl class="kv">
+        <dt>현황</dt><dd>6월 말 저온화상 주장 건 이후 8월 추가 접수 없음</dd>
+        <dt>관찰 포인트</dt><dd>상세페이지 주의 안내 유지, 건수 증가 시 안내 강화 필요</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- s7 -->
+<section id="s7">
+  <div class="s-head"><span class="s-num">7</span><h2>고객 제안 · 개선 아이디어</h2></div>
+  <div class="mis-intro" style="margin-bottom:14px">
+    8월 고객센터 상담 687건을 모두 살펴, 고객이 반복적으로 이야기한 개선 지점을 정리했습니다. 항목 옆 숫자는 해당 내용이 언급된 상담 건수입니다.
+  </div>
+  <div class="voc-grid">
+    <div class="voc-card">
+      <div class="voc-head"><span class="vt">정격 5V 1A 어댑터 미동봉</span><span class="chip">패키지 · 80건</span></div>
+      <dl class="kv">
+        <dt>고객 목소리</dt><dd>제품에 어댑터가 없어 집에 있는 고속충전기(5V 2A 이상)를 사용했다가 충전·전원 이상이 발생하는 문의가 반복 (릴렉스 손목 마사지기 52건 / 미니 EMS 릴렉스 마사지기 5건 / 제품이 특정되지 않은 건 24건). “동봉된 충전기가 아닌 걸 써도 불량이 생기나요”</dd>
+        <dt>개선 방향</dt><dd>정격 5V 1A 어댑터 동봉을 검토하거나, 최소한 케이블 택이나 패키지 개봉면에 정격을 표기. 현재는 설명서 내 표기만으로 개봉 시점에 인지되지 않음</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <p style="margin-top:8px">얼라인랩 CX · 월간 상품 VOC 리포트 · 2026년 8월</p>
+</div>
+
+</div>
+</div><!--/main-->
+
+<script>
+// scroll-spy
+(function(){
+  const links=[...document.querySelectorAll('.sb-link')];
+  const secs=[...document.querySelectorAll('section')];
+  const setA=id=>links.forEach(l=>l.classList.toggle('active',l.getAttribute('href').slice(1)===id));
+  function onS(){
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4){setA(secs[secs.length-1].id);return;}
+    let cur=secs[0].id;
+    for(const s of secs){ if(s.getBoundingClientRect().top<=150) cur=s.id; else break; }
+    setA(cur);
+  }
+  window.addEventListener('scroll',onS,{passive:true});
+  window.addEventListener('resize',onS); onS();
+})();
+
+
+// SKU 점유율 (s2)
+const SKUS=[
+  {name:"릴렉스 손목 마사지기", n:188, tag:""},
+  {name:"미니 EMS 릴렉스 마사지기", n:51, tag:"신규"}
+];
+(function(){
+  const tot=SKUS.reduce((a,b)=>a+b.n,0), max=Math.max(...SKUS.map(s=>s.n));
+  document.getElementById('skubars').innerHTML=SKUS.map(s=>`
+    <div class="bar-row">
+      <div class="bar-name">${s.name}${s.tag?` <span class="sku-badge">${s.tag}</span>`:''}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${s.n/max*100}%"></div></div>
+      <div class="bar-val"><span class="cnt">${s.n}건</span><span class="pct">${(s.n/tot*100).toFixed(1)}%</span></div>
+    </div>`).join('');
+})();
+
+// 제품별 유형 (s3 도넛)
+const TYPES={
+ w:[
+  {name:"충전/전원", cnt:53, color:"#8A2423", sym:"완충 표시인데 충전기 분리 시 전원 꺼짐, 전원버튼 눌러도 미점등.", lot:"2026-06-22 집중"},
+  {name:"EMS 강도", cnt:21, color:"#B0302F", sym:"온열은 되나 EMS 자극이 약하거나 안 느껴짐. 착용·밀착 부족과 실제 불량 혼재.", lot:"2026-06-22"},
+  {name:"버튼", cnt:15, color:"#C85451", sym:"M버튼과 ＋/－ 버튼을 눌러도 반응이 없거나 오작동.", lot:"2026-06-22"},
+  {name:"외관", cnt:4, color:"#D98583", sym:"본체 외관 스크래치·마감 불량.", lot:"—"},
+  {name:"LED", cnt:2, color:"#E9B9B8", sym:"강도 조절 숫자 LED 일부 미점등.", lot:"—"}
+ ],
+ m:[
+  {name:"외관", cnt:37, color:"#8A2423", sym:"선 빠짐 20건(제조사 개선 진행) + 기타 외관 17건(액정 스크래치 등).", lot:"2026-07-16 집중"},
+  {name:"충전/전원", cnt:14, color:"#B0302F", sym:"충전 후에도 전원이 켜지지 않거나 작동 중 꺼짐.", lot:"2026-07-16"},
+  {name:"EMS 강도", cnt:11, color:"#C85451", sym:"EMS 자극이 약하거나 느껴지지 않음.", lot:"2026-07-16"},
+  {name:"버튼", cnt:2, color:"#D98583", sym:"버튼 무반응·오작동.", lot:"—"}
+ ]
+};
+let CUR='w';
+function drawDonut(key){
+  CUR=key;
+  const arr=TYPES[key], TOT=arr.reduce((a,t)=>a+t.cnt,0);
+  const svg=document.getElementById('donutSvg'); svg.innerHTML='';
+  const R=70,C=100,circ=2*Math.PI*R, ns="http://www.w3.org/2000/svg";
+  let off=0;
+  arr.forEach((t,i)=>{
+    const frac=t.cnt/TOT;
+    const c=document.createElementNS(ns,'circle');
+    c.setAttribute('cx',C); c.setAttribute('cy',C); c.setAttribute('r',R);
+    c.setAttribute('fill','none'); c.setAttribute('stroke',t.color); c.setAttribute('stroke-width',26);
+    c.setAttribute('stroke-dasharray',`${frac*circ} ${circ-frac*circ}`);
+    c.setAttribute('stroke-dashoffset',-off*circ);
+    c.setAttribute('class','donut-seg'); c.dataset.i=i;
+    c.addEventListener('click',()=>sel(i));
+    svg.appendChild(c); off+=frac;
+  });
+  document.getElementById('legend').innerHTML=arr.map((t,i)=>`
+    <div class="leg-item" data-i="${i}">
+      <span class="leg-dot" style="background:${t.color}"></span>
+      <span class="leg-name">${t.name}</span>
+      <span class="leg-val">${t.cnt}건 · ${(t.cnt/TOT*100).toFixed(1)}%</span>
+    </div>`).join('');
+  document.querySelectorAll('.leg-item').forEach(x=>x.addEventListener('click',()=>sel(+x.dataset.i)));
+  sel(0);
+}
+function sel(i){
+  const arr=TYPES[CUR], TOT=arr.reduce((a,t)=>a+t.cnt,0), t=arr[i];
+  document.querySelectorAll('.leg-item').forEach(x=>x.classList.toggle('active',+x.dataset.i===i));
+  document.querySelectorAll('.donut-seg').forEach(x=>x.setAttribute('stroke-width',+x.dataset.i===i?32:26));
+  document.querySelector('.dc-num').textContent=TOT;
+  document.querySelector('.dc-lab').textContent='불량 접수 건';
+  document.getElementById('typeDetail').innerHTML=
+    `<h4>${t.name} 불량 · ${t.cnt}건 (${(t.cnt/TOT*100).toFixed(1)}%)</h4>
+     <div class="sym">${t.sym}</div>
+     <div class="q">주요 LOT · ${t.lot}</div>`;
+}
+drawDonut('w');
+document.querySelectorAll('.skutab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.skutab').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on'); drawDonut(t.dataset.p);
+}));
+
+</script>
+</body>
+</html>
